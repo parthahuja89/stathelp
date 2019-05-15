@@ -4,19 +4,31 @@ import './App.css'
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Fab from '@material-ui/core/Fab';
+import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Menu';
-import Icon from '@material-ui/core/Icon';
+import dist_url from '../assets/dist.svg';
+import graph_url from '../assets/graph.svg';
 const styles = {
   card: { 
-    minWidth: '70%',
-    minHeight: '70%',
+    width: '70%',
+    maxWidth: '600px',
+    minHeight: '30%',
     left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    position: 'absolute'
+    top: '40%',
+    transform: 'translate(-50%, -90%)',
+    position: 'absolute',
+    borderRadius: '24px',
+  },
+  card_2: {
+    width: '70%',
+    maxWidth: '600px',
+    minHeight: '30%',
+    left: '50%',
+    top: '40%',
+    transform: 'translate(-50%, 30%)',
+    position: 'absolute',
+    borderRadius: '24px',
   },
   bullet: {
     display: 'inline-block',
@@ -35,9 +47,9 @@ function App(props) {
   const { classes } = props;
 
   return (
-    <div>
+  <div>
       {/*
-      TODO: change logo font+color
+      Nav Bar Grid 
       */}
       <Grid
         container
@@ -45,25 +57,38 @@ function App(props) {
         justify="flex-end"
         alignItems="flex-start"
       >
-      <Grid Item xs={11}> 
+      <Grid Item xs={10}> 
       <div id='logo'>
           StatHelp 
       </div>
       </Grid>
 
-      <Grid align ='right' item xs={1}>
-          <Fab color="white" aria-label="Add">
-          <AddIcon color='#000000'/>
-          </Fab>
+      <Grid align ='right' item xs={2}>
+          <IconButton aria-label="Add">
+          <AddIcon/>
+          </IconButton>
       </Grid>
-      
       </Grid>
-      <Card className={classes.card}>
-        <CardContent>
-          this is the stuff inside the card
-        </CardContent>
-      </Card>
-    </div>
+      {//Card Grid
+      }
+          <Card width='50%' className={classes.card}>
+            <CardContent>
+            <img src={dist_url} alt='can not load iamge' class='vectors'/>
+            <div id='categories'>
+            Utilities and Distributions 
+            </div>
+            </CardContent>
+          </Card>
+
+          <Card width='50%'className={classes.card_2} >
+            <CardContent>
+            <img src={graph_url} alt='can not load iamge' class='vectors'/>
+            <div id='categories'>
+            Graphing Tools 
+            </div>
+            </CardContent>
+          </Card>
+  </div>
   );
 }
 
