@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Overpass');
-html,body{
-  height: 100%
-}
-body{
-  background-image: url('../assets/background_curve.svg');
-  background-size: cover;
-  background-position: 50% 50%;
-  margin: 0 auto 0 auto;
+
+.main_app{
+  height: 100vh;
+  background-image: url('../assets/main_bg.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  margin: 0;
 }
 #logo{
   margin-top: 0.3%;
@@ -44,5 +43,4 @@ img{
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
-
 }
