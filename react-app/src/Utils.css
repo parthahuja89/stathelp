@@ -1,7 +1,11 @@
-
 .utils{
     height: 100vh;
     background-image: url('../assets/utils_bg.svg');
     background-repeat: no-repeat;
     margin: 0;
+    background-position: -0% 99%;
+}
+#title{
+    color: black;
+    font-family: 'Overpass', sans-serif; 
 }
