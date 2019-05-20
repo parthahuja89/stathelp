@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Route} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import './App.css'
 import { withStyles } from '@material-ui/core/styles';
@@ -9,7 +10,6 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Menu';
 import dist_url from '../assets/dist.svg';
 import graph_url from '../assets/graph.svg';
-
 const styles = {
   card: { 
     width: '70%',
@@ -20,6 +20,12 @@ const styles = {
     transform: 'translate(-50%, -90%)',
     position: 'absolute',
     borderRadius: '24px',
+    boxShadow: '0 1px 2px rgba(0,0,0,0.15)',
+    transition: 'box-shadow 0.3s ease-in-out',
+    "&:hover": {
+      boxShadow: '0 5px 15px rgba(0,0,0,0.18)',
+      cursor: 'pointer',
+    }
   },
   card_2: {
     width: '70%',
@@ -46,6 +52,14 @@ const styles = {
 
 function App(props) {
   const { classes } = props;
+  const navigate = () =>  {
+    console.log("Navigation issued from card")
+    //animating background svg 
+    
+    //Routing to /Utils 
+    props.history.push('/Utils');
+  }
+
   return (
    <div class='main_app'>
       {/*
@@ -58,7 +72,7 @@ function App(props) {
         alignItems="flex-start"
       >
       <Grid Item xs={10}> 
-      <div id='logo'>
+      <div id='logo'> 
           StatHelp 
       </div>
       </Grid>
@@ -71,7 +85,7 @@ function App(props) {
       </Grid>
       {//Card Grid
       }
-          <Card width='50%'  className={classes.card}>
+          <Card width='50%'  className={classes.card} onClick={navigate}>
               <CardContent>
               <img src={dist_url} alt='can not load iamge' class='vectors'/>
               <div id='categories'>

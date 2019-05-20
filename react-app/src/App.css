@@ -44,3 +44,7 @@ img{
   -khtml-user-select: none;
   -webkit-user-select: none;
 }
+
+card:hover {
+  ; 
+}
