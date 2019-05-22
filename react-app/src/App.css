@@ -11,10 +11,15 @@
 #logo{
   margin-top: 0.3%;
   font-family: 'Overpass', sans-serif;
-  font-size: 3vh;
+  font-size: 2.5vh;
   color: black;
+  margin-left: 3px; 
 }
 
+.stathelp{
+  position: absolute;
+  top:-1; 
+}
 img{
   user-drag: none; 
   user-select: none;
@@ -45,6 +50,3 @@ img{
   -webkit-user-select: none;
 }
 
-card:hover {
-  ; 
-}
