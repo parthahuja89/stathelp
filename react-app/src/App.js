@@ -10,7 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Menu';
 import dist_url from '../assets/dist.svg';
 import graph_url from '../assets/graph.svg';
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fade from '@material-ui/core/Fade';
 //animation 
 import Anime from 'animejs'
 const styles = {
@@ -57,7 +59,7 @@ function animateLogoDown(){
   Anime({
     targets: '.path_1',
     translateY: 10,
-    duration: 1300,
+    duration: 2000,
     direction: "alternate",
     loop: true,
     elasticity: 600,
@@ -66,7 +68,7 @@ function animateLogoDown(){
   Anime({
     targets: '.path_2',
     translateY: 7,
-    duration: 1300,
+    duration: 2000,
     direction: "alternate",
     loop: true,
     elasticity: 600,
@@ -75,7 +77,7 @@ function animateLogoDown(){
   Anime({
     targets: '.path_3',
     translateY: 5,
-    duration: 1300,
+    duration: 2000,
     direction: "alternate",
     loop: true, 
     elasticity: 600,
@@ -84,7 +86,7 @@ function animateLogoDown(){
   Anime({
     targets: '.path_4',
     translateY: 5,
-    duration: 1300,
+    duration: 2000,
     direction: "alternate",
     loop: true,
     elasticity: 600,
@@ -94,16 +96,43 @@ function animateLogoDown(){
 
 
 class App extends React.Component {
-  componentDidMount(){
-    animateLogoDown() 
+  constructor(props){
+    super(props);
+    this.navigate = this.navigate.bind(this);
   }
-  render(){
-  function navigate() {
+  
+  //Shows menu on navIcon clicks 
+  showNav = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  }
+
+  //Hides menu on navIcon clicks 
+  hideNav = () => {
+    this.setState({ anchorEl: null });
+  }
+  //Navigates the user to next page
+  navigate() {
     console.log("Navigation issued from card")
     //Routing to /Utils 
     this.props.history.push('/Utils');
   }
-  const { classes } = this.props;
+
+  //loads logo animation on mounting 
+  componentDidMount(){
+    animateLogoDown() 
+  }
+
+  //current state only includes trigger for nav menu
+  state = {
+    anchorEl: null,
+  }; 
+
+  render(){
+  const { classes } = this.props; //for prop usage
+  const { anchorEl } = this.state; //for state usage 
+
+  const open = Boolean(anchorEl); //for nav triggers
+
   return (
    <div class='main_app'>
       {/*
@@ -117,9 +146,7 @@ class App extends React.Component {
       >
 
       <Grid align='center' Item xs={1}> 
-      
-
-      
+      {/*logo svg */}
         <svg width="61" height="41" viewBox="0 0 61 41" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class='path_1' d="M61 5.82872C61 2.60961 58.3137 -2.33598e-06 55 -2.33598e-06C51.6863 -2.33598e-06 49 2.60961 49 5.82872V35.1713C49 38.3904 51.6863 41 55 41C58.3137 41 61 38.3904 61 35.1713V5.82872Z" fill="#A85FBC"/>
           <path class='path_2' d="M45 16.7757C45 13.5859 42.3137 11 39 11C35.6863 11 33 13.5859 33 16.7757V35.2243C33 38.4141 35.6863 41 39 41C42.3137 41 45 38.4141 45 35.2243V16.7757Z" fill="#BC73BC"/>
@@ -132,17 +159,30 @@ class App extends React.Component {
       </Grid>
 
       <Grid align ='right' item xs={11}>
-          <IconButton aria-label="Add">
+          
+          <IconButton aria-label="Add" onClick = {this.showNav}>
           <AddIcon/>
           </IconButton>
+          {/*Show menu options on nav-bar icon clicks */}
+          <Menu
+            id="fade-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={this.hideNav}
+            TransitionComponent={Fade}
+          >
+            <MenuItem onClick={this.hideNav}>Profile</MenuItem>
+            <MenuItem onClick={this.hideNav}>My account</MenuItem>
+            <MenuItem onClick={this.hideNav}>Logout</MenuItem>
+        </Menu>
+
       </Grid>
       </Grid>
-      
 
       {//Card Grid
       }
       
-          <Card width='50%'  className={classes.card} onClick={navigate}>
+          <Card width='50%'  className={classes.card} onClick={this.navigate}>
               <CardContent>
               <img src={dist_url} alt='can not load iamge' class='vectors'/>
               <div id='categories'>
