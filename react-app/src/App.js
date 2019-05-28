@@ -15,13 +15,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 //animation 
 import Anime from 'animejs'
+
+//material ui styles 
 const styles = {
   card: { 
-    width: '70%',
-    maxWidth: '600px',
-    minHeight: '30%',
-    borderRadius: '24px',
-    boxShadow: '0 1px 2px rgba(0,0,0,0.15)',
+    minWidth: '20%',
+    maxWidth: '80%',
+    minHeight: '5%',
+    maxHeight: '10%',
+    borderRadius: '20px',
+    border: '3px',
+    marginTop: '4%',
     transition: 'box-shadow 0.3s ease-in-out',
     "&:hover": {
       boxShadow: '0 5px 15px rgba(0,0,0,0.18)',
@@ -41,6 +45,7 @@ const styles = {
   },
 };
 
+//animates the logo 
 function animateLogoDown(){
   Anime({
     targets: '.path_1',
@@ -129,7 +134,7 @@ class App extends React.Component {
         direction="row"
         justify="flex-end"
         alignItems="flex-start"
-        height= '100%'
+        spacing={3}
       >
 
       <Grid align='center' Item xs={1}> 
@@ -165,16 +170,16 @@ class App extends React.Component {
 
       </Grid>
       </Grid>
-
+      
       {/*Card Grid*/}
       <Grid
         container
-        direction="row"
         justify="center"
         alignItems="center"
+        direction="row"
       > 
-      <Grid  Item xs={4}> 
-          <Card width='50%'  className={classes.card} onClick={this.navigate}>
+      <Grid align='center' Item lg={4} sm={7} md={7} xs={11}> 
+          <Card  className={classes.card} onClick={this.navigate}>
               <CardContent>
               <img src={dist_url} alt='can not load iamge' class='vectors'/>
               <div id='categories'>
@@ -184,10 +189,10 @@ class App extends React.Component {
           </Card>
       </Grid> 
 
-      <Grid  Item xs={4}> 
-          <Card width='50%'className={classes.card} >
+      <Grid align='center' Item lg={4} sm={7} md={7} xs={11} > 
+          <Card className={classes.card} >
               <CardContent>
-              <img src={graph_url} alt='can not load iamge' class='vectors'/>
+              <img src={graph_url} alt='Image error' class='vectors'/>
               <div id='categories'>
                 Graphing Tools 
               </div>
@@ -195,19 +200,18 @@ class App extends React.Component {
           </Card>
       </Grid>
 
-      <Grid  Item xs={4}> 
-          <Card width='50%'className={classes.card} >
+      <Grid align='center' Item lg={4} sm={7} md={7} xs={11} > 
+          <Card className={classes.card} >
               <CardContent>
-              <img src={graph_url} alt='can not load iamge' class='vectors'/>
+              <img src={graph_url} alt='Image error' class='vectors'/>
               <div id='categories'>
                 Graphing Tools 
               </div>
               </CardContent>
           </Card>
       </Grid>
-
       </Grid>
-  </div>
+    </div>
   );
 }}
 
