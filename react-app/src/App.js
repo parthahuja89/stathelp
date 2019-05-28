@@ -20,10 +20,6 @@ const styles = {
     width: '70%',
     maxWidth: '600px',
     minHeight: '30%',
-    left: '50%',
-    top: '40%',
-    transform: 'translate(-50%, -80%)',
-    position: 'absolute',
     borderRadius: '24px',
     boxShadow: '0 1px 2px rgba(0,0,0,0.15)',
     transition: 'box-shadow 0.3s ease-in-out',
@@ -31,16 +27,6 @@ const styles = {
       boxShadow: '0 5px 15px rgba(0,0,0,0.18)',
       cursor: 'pointer',
     }
-  },
-  card_2: {
-    width: '70%',
-    maxWidth: '600px',
-    minHeight: '30%',
-    left: '50%',
-    top: '40%',
-    transform: 'translate(-50%, 30%)',
-    position: 'absolute',
-    borderRadius: '24px',
   },
   bullet: {
     display: 'inline-block',
@@ -143,6 +129,7 @@ class App extends React.Component {
         direction="row"
         justify="flex-end"
         alignItems="flex-start"
+        height= '100%'
       >
 
       <Grid align='center' Item xs={1}> 
@@ -179,9 +166,14 @@ class App extends React.Component {
       </Grid>
       </Grid>
 
-      {//Card Grid
-      }
-      
+      {/*Card Grid*/}
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+      > 
+      <Grid  Item xs={4}> 
           <Card width='50%'  className={classes.card} onClick={this.navigate}>
               <CardContent>
               <img src={dist_url} alt='can not load iamge' class='vectors'/>
@@ -190,8 +182,10 @@ class App extends React.Component {
               </div>
               </CardContent>
           </Card>
+      </Grid> 
 
-          <Card width='50%'className={classes.card_2} >
+      <Grid  Item xs={4}> 
+          <Card width='50%'className={classes.card} >
               <CardContent>
               <img src={graph_url} alt='can not load iamge' class='vectors'/>
               <div id='categories'>
@@ -199,6 +193,20 @@ class App extends React.Component {
               </div>
               </CardContent>
           </Card>
+      </Grid>
+
+      <Grid  Item xs={4}> 
+          <Card width='50%'className={classes.card} >
+              <CardContent>
+              <img src={graph_url} alt='can not load iamge' class='vectors'/>
+              <div id='categories'>
+                Graphing Tools 
+              </div>
+              </CardContent>
+          </Card>
+      </Grid>
+
+      </Grid>
   </div>
   );
 }}
