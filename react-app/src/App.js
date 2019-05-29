@@ -182,7 +182,7 @@ class App extends React.Component {
           height: '75vh',
         }}
       > 
-      <Grid align='center' item lg={4} sm={4} md={4} xs={11} > 
+      <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
           <Card className={classes.card} >
               <CardContent>
               <img src={graph_url} alt='Image error' class='vectors'/>
@@ -193,7 +193,7 @@ class App extends React.Component {
           </Card>
       </Grid>
 
-      <Grid align='center' item lg={4} sm={4} md={4} xs={11} > 
+      <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
           <Card className={classes.card} >
               <CardContent>
               <img src={graph_url} alt='Image error' class='vectors'/>
@@ -204,7 +204,7 @@ class App extends React.Component {
           </Card>
       </Grid>
 
-      <Grid align='center' item lg={4} sm={4} md={4} xs={11} > 
+      <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
           <Card className={classes.card} >
               <CardContent>
               <img src={graph_url} alt='Image error' class='vectors'/>
