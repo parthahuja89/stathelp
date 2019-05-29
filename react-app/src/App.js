@@ -8,8 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Menu';
-import dist_url from '../assets/dist.svg';
+import dist_url from '../assets/dist_and_utils.svg';
 import graph_url from '../assets/graph.svg';
+import testing_url from '../assets/testing.svg'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
@@ -178,14 +179,25 @@ class App extends React.Component {
         alignItems="center"
         direction="row"
         style={{
-          margin:0,
+          margin: 0,
           height: '75vh',
         }}
       > 
       <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
           <Card className={classes.card} >
               <CardContent>
-              <img src={graph_url} alt='Image error' class='vectors'/>
+              <img src={dist_url} class='vectors'/>
+              <div id='categories'>
+                Utilities and Distributions  
+              </div>
+              </CardContent>
+          </Card>
+      </Grid>
+
+      <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
+          <Card className={classes.card} >
+              <CardContent>
+              <img src={graph_url}  class='vectors'/>
               <div id='categories'>
                 Graphing Tools 
               </div>
@@ -196,20 +208,9 @@ class App extends React.Component {
       <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
           <Card className={classes.card} >
               <CardContent>
-              <img src={graph_url} alt='Image error' class='vectors'/>
+              <img src={testing_url} class='vectors'/>
               <div id='categories'>
-                Graphing Tools 
-              </div>
-              </CardContent>
-          </Card>
-      </Grid>
-
-      <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
-          <Card className={classes.card} >
-              <CardContent>
-              <img src={graph_url} alt='Image error' class='vectors'/>
-              <div id='categories'>
-                Graphing Tools 
+                Testing
               </div>
               </CardContent>
           </Card>
