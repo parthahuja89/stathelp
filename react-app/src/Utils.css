@@ -1,11 +1,18 @@
 .utils{
     height: 100vh;
-    background-image: url('../assets/utils_bg.svg');
+    background-color: #FBFBFB; 
     background-repeat: no-repeat;
     margin: 0;
     background-position: -0% 99%;
 }
-#title{
-    color: black;
-    font-family: 'Overpass', sans-serif; 
+
+.title{
+    font-family: 'Overpass', sans-serif;
+    font-size: 3vh; 
+    transform: translateY(75%);
+    text-align: center;
+  }
+.bg_card_image{
+    width: 50%;
+    margin-top: 10%; 
 }

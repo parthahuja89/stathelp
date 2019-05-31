@@ -9,6 +9,8 @@
   background-position: 50% 99%;
   margin: 0;
   overflow: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 #logo{
   margin-top: 0.3%;
@@ -49,4 +51,13 @@ img{
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+}
+/*Utils page css*/
+
+.title{
+  font-family: 'Overpass', sans-serif;
+  font-size: 3vh; 
+  transform: translateY(75%);
+  text-align: center;
+  
 }
