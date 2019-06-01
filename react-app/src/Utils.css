@@ -1,9 +1,7 @@
 .utils{
+    background-image: url('../assets/utils/background.svg');
     height: 100vh;
-    background-color: #FBFBFB; 
-    background-repeat: no-repeat;
-    margin: 0;
-    background-position: -0% 99%;
+    width: 100%;
 }
 
 .title{
@@ -11,6 +9,7 @@
     font-size: 3vh; 
     transform: translateY(75%);
     text-align: center;
+    color: white;
   }
 .bg_card_image{
     width: 50%;

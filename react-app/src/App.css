@@ -52,12 +52,3 @@ img{
   -khtml-user-select: none;
   -webkit-user-select: none;
 }
-/*Utils page css*/
-
-.title{
-  font-family: 'Overpass', sans-serif;
-  font-size: 3vh; 
-  transform: translateY(75%);
-  text-align: center;
-  
-}
