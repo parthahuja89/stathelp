@@ -4,17 +4,37 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
+import Input from '@material-ui/core/Input'
 //material styles 
-const styles = {
-    textfield:{
-        height: 150,
-        width: 20, 
-    },
-}; 
+const styles ={
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+      },
+      formControl: {
+        minWidth: 120,
+      },
+};
 
 class Tendencies extends React.Component{
+    state = { 
+        //operation performed on the input data 
+        operation: '' 
+    };
+    /**
+     * sets state.operation value from ui selector 
+     * operation val further used for API consumption
+     */
+    setOperation = (event, value) => {
+        console.log("Current operation selection: " + event.target.value)
+        this.setState({
+            operation: event.target.value,
+        });
+    };
+
     render(){
         const { classes } = this.props;
         return(
@@ -39,26 +59,32 @@ class Tendencies extends React.Component{
                 <Grid Item xs={4} s={4}> Choose Operation: </Grid>
                 <Grid align='left' Item xs = {8} s= {8}>
                 {/*Menu for operation selection*/}
+                <form className={classes.root} autoComplete="off">
                     <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="ops-label">Operation</InputLabel>
                         <Select
-                        displayEmpty
-                        name="age"
-                        className={classes.selectEmpty}
+                        value = {this.state.operation}
+                        onChange = {this.setOperation}
+                        inputProps={{
+                            name: 'ops',
+                            id: 'ops-label',
+                          }}
                         >
-                        <MenuItem value={10}>Arithmetic Mean </MenuItem>
-                        <MenuItem value={10}>Geometric Mean </MenuItem>
-                        <MenuItem value={10}>Harmonic Mean </MenuItem>
-                        <MenuItem value={10}>Quadratic Mean </MenuItem>
-                        <MenuItem value={20}>Median</MenuItem>
-                        <MenuItem value={30}>Mode</MenuItem>
-                        <MenuItem value={30}>Range</MenuItem>
-                        <MenuItem value={30}>Variance</MenuItem>
-                        <MenuItem value={30}>Standard Deviation (Sample)</MenuItem>
-                        <MenuItem value={30}>Standard Deviation (Population)</MenuItem>
-                        <MenuItem value={30}>Coefficient Standard Deviation</MenuItem>
-                        <MenuItem value={30}>Standard Error of Mean</MenuItem>
+                        <MenuItem value={'ar_mean'}>Arithmetic Mean</MenuItem>
+                        <MenuItem value={'geo_mean'}>Geometric Mean</MenuItem>
+                        <MenuItem value={'harm_mean'}>Harmonic Mean</MenuItem>
+                        <MenuItem value={'quad_mean'}>Quadratic Mean</MenuItem>
+                        <MenuItem value={'median'}>Median</MenuItem>
+                        <MenuItem value={'mode'}>Mode</MenuItem>
+                        <MenuItem value={'range'}>Range</MenuItem>
+                        <MenuItem value={'variance'}>Variance</MenuItem>
+                        <MenuItem value={'standard_dev'}>Standard Deviation (Sample)</MenuItem>
+                        <MenuItem value={'standard_dev_pop'}>Standard Deviation (Population)</MenuItem>
+                        <MenuItem value={'coeff_standard_dev'}>Coefficient Standard Deviation</MenuItem>
+                        <MenuItem value={'standard_error'}>Standard Error of Mean</MenuItem>
                         </Select>
                 </FormControl>
+                </form>
                 </Grid>
             </Grid>
             </div>

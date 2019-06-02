@@ -9,10 +9,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import Typography from '@material-ui/core/Typography';
 
 //card tab components: Tendency..
-import Tendency from './utils_components/centeral_tendencies' 
+import Tendency from './utils_components/centeral_tendencies';
+import Probability from './utils_components/probability';
 //matrial styles 
 const styles = {
     card: { 
@@ -26,7 +27,7 @@ const styles = {
         borderRadius: '5px',
     },
     root: {
-        flexGrow: 1,
+        flexGrow: 1
     },
     grow: {
         flexGrow: 1,
@@ -37,7 +38,19 @@ const styles = {
     },
 };
 
+function TabContainer(props) {
+    return (
+      <Typography component="div" style={{ padding: 8 * 3 }}>
+        {props.children}
+      </Typography>
+    );
+}
 
+TabContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+};
+
+  
 class Utils extends React.Component {
     state = { value:0, };
     handleChange = (event, value) => {
@@ -68,13 +81,12 @@ class Utils extends React.Component {
          </Grid>
         </Toolbar>
         </AppBar>
-
         {/*Content depeneds on tab selections
-        Tabs: Utilities, Distributions 
-        Tabs render the files avail in ./utils_components/
+        Selection of tabs is avail @ this.state.value 
+        Tabs render the files avail in ./utils_components
         */}
-
-        <Tendency/>
+        {this.state.value === 0 && <TabContainer> <Tendency/> </TabContainer>}
+        {this.state.value === 1 && <TabContainer> <Probability/> </TabContainer>}
         </CardContent>
           </Card>
         </div>
