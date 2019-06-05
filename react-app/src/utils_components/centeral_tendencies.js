@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input'
+import Button from '@material-ui/core/Button'
 //material styles 
 const styles ={
     root: {
@@ -35,6 +35,24 @@ class Tendencies extends React.Component{
         });
     };
 
+    //Testing API temporary 
+    testAPI(){
+        console.log("Testing API!!")
+        fetch('http://localhost:5000/range', {
+        // mode: 'no-cors',
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+        },
+        },
+        ).then(response => {
+        if (response.ok) {
+            response.json().then(json => {
+            console.log(json);
+            });
+        }
+        });
+    }
     render(){
         const { classes } = this.props;
         return(
@@ -87,6 +105,11 @@ class Tendencies extends React.Component{
                 </form>
                 </Grid>
             </Grid>
+            <Button variant="outlined" color="secondary" className={classes.button}
+                    onClick={this.testAPI}
+            >
+                Test    
+            </Button>
             </div>
         );
     }

@@ -1,14 +1,25 @@
 const express = require('express');
 const app = express(); 
+const port = 5000 
+var cors = require('cors')
 
+//importing functions from other files 
 const utils = require('./utilities');
 
-const port = 5000 
 
-app.get('/', (req, res) => res.send('Hello this is the stathelp server'))
+app.use(cors())
+app.get('/', (req, res) => res.json({"Welcome": "To my house!"}))
 
 //Utility calculations
-app.get('/range', (req, res) => res.send(utils.range()))
+
+/**
+ * GET Request format: host:operation_req?json
+ * Json:  {values: comma_separated_values}
+ */
+app.get('/range', (req, res) =>  res.json(
+        {"Answer": String(utils.range(req.query.values))}
+))
 
 
 app.listen(port, () => console.log(`Server running on port ${port}!`))
+
