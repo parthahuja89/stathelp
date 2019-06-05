@@ -19,6 +19,12 @@
   color: black;
   margin-left: 3px; 
 }
+.get_started{
+  font-family: 'Overpass', sans-serif;
+  font-size: 3.8vh;
+  margin-left: 4%;
+  margin-top: 5%;
+}
 
 .stathelp{
   position: absolute;
