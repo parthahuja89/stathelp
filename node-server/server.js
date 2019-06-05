@@ -8,18 +8,22 @@ const utils = require('./utilities');
 
 
 app.use(cors())
-app.get('/', (req, res) => res.json({"Welcome": "To my house!"}))
+app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
 
 //Utility calculations
 
 /**
  * GET Request format: host:operation_req?json
- * Json:  {values: comma_separated_values}
+ * Input Json:  {values: comma_separated_values}
+ * Response Json: {answer: range}
  */
 app.get('/range', (req, res) =>  res.json(
         {"Answer": String(utils.range(req.query.values))}
 ))
 
+app.get('/mode', (req, res) =>  res.json(
+        {"Answer": String(utils.mode(req.query.values))}
+))
 
 app.listen(port, () => console.log(`Server running on port ${port}!`))
 
