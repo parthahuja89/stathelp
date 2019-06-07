@@ -18,3 +18,10 @@
     width: 50%;
     margin-top: 10%; 
 }
+
+.final_output{
+    font-family: 'Overpass', sans-serif;
+    text-align: center;
+    font-size: 3vh; 
+    margin-Top: 25%;
+}

@@ -139,7 +139,7 @@ class Tendencies extends React.Component{
             
             {/**Displays server response*/}
             <div class='final_output'>
-                {this.state.operation.replace(/_/g, " ")}
+                {this.state.operation.replace(/_/g, " ")}:
                 {this.state.answer}
             </div>
 
