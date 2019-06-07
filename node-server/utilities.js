@@ -58,7 +58,6 @@ module.exports = {
         
         //dictionary holds the frequency of each number in the values array 
         var mode_dict = {} 
-
         for(var val in values){
             val = values[val]
             console.log(val)
