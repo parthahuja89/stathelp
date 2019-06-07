@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
+
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+
 //material styles 
 const styles ={
     root: {
@@ -20,10 +24,22 @@ const styles ={
 };
 
 class Tendencies extends React.Component{
+    constructor(){
+        super();
+        this.testAPI = this.testAPI.bind(this);
+    }
     state = { 
-        //operation performed on the input data 
-        operation: '' 
+        //operation selection
+        operation: '',
+        operation_name: '',
+        //textField data
+        input_data: '',
+        //user warning
+        open: false, 
+        //final output
+        answer: '',
     };
+
     /**
      * sets state.operation value from ui selector 
      * operation val further used for API consumption
@@ -37,28 +53,38 @@ class Tendencies extends React.Component{
 
     //Testing API temporary 
     testAPI(){
-        console.log("Testing API!!")
-        fetch('http://localhost:5000/range', {
-        // mode: 'no-cors',
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-        },
-        },
-        ).then(response => {
-        if (response.ok) {
-            response.json().then(json => {
-            console.log(json);
-            });
-        }
-        });
+        console.log("Requesting data with axios")
+        
+        //empty data safety check
+        if(this.state.input_data == ''){
+            this.setState({open: true}) 
+            console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
+        }else{
+
+        axios.get('http://localhost:5000/' + String(this.state.operation), {
+            //GET Request payload 
+            params: {
+                values: String(this.state.input_data)
+            }
+        })
+        .then(res =>{
+            var res_json = res.data
+            console.log("Server Response: " + JSON.stringify(res_json))
+            this.setState({answer: res_json['Answer']})
+        })
+        
     }
+    }
+
+
     render(){
         const { classes } = this.props;
         return(
             <div>
                 <TextField
                 id="standard-full-width"
+                value = {this.state.input_data}
+                onChange = {e => this.setState({input_data: e.target.value})} 
                 label="Input Data"
                 style={{ margin: 8 }}
                 placeholder="Example: 12, 33, 44"
@@ -88,18 +114,18 @@ class Tendencies extends React.Component{
                             id: 'ops-label',
                           }}
                         >
-                        <MenuItem value={'ar_mean'}>Arithmetic Mean</MenuItem>
-                        <MenuItem value={'geo_mean'}>Geometric Mean</MenuItem>
-                        <MenuItem value={'harm_mean'}>Harmonic Mean</MenuItem>
-                        <MenuItem value={'quad_mean'}>Quadratic Mean</MenuItem>
-                        <MenuItem value={'median'}>Median</MenuItem>
-                        <MenuItem value={'mode'}>Mode</MenuItem>
-                        <MenuItem value={'range'}>Range</MenuItem>
-                        <MenuItem value={'variance'}>Variance</MenuItem>
-                        <MenuItem value={'standard_dev'}>Standard Deviation (Sample)</MenuItem>
-                        <MenuItem value={'standard_dev_pop'}>Standard Deviation (Population)</MenuItem>
-                        <MenuItem value={'coeff_standard_dev'}>Coefficient Standard Deviation</MenuItem>
-                        <MenuItem value={'standard_error'}>Standard Error of Mean</MenuItem>
+                        <MenuItem value={'Arithmetic_Mean'}>Arithmetic Mean</MenuItem>
+                        <MenuItem value={'Geometric_Mean'}>Geometric Mean</MenuItem>
+                        <MenuItem value={'Harmonic_Mean'}>Harmonic Mean</MenuItem>
+                        <MenuItem value={'Quadratic_Mean'}>Quadratic Mean</MenuItem>
+                        <MenuItem value={'Median'}>Median</MenuItem>
+                        <MenuItem value={'Mode'}>Mode</MenuItem>
+                        <MenuItem value={'Range'}>Range</MenuItem>
+                        <MenuItem value={'Variance'}>Variance</MenuItem>
+                        <MenuItem value={'Standard_Deviation_Sample'}>Standard Deviation (Sample)</MenuItem>
+                        <MenuItem value={'Standard_Deviation_Population'}>Standard Deviation (Population)</MenuItem>
+                        <MenuItem value={'Coefficient_Standard_Deviation'}>Coefficient Standard Deviation</MenuItem>
+                        <MenuItem value={'Standard_Error'}>Standard Error of Mean</MenuItem>
                         </Select>
                 </FormControl>
                 </form>
@@ -110,7 +136,21 @@ class Tendencies extends React.Component{
             >
                 Test    
             </Button>
+            
+            {/**Displays server response*/}
+            <div class='final_output'>
+                {this.state.operation.replace(/_/g, " ")}
+                {this.state.answer}
             </div>
+
+            {/** Snackbar warning when user makes request with empty data*/}
+            <Snackbar
+                autoHideDuration={2000}
+                open={this.state.open}
+                onClose={() => this.setState({open: false})}
+                message={<span id="message-id">Please enter data.</span>}
+            />
+        </div>
         );
     }
 }
