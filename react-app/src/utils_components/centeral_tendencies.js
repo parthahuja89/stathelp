@@ -11,7 +11,8 @@ import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-
+import Copy from '@material-ui/icons/AssignmentOutlined';
+import IconButton from '@material-ui/core/IconButton';
 //material styles 
 const styles ={
     root: {
@@ -26,7 +27,8 @@ const styles ={
 class Tendencies extends React.Component{
     constructor(){
         super();
-        this.testAPI = this.testAPI.bind(this);
+        this.apiRequest = this.apiRequest.bind(this);
+        this.copyToClipboard = this.copyToClipboard.bind(this);
     }
     state = { 
         //operation selection
@@ -34,8 +36,12 @@ class Tendencies extends React.Component{
         operation_name: '',
         //textField data
         input_data: '',
-        //user warning
+        //user warning snackbar state
         open: false, 
+        //copied to clipboard snackbar state
+        clipboard: false, 
+        //shows output
+        showOutput: false, 
         //final output
         answer: '',
     };
@@ -52,7 +58,7 @@ class Tendencies extends React.Component{
     };
 
     //Testing API temporary 
-    testAPI(){
+    apiRequest(){
         console.log("Requesting data with axios")
         
         //empty data safety check
@@ -68,15 +74,25 @@ class Tendencies extends React.Component{
             }
         })
         .then(res =>{
+            //response 
             var res_json = res.data
             console.log("Server Response: " + JSON.stringify(res_json))
-            this.setState({answer: res_json['Answer']})
+            //Displaying output once state set
+            this.setState({
+                answer: res_json['Answer'],
+                showOutput: true
+            })
         })
         
     }
     }
 
+    //Copies the output text to clipboard 
+    copyToClipboard(){
+        navigator.clipboard.writeText(this.state.answer)
 
+        this.setState({ clipboard: true});
+    }
     render(){
         const { classes } = this.props;
         return(
@@ -132,24 +148,37 @@ class Tendencies extends React.Component{
                 </Grid>
             </Grid>
             <Button variant="outlined" color="secondary" className={classes.button}
-                    onClick={this.testAPI}
+                    onClick={this.apiRequest}
             >
                 Test    
             </Button>
             
-            {/**Displays server response*/}
-            <div class='final_output'>
-                {this.state.operation.replace(/_/g, " ")}:
+            {/**Hidden until server response is accepted*/}
+            <div className= {this.state.showOutput ? 'final_output':'disappear' }>
+                <div class = 'line'/>
+                {this.state.operation.replace(/_/g, " ")+ ": " }
                 {this.state.answer}
+                <IconButton aria-label="Add" onClick = {this.copyToClipboard}>
+                    <Copy/>
+                </IconButton>
             </div>
 
-            {/** Snackbar warning when user makes request with empty data*/}
+            {/** Snackbar warning when user makes request with empty data */}
             <Snackbar
                 autoHideDuration={2000}
                 open={this.state.open}
                 onClose={() => this.setState({open: false})}
                 message={<span id="message-id">Please enter data.</span>}
             />
+
+            {/** Snackbar that indicates when output has been copied to clipboard */}
+            <Snackbar
+                autoHideDuration={2000}
+                open={this.state.clipboard}
+                onClose={() => this.setState({clipboard: false})}
+                message={<span id="message-id"> Copied to clipboard! </span>}
+            />
+
         </div>
         );
     }
