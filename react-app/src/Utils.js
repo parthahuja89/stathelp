@@ -25,6 +25,7 @@ const styles = {
         transform: 'translate(-50%, -50%)',
         position: 'absolute',
         borderRadius: '5px',
+        justifyContent: 'center',
     },
     root: {
         flexGrow: 1

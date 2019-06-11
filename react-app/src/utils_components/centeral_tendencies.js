@@ -20,8 +20,12 @@ const styles ={
         flexWrap: 'wrap',
       },
       formControl: {
-        minWidth: 120,
+        marginTop: '5%',
+        minWidth: 200,
       },
+    button: {
+        marginTop: '10%',
+    },
 };
 
 class Tendencies extends React.Component{
@@ -51,9 +55,11 @@ class Tendencies extends React.Component{
      * operation val further used for API consumption
      */
     setOperation = (event, value) => {
+        //on Operation Selecton => Change operation value, Disable output
         console.log("Current operation selection: " + event.target.value)
         this.setState({
             operation: event.target.value,
+            showOutput: false, 
         });
     };
 
@@ -97,27 +103,27 @@ class Tendencies extends React.Component{
         const { classes } = this.props;
         return(
             <div>
-                <TextField
-                id="standard-full-width"
-                value = {this.state.input_data}
-                onChange = {e => this.setState({input_data: e.target.value})} 
-                label="Input Data"
-                style={{ margin: 8 }}
-                placeholder="Example: 12, 33, 44"
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
-            />
             <Grid
                 container
                 direction="row"
                 justify="flex-start"
                 alignItems="center"
             >
-                <Grid Item xs={4} s={4}> Choose Operation: </Grid>
-                <Grid align='left' Item xs = {8} s= {8}>
+                <Grid item xs={12} s={12} align= 'center'>
+                    <TextField
+                        id="standard-full-width"
+                        value = {this.state.input_data}
+                        onChange = {e => this.setState({input_data: e.target.value})} 
+                        label="Input Data"
+                        placeholder="Example: 12, 33, 44"
+                        fullWidth
+                        margin="normal"
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} s={12} >
                 {/*Menu for operation selection*/}
                 <form className={classes.root} autoComplete="off">
                     <FormControl className={classes.formControl}>
@@ -146,12 +152,17 @@ class Tendencies extends React.Component{
                 </FormControl>
                 </form>
                 </Grid>
+                <Grid item xs={12} s={12} align= 'center' >
+                    <Button 
+                        color="secondary" 
+                        className={classes.button}
+                        onClick={this.apiRequest}  
+                        style={{justifyContent: 'center'}}
+                    >
+                        Calculate
+                    </Button>
+                </Grid>
             </Grid>
-            <Button variant="outlined" color="secondary" className={classes.button}
-                    onClick={this.apiRequest}
-            >
-                Test    
-            </Button>
             
             {/**Hidden until server response is accepted*/}
             <div className= {this.state.showOutput ? 'final_output':'disappear' }>
