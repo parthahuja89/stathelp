@@ -21,8 +21,11 @@ module.exports = {
      * After clean up, sorts the values in the array
      */
     cleanAndSort: function(arr){
-        arr = arr.filter(Number);
-
+        //removing any empty values
+        arr = arr.filter(function(val) {
+            return val != ''; 
+          }); 
+        
         arr.sort(function(a,b) { return a-b });
         return arr 
     },
@@ -34,11 +37,9 @@ module.exports = {
         console.log(input_data);
         //converting input string to array using , delimiter 
         var values = module.exports.csvToArray(input_data)
-
-        console.log("Calculating range in the data:" + String(values))
-        
         values = module.exports.cleanAndSort(values)
 
+        console.log("Calculating range in the data:" + String(values))
         range = values[values.length-1]-values[0]
         
         return range
