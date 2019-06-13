@@ -24,6 +24,7 @@
     text-align: center;
     font-size: 2vh; 
     margin-Top: 10%;
+    font-weight: bold; 
 }
 .disappear{
     display: none; 
@@ -31,7 +32,7 @@
 .line{
     margin-left: 25%;
     border:none;
-    border-top: 5px dotted gray;
+    border-top: 10px dotted #EFDEF9;
     color:#fff;
     background-color:#fff;
     width:50%;

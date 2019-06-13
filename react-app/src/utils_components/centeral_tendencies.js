@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Copy from '@material-ui/icons/AssignmentOutlined';
 import IconButton from '@material-ui/core/IconButton';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
 //material styles 
 const styles ={
     root: {
@@ -25,8 +27,28 @@ const styles ={
       },
     button: {
         marginTop: '10%',
+        fontSize: '1.5vh',
+        textTransform: 'none',
     },
 };
+
+const theme = createMuiTheme({
+    palette: {
+        primary:{
+            main: '#9148BC'
+
+        },
+        secondary: {
+            main: '#9148BC'
+        }
+      },
+      
+    typography: {
+    // Use the system font.
+    fontFamily:
+        'Overpass',
+    },
+});
 
 class Tendencies extends React.Component{
     constructor(){
@@ -103,6 +125,7 @@ class Tendencies extends React.Component{
         const { classes } = this.props;
         return(
             <div>
+            <MuiThemeProvider theme={theme}>
             <Grid
                 container
                 direction="row"
@@ -110,6 +133,7 @@ class Tendencies extends React.Component{
                 alignItems="center"
             >
                 <Grid item xs={12} s={12} align= 'center'>
+                
                     <TextField
                         id="standard-full-width"
                         value = {this.state.input_data}
@@ -122,6 +146,7 @@ class Tendencies extends React.Component{
                         shrink: true,
                         }}
                     />
+                
                 </Grid>
                 <Grid item xs={12} s={12} >
                 {/*Menu for operation selection*/}
@@ -154,6 +179,7 @@ class Tendencies extends React.Component{
                 </Grid>
                 <Grid item xs={12} s={12} align= 'center' >
                     <Button 
+                    variant="contained"
                         color="secondary" 
                         className={classes.button}
                         onClick={this.apiRequest}  
@@ -164,14 +190,16 @@ class Tendencies extends React.Component{
                 </Grid>
             </Grid>
             
-            {/**Hidden until server response is accepted*/}
+            {/**Output hidden until server response is accepted*/}
             <div className= {this.state.showOutput ? 'final_output':'disappear' }>
                 <div class = 'line'/>
+                
                 {this.state.operation.replace(/_/g, " ")+ ": " }
                 {this.state.answer}
-                <IconButton aria-label="Add" onClick = {this.copyToClipboard}>
+                <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {this.copyToClipboard}>
                     <Copy/>
                 </IconButton>
+                
             </div>
 
             {/** Snackbar warning when user makes request with empty data */}
@@ -189,7 +217,7 @@ class Tendencies extends React.Component{
                 onClose={() => this.setState({clipboard: false})}
                 message={<span id="message-id"> Copied to clipboard! </span>}
             />
-
+        </MuiThemeProvider>
         </div>
         );
     }

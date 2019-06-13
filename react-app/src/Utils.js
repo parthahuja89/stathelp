@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 //card tab components: Tendency..
 import Tendency from './utils_components/centeral_tendencies';
 import Probability from './utils_components/probability';
@@ -39,6 +39,21 @@ const styles = {
     },
 };
 
+const theme = createMuiTheme({
+    palette: {
+        primary:{
+            main: '#9148BC'
+
+        },
+        secondary: {
+            main: '#9148BC'
+        }
+      },
+    typography: {
+    // Use the system font.
+    },
+});
+
 function TabContainer(props) {
     return (
       <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -61,35 +76,31 @@ class Utils extends React.Component {
         const { classes } = this.props; //props for material ui
     return(
         <div class='utils'>
+        <MuiThemeProvider theme={theme}>
         <div class='title'>Distributions and Utilities</div>
-        <Card width='50%' className={classes.card}>
-              <CardContent>
-              <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none'}}>
-        <Toolbar>
-        <Grid container justify= 'center'>
-            <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            centered
-            indicatorColor={'secondary'}
-            textColor={'secondary'}
-            >
-            <Tab label="Utilities" />
-            <Tab label="Probability Distributions" />
-            </Tabs>
-         </Grid>
-        </Toolbar>
-        </AppBar>
-        {/*Content depeneds on tab selections
-        Selection of tabs is avail @ this.state.value 
-        Tabs render the files avail in ./utils_components
-        */}
-        {this.state.value === 0 && <TabContainer> <Tendency/> </TabContainer>}
-        {this.state.value === 1 && <TabContainer> <Probability/> </TabContainer>}
+        <Card className={classes.card}>
+            <CardContent>
+            <AppBar width = '10%' position="static" style={{ background: 'transparent', boxShadow: 'none'}}>  
+                <Tabs
+                value={this.state.value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                centered
+                >
+                <Tab label="Utilities" />
+                <Tab label="Distributions" />
+                </Tabs>      
+            </AppBar>
+            {/*Content depeneds on tab selections
+            Selection of tabs is avail @ this.state.value 
+            Tabs render the files avail in ./utils_components
+            */}
+            {this.state.value === 0 && <TabContainer> <Tendency/> </TabContainer>}
+            {this.state.value === 1 && <TabContainer> <Probability/> </TabContainer>}
         </CardContent>
           </Card>
+        </MuiThemeProvider>
         </div>
     );    
 }  
