@@ -50,7 +50,8 @@ const theme = createMuiTheme({
         }
       },
     typography: {
-    // Use the system font.
+        fontFamily:
+            'Overpass',
     },
 });
 
@@ -88,8 +89,8 @@ class Utils extends React.Component {
                 textColor="primary"
                 centered
                 >
-                <Tab label="Utilities" />
-                <Tab label="Distributions" />
+                <Tab style = {{ fontWeight: 'Bold' }} label="Utilities" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Distributions" />
                 </Tabs>      
             </AppBar>
             {/*Content depeneds on tab selections
