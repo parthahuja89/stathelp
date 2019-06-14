@@ -25,5 +25,16 @@ app.get('/mode', (req, res) =>  res.json(
         {"Answer": String(utils.mode(req.query.values))}
 ))
 
+app.get('/Arithmetic_Mean', (req, res) =>  res.json(
+        {"Answer": String(utils.mean(req.query.values))}
+))
+
+app.get('/Geometric_Mean', (req, res) =>  res.json(
+        {"Answer": String(utils.geoMean(req.query.values))}
+))
+
+app.get('/Harmonic_Mean', (req, res) =>  res.json(
+        {"Answer": String(utils.harmMean(req.query.values))}
+))
 app.listen(port, () => console.log(`Server running on port ${port}!`))
 

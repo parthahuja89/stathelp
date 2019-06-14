@@ -30,8 +30,65 @@ module.exports = {
         return arr 
     },
     /**
+     * Calculates the arithmetic mean in input_data
+     * Method: Mean = Sum/Number of values 
+     */
+    mean: function(input_data){
+        console.log(input_data);
+
+        //converting and sorting 
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+        var n = values.length
+        var sum = values.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+
+        console.log("Calculating mean sum: " + String(sum) + " N:" + String(n) )
+        return String(sum/n)
+    },
+    /**
+     * Calculates GeoMetric mean 
+     * Method: Geometric mean for {1,2,3,4,5,6}  = {1x2x3x4x5x6}^1/6
+     */
+    geoMean: function(input_data){
+        
+        //conversion and sorting
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+        
+        console.log(values)
+
+        var n = values.length
+        var product = values.reduce((a, b) => a*b)
+
+        console.log("Calculating geometric mean, product: " + String(product) + " N:" + String(n) )
+
+        return Math.pow(product, 1/n)
+
+    },
+    /**
+     * Calculates harmonic mean
+     * Method: harmonic mean for {a1, a2, a3} = 4/(1/a1+1/a2+1/a3)
+     */
+    harmMean(input_data){
+        //conversion and sorting
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+
+        console.log(values)
+
+        var n = values.length
+        var denominator = 0
+
+        for(i in values){      
+            denominator += 1.0/values[i]
+        }
+        
+        console.log("Calculating Harmonic Mean, denominator: " + String(denominator) + " N:" + String(n))
+        return n/denominator 
+    },
+    /**
      *  Calculates the range in the input_data 
-     *  Range = Maximum Value - Minimum Value 
+     *  Method: Range = Maximum Value - Minimum Value 
      */     
     range: function(input_data){
         console.log(input_data);
@@ -39,6 +96,7 @@ module.exports = {
         var values = module.exports.csvToArray(input_data)
         values = module.exports.cleanAndSort(values)
 
+        console.log("Parsed: " + String(values))
         console.log("Calculating range in the data:" + String(values))
         range = values[values.length-1]-values[0]
         
