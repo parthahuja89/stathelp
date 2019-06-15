@@ -168,10 +168,10 @@ class Tendencies extends React.Component{
                         <MenuItem value={'Median'}>Median</MenuItem>
                         <MenuItem value={'Mode'}>Mode</MenuItem>
                         <MenuItem value={'Range'}>Range</MenuItem>
-                        <MenuItem value={'Variance'}>Variance</MenuItem>
+                        <MenuItem value={'Variance'}>Variance(Population)</MenuItem>
+                        <MenuItem value={'Variance_Sample'}>Variance(Sample)</MenuItem>
+                        <MenuItem value={'Standard_Deviation_Population'}>Standard Deviation(Population)</MenuItem>
                         <MenuItem value={'Standard_Deviation_Sample'}>Standard Deviation (Sample)</MenuItem>
-                        <MenuItem value={'Standard_Deviation_Population'}>Standard Deviation (Population)</MenuItem>
-                        <MenuItem value={'Coefficient_Standard_Deviation'}>Coefficient Standard Deviation</MenuItem>
                         <MenuItem value={'Standard_Error'}>Standard Error of Mean</MenuItem>
                         </Select>
                 </FormControl>

@@ -40,7 +40,7 @@ module.exports = {
         var values = module.exports.csvToArray(input_data)
         values = module.exports.cleanAndSort(values)
         var n = values.length
-        var sum = values.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+        var sum = values.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
 
         console.log("Calculating mean sum: " + String(sum) + " N:" + String(n) )
         return String(sum/n)
@@ -85,6 +85,57 @@ module.exports = {
         
         console.log("Calculating Harmonic Mean, denominator: " + String(denominator) + " N:" + String(n))
         return n/denominator 
+    },
+    /**
+     * Calculates the quadratic mean in input_data
+     * Method: QuadMean = sqrt(1/n (x1^2 + x2^2 + x3^2 .... xn^2))
+     */
+    quadMean: function(input_data){
+        console.log(input_data);
+
+        //converting and sorting
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+
+        console.log("Calculating Quadratic Mean in the data:" + String(values))
+
+        n = values.length 
+        squared_sum = 0
+
+        for(i in values){
+            squared_sum += values[i]*values[i]
+        }
+        
+        console.log("Calculating Quadratic Mean, squared sum: " + String(squared_sum) + " N:" + String(n))
+
+        return Math.sqrt(1/n*squared_sum)
+    },
+    /**
+     * Calculated Median
+     * Method: If n even return two mid points -> mid-1 + mid / 2 
+     * if n odd return values[ mid ]
+     */
+    median: function(input_data){
+        console.log(input_data);
+        //converting input string to array using , delimiter 
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+
+        if(values.length == 0){
+            return 0 
+        }
+
+        var n = values.length
+        mid = Math.floor(n/2)
+
+        console.log("Calculating median on data: " + String(values) + " N:" + String(n) ) 
+
+        // n even 
+        if(n%2==0){
+            console.log("Dataset has two mid points: " + String(values[mid-1]) + " and " + String(values[mid]))
+            return (parseFloat(values[mid-1]) + parseFloat(values[mid]))/2.0
+        }
+        return values[mid]
     },
     /**
      *  Calculates the range in the input_data 
@@ -141,5 +192,73 @@ module.exports = {
 
         return highest 
     },
+    /**
+     * Calculates the variance in the data
+     * Method: Calculate the mean 
+     * Calculate squared differences from the mean (ith value - mean)^2
+     * return sum of squared_differences/len(values)
+     */
+    variance: function(input_data){
+        mean = module.exports.mean(input_data)
 
+        console.log("Calculating Variance with mean: " + String(mean))
+
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+
+        squared_difference = 0
+        for (i in values){
+            squared_difference += Math.pow(values[i]-mean,2)
+        }
+
+        console.log("Calculating Variance with squared difference: " + String(squared_difference))
+
+        return squared_difference/values.length 
+
+    },
+    /**
+     * Same as other variance, but N = N - 1 
+     */
+    sampleVariance: function(input_data){
+        mean = module.exports.mean(input_data)
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+
+        squared_difference = 0
+        for (i in values){
+            squared_difference += Math.pow(values[i]-mean,2)
+        }
+
+        return squared_difference/(values.length-1)
+
+    },
+    /**
+     * Calculates the Standard Deviation of data
+     * Method: Standard Deviation is  sqrt(variance)
+     */
+    standardDevPop: function(input_data){
+        variance = module.exports.variance(input_data)
+
+        return Math.sqrt(variance)
+    },
+    /**
+     * Calculates Standard Deviation of SAMPLE  
+     */
+    standardDevSample: function(input_data){
+        variance =  module.exports.sampleVariance(input_data)
+
+        return Math.sqrt(variance)
+    },
+    /**
+     * Calculates Standard Error of Mean 
+     * Method: Standard Error = Standard Deviation(Sample)/sqrt(N)
+     */
+    standardError: function(input_data){
+        standard_dev = module.exports.standardDevSample(input_data)
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+
+        return standard_dev/Math.sqrt(values.length)
+
+    }
 };
