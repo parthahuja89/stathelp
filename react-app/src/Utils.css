@@ -22,11 +22,15 @@
 .final_output{
     font-family: 'Overpass', sans-serif;
     text-align: center;
-    font-size: 2vh; 
-    margin-Top: 10%;
-    font-weight: bold; 
+    font-size: 3vh; 
+    
+    font-weight: bold;
+    transform:translateY(50%);
 }
-.disappear{
+#output_text{
+    transform:translateY(60%); 
+}
+.disappear{ 
     display: none; 
 }
 .line{
@@ -36,7 +40,7 @@
     color:#fff;
     background-color:#fff;
     width:50%;
-    height: 2vh;
+    
 }
 .choose_ops{
     font-family: 'Overpass', sans-serif;

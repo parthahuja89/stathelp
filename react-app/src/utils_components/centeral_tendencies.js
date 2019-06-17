@@ -184,24 +184,35 @@ class Tendencies extends React.Component{
                         className={classes.button}
                         onClick={this.apiRequest}  
                         style={{justifyContent: 'center'}}
+                        size="large"
                     >
                         Calculate
                     </Button>
                 </Grid>
             </Grid>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="flex-end"
+            >
+                
+            <Grid item xs={12} s={12} align= 'center' >
             
             {/**Output hidden until server response is accepted*/}
             <div className= {this.state.showOutput ? 'final_output':'disappear' }>
                 <div class = 'line'/>
-                
+                <div id ='output_text'>
                 {this.state.operation.replace(/_/g, " ")+ ": " }
                 {this.state.answer}
                 <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {this.copyToClipboard}>
                     <Copy/>
                 </IconButton>
-                
+            </div>
             </div>
 
+            </Grid>
+            </Grid>
             {/** Snackbar warning when user makes request with empty data */}
             <Snackbar
                 autoHideDuration={2000}
