@@ -5,11 +5,10 @@ var cors = require('cors')
 
 //importing functions from other files 
 const utils = require('./utilities');
-
+const dist = require('./Distributions');
 
 app.use(cors())
 app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
-
 //Utility calculations
 
 /**
@@ -63,6 +62,13 @@ app.get('/Standard_Deviation_Sample', (req, res) =>  res.json(
 
 app.get('/Standard_Error', (req, res) =>  res.json(
         {"Answer": String(utils.standardError(req.query.values))}
+))
+
+/**
+ * Distribution Calculations 
+ */
+app.get('/Bionomial', (req, res) =>  res.json(
+        {"Answer": String(dist.bionomial(req.query.success, req.query.trial_count, req.query.x))}
 ))
 
 app.listen(port, () => console.log(`Server running on port ${port}!`))

@@ -27,6 +27,12 @@
     font-weight: bold;
     transform:translateY(50%);
 }
+
+.distribution_final_output{
+    font-family: 'Overpass', sans-serif;
+    text-align: center;
+    font-weight: bold;
+}
 #output_text{
     transform:translateY(60%); 
 }

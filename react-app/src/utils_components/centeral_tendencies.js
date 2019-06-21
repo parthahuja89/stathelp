@@ -85,12 +85,16 @@ class Tendencies extends React.Component{
         });
     };
 
-    //Testing API temporary 
+    /**
+     * Makes GET Request to Stathelp server 
+     * Json payload: {input_data: 'csv_values'}
+     */
     apiRequest(){
         console.log("Requesting data with axios")
         
         //empty data safety check
         if(this.state.input_data == ''){
+            //send warning 
             this.setState({open: true}) 
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
         }else{

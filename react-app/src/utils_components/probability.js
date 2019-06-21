@@ -86,7 +86,6 @@ class Probability extends React.Component{
                 <div className= {this.state.Distribution=='Bionomial_Distribution' ? '':'disappear' }>
                     <Bionomial_Distribution />
                 </div>
-
             </div>
         );
     }
