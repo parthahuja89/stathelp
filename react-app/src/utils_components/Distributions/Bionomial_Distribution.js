@@ -7,6 +7,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
 import axios from 'axios';
 
 const styles = {
@@ -28,17 +34,31 @@ class Bionomial_Distribution  extends React.Component{
         success :'',
         trial_count : '',
         x : '',
-        //snackbar warning
+        //snackbar hooks
         empty_data_warning: false,
-        comparison_warning: false,
         probability_warning: false,
-        
+        copy_text: false,
+
         //server response
         answer: '',
+        answer_lt: '',
+        answer_lt_eq: '',
+        answer_gt: '',
+        answer_gt_eq: '',
         //true when server output available
         showOutput: false,
     };
 
+    /**
+     * Copies the text to clipboard
+     */
+    copyToClipboard(text){
+        console.log("Copying to clipboard: " + text)
+        navigator.clipboard.writeText(text)
+
+        //using snackbar to show text is copied 
+        this.setState({copy_text: true})
+    }
     /**
      * Sends GET request to server 
      * Request: /Bionomial 
@@ -71,9 +91,14 @@ class Bionomial_Distribution  extends React.Component{
                 //response 
                 var res_json = res.data
                 console.log("Server Response: " + JSON.stringify(res_json))
-                //Displaying output once state set
+                //Response JSON: {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
                 this.setState({
                     answer: res_json['Answer'],
+                    answer_lt : res_json['Answer_lt'],
+                    answer_lt_eq: res_json['Answer_lt_eq'],
+                    answer_gt: res_json['Answer_gt'],
+                    answer_gt_eq: res_json['Answer_gt_eq'],
+
                     showOutput: true
                 })
             })
@@ -156,15 +181,68 @@ class Bionomial_Distribution  extends React.Component{
 
                 {/**Output hidden until server response is accepted*/}
                 <div className= {this.state.showOutput ? 'distribution_final_output':'disappear' }>
-                    <div id ='output_text' style = {{fontSize:'1.8vh'}}>
-                    P(X=x): 
-                    {this.state.answer}
-                    <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {this.copyToClipboard}>
-                        <Copy/>
-                    </IconButton>
-                </div>
-                </div>
+                    <Table className={classes.table}>
+                    <TableHead>
+                    <TableRow>
+                        <TableCell>P(X)</TableCell>
+                        <TableCell align="right">Probability</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    <TableRow>
+                        <TableCell>P(X= x)</TableCell>
+                        <TableCell align="right">  
+                            {this.state.answer}
+                            <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer)}}>
+                                <Copy/>
+                            </IconButton>
+                        </TableCell>
+                    </TableRow>
+                    
+                    <TableRow>
+                        <TableCell>P(X {"<"} x)</TableCell>
+                        <TableCell align="right">
+                            {this.state.answer_lt}
+                            <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_lt)}}>
+                                <Copy/>
+                            </IconButton>
+                        </TableCell>
+                    </TableRow>
+                    
+                    <TableRow>
+                        <TableCell>P(X {"=<"} x)</TableCell>
+                        <TableCell align="right">
+                            {this.state.answer_lt_eq}
+                            <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_lt_eq)}}>
+                                <Copy/>
+                            </IconButton>                       
+                        </TableCell>
+                    </TableRow>
 
+                    <TableRow>
+                        <TableCell>P(X {">"} x)</TableCell>
+                        <TableCell align="right">
+                            {this.state.answer_gt}
+                            <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_gt)}}>
+                                <Copy/>
+                            </IconButton> 
+                        </TableCell>
+                    </TableRow>
+                    
+                    <TableRow>
+                        <TableCell>P(X {">="} x)</TableCell>
+                        <TableCell align="right">
+                            {this.state.answer_gt_eq}
+                            <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_gt_eq)}}>
+                                <Copy/>
+                            </IconButton>
+                        </TableCell>
+                    </TableRow>
+
+                    </TableBody>
+                    </Table>
+                </div>
+                
                 {/** Empty data Warning SnackBar */}
                 <Snackbar
                     autoHideDuration={2000}
@@ -179,13 +257,15 @@ class Bionomial_Distribution  extends React.Component{
                     onClose={() => this.setState({probability_warning: false})}
                     message={<span id="message-id">Probability must be between 0-1.</span>}
                 />
-                {/**X greater than trial count warning*/}
+
+                {/** Awares user that text is copied */}
                 <Snackbar
-                    autoHideDuration={2500}
-                    open={this.state.comparison_warning}
-                    onClose={() => this.setState({comparison_warning: false})}
-                    message={<span id="message-id">X can't be greater than trial count.</span>}
+                    autoHideDuration={2000}
+                    open={this.state.copy_text}
+                    onClose={() => this.setState({copy_text: false})}
+                    message={<span id="message-id">Copied to clipboard.</span>}
                 />
+
             </div>
         );
     }

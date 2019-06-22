@@ -5,7 +5,7 @@ var cors = require('cors')
 
 //importing functions from other files 
 const utils = require('./utilities');
-const dist = require('./Distributions');
+const bio = require('./Bionomial');
 
 app.use(cors())
 app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
@@ -67,8 +67,21 @@ app.get('/Standard_Error', (req, res) =>  res.json(
 /**
  * Distribution Calculations 
  */
+
+ /**
+  * Bionomial Distribution
+  * GET Request payload: 
+  *     {success: '0<=X<=1', trial_count: '1->INF' , x: 'num of success'}
+  * Response payload: 
+  *     {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
+  */
 app.get('/Bionomial', (req, res) =>  res.json(
-        {"Answer": String(dist.bionomial(req.query.success, req.query.trial_count, req.query.x))}
+        {"Answer": String(bio.bionomial(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_lt": String(bio.bionomial_lt(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_lt_eq": String(bio.bionomial_lt_eq(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_gt": String(bio.bionomial_gt(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_gt_eq": String(bio.bionomial_gt_eq(req.query.success, req.query.trial_count, req.query.x))
+        }
 ))
 
 app.listen(port, () => console.log(`Server running on port ${port}!`))

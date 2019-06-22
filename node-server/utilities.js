@@ -1,5 +1,7 @@
 module.exports = {
-
+/**
+ * About file: Calculates common utilties like mean, median. mode etc. 
+ */
     /**
      * Converts a JSON Request into array 
      * Input: Comma Seperated JSON {values: csv}
