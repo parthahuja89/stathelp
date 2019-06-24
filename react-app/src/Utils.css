@@ -30,8 +30,9 @@
 
 .distribution_final_output{
     font-family: 'Overpass', sans-serif;
-    text-align: center;
-    font-weight: bold;
+    overflow-y: auto;
+    margin-top: 2%;
+    max-height: 50vh;
 }
 #output_text{
     transform:translateY(60%); 
@@ -46,7 +47,7 @@
     color:#fff;
     background-color:#fff;
     width:50%;
-    
+    height: '150px'
 }
 .choose_ops{
     font-family: 'Overpass', sans-serif;

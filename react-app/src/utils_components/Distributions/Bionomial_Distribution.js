@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes, { string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Copy from '@material-ui/icons/AssignmentOutlined';
+import Arrow from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid';
@@ -17,11 +23,24 @@ import axios from 'axios';
 
 const styles = {
     button: {
-        marginTop: '10%',
+        marginTop: '3%',
         fontSize: '1.5vh',
         textTransform: 'none',
     },
-
+    flexContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        boxSizing: 'border-box',
+      },
+      tableRow: {
+        cursor: 'pointer',
+      },
+      tableCell: {
+        flex: 1,
+      },
+      noClick: {
+        cursor: 'initial',
+      },
 };
 
 class Bionomial_Distribution  extends React.Component{
@@ -55,6 +74,11 @@ class Bionomial_Distribution  extends React.Component{
     copyToClipboard(text){
         console.log("Copying to clipboard: " + text)
         navigator.clipboard.writeText(text)
+        .catch(err => {
+            //User denied clipboard permissions
+            console.log("Copy to clipboard failed")
+            
+          });
 
         //using snackbar to show text is copied 
         this.setState({copy_text: true})
@@ -108,7 +132,9 @@ class Bionomial_Distribution  extends React.Component{
     render(){
         const { classes } = this.props;
         return(
-            <div>                             
+            <div>    
+            {/** Once Output recieved calculation fields are removed */}
+            <div className= {this.state.showOutput ? 'disappear':'' }>
                 <Grid
                     container
                     direction="row"
@@ -178,10 +204,15 @@ class Bionomial_Distribution  extends React.Component{
                     </Button>
                 </Grid>
                 </Grid>
-
+                </div>
                 {/**Output hidden until server response is accepted*/}
                 <div className= {this.state.showOutput ? 'distribution_final_output':'disappear' }>
-                    <Table className={classes.table}>
+                    {/** Button to go Back from the output screen*/}
+                    <IconButton style = {{ marginLeft: '1%'}}  size="small" color="primary" aria-label="Add" onClick = {() => {this.setState({ showOutput: false })}}>
+                         <Arrow/> 
+                    </IconButton>
+
+                    <Table className={classes.table} style={{tableLayout: 'fixed'}}>
                     <TableHead>
                     <TableRow>
                         <TableCell>P(X)</TableCell>
@@ -190,7 +221,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableHead>
                     <TableBody>
                     <TableRow>
-                        <TableCell>P(X= x)</TableCell>
+                        <TableCell>P(X=x)</TableCell>
                         <TableCell align="right">  
                             {this.state.answer}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer)}}>
@@ -200,7 +231,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
                     
                     <TableRow>
-                        <TableCell>P(X {"<"} x)</TableCell>
+                        <TableCell>P(X{"<"}x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_lt}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_lt)}}>
@@ -210,7 +241,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
                     
                     <TableRow>
-                        <TableCell>P(X {"=<"} x)</TableCell>
+                        <TableCell>P(X{"=<"}x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_lt_eq}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_lt_eq)}}>
@@ -220,7 +251,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
 
                     <TableRow>
-                        <TableCell>P(X {">"} x)</TableCell>
+                        <TableCell>P(X{">"}x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_gt}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_gt)}}>
@@ -230,7 +261,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
                     
                     <TableRow>
-                        <TableCell>P(X {">="} x)</TableCell>
+                        <TableCell>P(X{">="}x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_gt_eq}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_gt_eq)}}>
@@ -266,6 +297,8 @@ class Bionomial_Distribution  extends React.Component{
                     message={<span id="message-id">Copied to clipboard.</span>}
                 />
 
+                {/** Alert Copy to clipboard failed permission warning */}
+                
             </div>
         );
     }

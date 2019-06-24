@@ -80,7 +80,7 @@ class Utils extends React.Component {
         <MuiThemeProvider theme={theme}>
         <div class='title'>Distributions and Utilities</div>
         <Card className={classes.card}>
-            <CardContent>
+            <CardContent >
             <AppBar width = '10%' position="static" style={{ background: 'transparent', boxShadow: 'none'}}>  
                 <Tabs
                 value={this.state.value}
@@ -89,6 +89,10 @@ class Utils extends React.Component {
                 textColor="primary"
                 centered
                 >
+                {/** Tabs
+                1. ./utils_components/centeral_tendencies
+                2. ./utils_components/probability.js
+                */}
                 <Tab style = {{ fontWeight: 'Bold' }} label="Utilities" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Distributions" />
                 </Tabs>      

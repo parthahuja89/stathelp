@@ -1,5 +1,15 @@
+/**
+ * File: Bionomial.js 
+ * Calculates Bionomial Distribution probabilities
+ * Methods: Cumulative and Equal probability methods {(PX=x), P(X<x), P(X>x), etc..}
+ */
 module.exports = {
-    
+    /**
+     * Rounds int to 7 decimal places
+     */
+    round: function(num){
+        return parseFloat(num).toFixed(7)
+    },
     /**
      * Calculataes factorial of num
      * Method: Simple recursion function
@@ -46,7 +56,7 @@ module.exports = {
         if(isNaN(probability)){
             return  '  <0.000001'
         }
-        return probability
+        return parseFloat(probability)
     },
 
     /** 
@@ -66,7 +76,7 @@ module.exports = {
         }
 
         console.log("P(X<x): " + String(probability))
-        return probability 
+        return parseFloat(probability)
     },
 
     /**
@@ -84,7 +94,7 @@ module.exports = {
         }
 
         console.log("P(X<=x): " + String(probability))
-        return probability
+        return parseFloat(probability)
 
     },
     /**
@@ -99,7 +109,7 @@ module.exports = {
         
         console.log("P(X>x): " + String(probability))
 
-        return probability
+        return parseFloat(probability)
     },
     /**
      * Calculates Bionomial Distribution of X>=x
@@ -113,7 +123,7 @@ module.exports = {
         
         console.log("P(X>=x): " + String(probability))
 
-        return probability
+        return parseFloat(probability)
 
     }
 };
