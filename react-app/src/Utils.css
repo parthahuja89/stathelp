@@ -1,3 +1,6 @@
+/*
+CSS Utils.js and children 
+*/
 .utils{
     background-image: url('../assets/utils/background.svg');
     height: 100vh;
@@ -53,4 +56,14 @@
     font-family: 'Overpass', sans-serif;
     text-align: center;
     font-size: 2vh; 
+}
+
+.instructions{
+    transform: translateY(10%);
+    border-radius: 10px;
+    background: #FCEFF4;
+    text-align: center;
+    min-height: 100px;
+    max-height: 5%;
+    font-size: 1.5vh;
 }

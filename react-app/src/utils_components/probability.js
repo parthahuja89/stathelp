@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 
 // ./Distributions imports 
 import Bionomial_Distribution from './Distributions/Bionomial_Distribution';
-
+import Normal_Distribution from './Distributions/Normal';
 const styles = {
     root: {
         display: 'flex',
@@ -47,7 +47,7 @@ class Probability extends React.Component{
         return(
             <div>
                 {/* Menu for Distribution Selection */}
-                <form className={classes.root} autoComplete="off">
+                <form className={classes.root} autoComplete="off" >
                     <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="ops-label">Probability Distribution</InputLabel>
                         <Select
@@ -64,18 +64,11 @@ class Probability extends React.Component{
                         <MenuItem value={'Uniform_Distribution'}>Uniform Distribution</MenuItem>
                         <MenuItem value={'Poisson_Distribution'}>Poisson Distribution</MenuItem>
                         <MenuItem value={'Bernoulli_Distribution'}>Bernoulli Distribution</MenuItem>
-                        <MenuItem value={'Degenerate_Distribution'}>Degenerate Distribution</MenuItem>
                         <MenuItem value={'Geometric_Distribution'}>Geometric Distribution</MenuItem>
-                        <MenuItem value={'Beta_Distribution'}>Beta Distribution</MenuItem>
                         <MenuItem value={'Chi_Squared_Distribution'}>Chi Squared Distribution</MenuItem>
                         <MenuItem value={'Exponential_Distribution'}>Exponential Distribution</MenuItem>
                         <MenuItem value={'Logarithmic_Distribution'}>Logarithmic Distribution</MenuItem>
-                        <MenuItem value={'Gamma_Distribution'}>Gamma Distribution</MenuItem>
-                        <MenuItem value={'Rayleigh_Distribution'}>Rayleigh Distribution</MenuItem>
-                        <MenuItem value={'Student_t_Distribution'}>Student's t Distribution</MenuItem>
                         <MenuItem value={'Hyperbolic_Distribution'}>Hyperbolic Distribution</MenuItem>
-                        <MenuItem value={'Zeta_Distribution'}>Zeta Distribution</MenuItem>
-                        <MenuItem value={'Borel_Distribution'}>Borel Distribution</MenuItem>
                         </Select>
                 </FormControl>
                 </form>
@@ -85,6 +78,11 @@ class Probability extends React.Component{
                 {/** Bionomial Distribution */}
                 <div className= {this.state.Distribution=='Bionomial_Distribution' ? '':'disappear' }>
                     <Bionomial_Distribution />
+                </div>
+
+                {/** Normal Distribution */}
+                <div className= {this.state.Distribution=='Normal_Distribution' ? '':'disappear' }>
+                    <Normal_Distribution />
                 </div>
             </div>
         );
