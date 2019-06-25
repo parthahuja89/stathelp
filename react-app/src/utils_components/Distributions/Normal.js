@@ -54,13 +54,11 @@ class Normal extends React.Component{
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
                     <TextField
-                        id="standard-name"
-                        className={classes.textField}                       
-                        margin="normal"
-                        align= 'left'
                         style = {{maxWidth: '70px', marginTop: '5px'}}
+                        className={classes.textField}                       
+                        align= 'left'
                         onChange = {e => this.setState({success: e.target.value})}
-                        disableAutoFocus = {true}
+                        
                     />  
                 </Grid> 
 
@@ -71,11 +69,9 @@ class Normal extends React.Component{
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
                     <TextField
-                        id="standard-name"
                         className={classes.textField}                       
-                        margin="normal"
-                        align= 'left'
                         style = {{maxWidth: '70px', marginTop: '5px'}}
+                        align= 'left'
                         onChange = {e => this.setState({ trial_count: e.target.value})} 
                     />  
                 </Grid> 
@@ -87,9 +83,8 @@ class Normal extends React.Component{
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
                     <TextField
-                        id="standard-name"
                         className={classes.textField}                       
-                        margin="normal"
+                        margin = 'normal'
                         align= 'left'
                         style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({ x: e.target.value})} 

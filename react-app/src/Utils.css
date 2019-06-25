@@ -60,10 +60,11 @@ CSS Utils.js and children
 
 .instructions{
     transform: translateY(10%);
+    margin:0 auto;
     border-radius: 10px;
     background: #FCEFF4;
     text-align: center;
-    min-height: 100px;
-    max-height: 5%;
+    width: 100%;
+    max-width: 650px;
     font-size: 1.5vh;
 }

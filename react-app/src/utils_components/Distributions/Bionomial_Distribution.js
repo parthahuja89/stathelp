@@ -150,9 +150,8 @@ class Bionomial_Distribution  extends React.Component{
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
                     <TextField
-                        id="standard-name"
+                        
                         className={classes.textField}                       
-                        margin="normal"
                         align= 'left'
                         style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({success: e.target.value})} 
@@ -166,9 +165,9 @@ class Bionomial_Distribution  extends React.Component{
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
                     <TextField
-                        id="standard-name"
+                        
                         className={classes.textField}                       
-                        margin="normal"
+                        
                         align= 'left'
                         style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({ trial_count: e.target.value})} 
@@ -182,7 +181,7 @@ class Bionomial_Distribution  extends React.Component{
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
                     <TextField
-                        id="standard-name"
+                        
                         className={classes.textField}                       
                         margin="normal"
                         align= 'left'
