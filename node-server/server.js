@@ -6,7 +6,7 @@ var cors = require('cors')
 //importing functions from other files 
 const utils = require('./utilities');
 const bio = require('./Distributions/Bionomial');
-
+const norm = require('./Distributions/Normal'); 
 app.use(cors())
 app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
 //Utility calculations
@@ -84,9 +84,19 @@ app.get('/Bionomial', (req, res) =>  res.json(
         }
 ))
 
-/**
- * Normal Distribution 
- */
+ /**
+  * Normal Distribution
+  * GET Request payload: 
+  *     {z_score, mean, standard_dev}
+  * Response payload: 
+  *     {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
+  */
+ app.get('/Normal', (req, res) =>  res.json(
+        {"Answer": norm.normal(req.query.z_score, req.query.mean, req.query.standard_dev),
+        }
+))
+
+
 
 app.listen(port, () => console.log(`Server running on port ${port}!`))
 

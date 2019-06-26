@@ -3,26 +3,9 @@
  * Calculates Bionomial Distribution probabilities
  * Methods: Cumulative and Equal probability methods {(PX=x), P(X<x), P(X>x), etc..}
  */
-module.exports = {
-    /**
-     * Rounds int to 7 decimal places
-     */
-    round: function(num){
-        return parseFloat(num).toFixed(7)
-    },
-    /**
-     * Calculataes factorial of num
-     * Method: Simple recursion function
-     */
-    factorial: function(number){
-        let result = 1;
+const mathjs = require('mathjs')
 
-        for (let i = 2; i <= number; i++) {
-          result = result * i;
-        }
-      
-        return result;
-    },
+module.exports = {
     /**
      * Calculates X=x Bionomial Probability
      * Arguements: sucess: probability of success
@@ -31,7 +14,8 @@ module.exports = {
      * Method: P(X) = n!/(n-x)!x! p^x(1-p)^n-x
      */
     bionomial: function(success, trial_count, x){
-        const { math } = require('mathjs')
+        
+        
 
         console.log("Calculating p(X=x)!")
 
@@ -43,9 +27,11 @@ module.exports = {
         console.log("Trial Count: " + trial_count)
         console.log("X: " + x)
 
-        const n_factorial = module.exports.factorial(trial_count)
-        const n_x_factorial = module.exports.factorial(trial_count- x)
-        const x_factorial = module.exports.factorial(x)
+        
+
+        const n_factorial = mathjs.factorial(trial_count)
+        const n_x_factorial = mathjs.factorial(trial_count- x)
+        const x_factorial = mathjs.factorial(x)
 
         console.log("n! : " + String(n_factorial))
         console.log("n-x! : " + String(n_x_factorial))
