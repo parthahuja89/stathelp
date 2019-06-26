@@ -1,7 +1,7 @@
 /**
  * File: Normal.js
  * Calculates Normal Distribution probabilities
- * Methods: Cumulative and Equal probability methods {(PX=x), P(X<x), P(X>x), etc..}
+ * Methods: Two Cumulative methods P(Z<=z) and P(Z>=z)
  */
 const mathjs = require('mathjs')
 

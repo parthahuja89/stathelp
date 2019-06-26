@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 //card tab components: Tendency..
 import Tendency from './utils_components/centeral_tendencies';
-import Probability from './utils_components/probability';
+import Distributions from './utils_components/Distributions';
 //matrial styles 
 const styles = {
     card: { 
@@ -91,7 +91,7 @@ class Utils extends React.Component {
                 >
                 {/** Tabs
                 1. ./utils_components/centeral_tendencies
-                2. ./utils_components/probability.js
+                2. ./utils_components/Distributions.js
                 */}
                 <Tab style = {{ fontWeight: 'Bold' }} label="Utilities" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Distributions" />
@@ -102,7 +102,7 @@ class Utils extends React.Component {
             Tabs render the files avail in ./utils_components
             */}
             {this.state.value === 0 && <TabContainer> <Tendency/> </TabContainer>}
-            {this.state.value === 1 && <TabContainer> <Probability/> </TabContainer>}
+            {this.state.value === 1 && <TabContainer> <Distributions/> </TabContainer>}
         </CardContent>
           </Card>
         </MuiThemeProvider>

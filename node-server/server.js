@@ -7,6 +7,8 @@ var cors = require('cors')
 const utils = require('./utilities');
 const bio = require('./Distributions/Bionomial');
 const norm = require('./Distributions/Normal'); 
+const hyper = require('./Distributions/Hyper');
+
 app.use(cors())
 app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
 //Utility calculations
@@ -96,6 +98,22 @@ app.get('/Bionomial', (req, res) =>  res.json(
         }
 ))
 
+ /**
+  * Hypergeometric Distribution
+  * GET Request payload: 
+  *     {population_size, population_success, sample_size, sample_success}
+  * Response payload: 
+  *     {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
+  */
+
+ app.get('/Hyper', (req, res) =>  res.json(
+        {"Answer": hyper.Hypergeometric(req.query.population_size,
+                                        req.query.population_success, 
+                                        req.query.sample_size, 
+                                        req.query.sample_success
+                                        ),
+        }
+))
 
 
 app.listen(port, () => console.log(`Server running on port ${port}!`))

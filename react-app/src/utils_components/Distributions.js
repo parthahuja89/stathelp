@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 // ./Distributions imports 
 import Bionomial_Distribution from './Distributions/Bionomial_Distribution';
 import Normal_Distribution from './Distributions/Normal';
+import Hyper from './Distributions/Hyper';
 const styles = {
     root: {
         display: 'flex',
@@ -83,6 +84,11 @@ class Probability extends React.Component{
                 {/** Normal Distribution */}
                 <div className= {this.state.Distribution=='Normal_Distribution' ? '':'disappear' }>
                     <Normal_Distribution />
+                </div>
+
+                {/** Hypergeometric Distribution */}
+                <div className= {this.state.Distribution=='Hypergeometric_Distribution' ? '':'disappear' }>
+                    <Hyper />
                 </div>
             </div>
         );
