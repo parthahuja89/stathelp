@@ -49,7 +49,7 @@ class Normal extends React.Component{
                 > 
                 <Grid align= 'right' item xs ={6}>
                     <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Z score
+                    Z score (z)
                     </div>
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
@@ -64,7 +64,7 @@ class Normal extends React.Component{
 
                 <Grid align= 'right' item xs ={6}>
                     <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Trial Count
+                    P(Z ≤ z)
                     </div>
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
@@ -78,7 +78,7 @@ class Normal extends React.Component{
                 
                 <Grid align= 'right' item xs ={6}>
                     <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Number of Successes (X)
+                    Mean
                     </div>
                 </Grid>
                 <Grid align ='left' item xs= {6}> 
@@ -90,6 +90,22 @@ class Normal extends React.Component{
                         onChange = {e => this.setState({ x: e.target.value})} 
                     />  
                 </Grid>
+
+                <Grid align= 'right' item xs ={6}>
+                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
+                    Standard Deviation
+                    </div>
+                </Grid>
+                <Grid align ='left' item xs= {6}> 
+                    <TextField
+                        className={classes.textField}                       
+                        margin = 'normal'
+                        align= 'left'
+                        style = {{maxWidth: '70px', marginTop: '5px'}}
+                        onChange = {e => this.setState({ x: e.target.value})} 
+                    />  
+                </Grid>
+
 
                 <Grid item align = 'center'>
                     <Button 

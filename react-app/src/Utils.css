@@ -66,5 +66,6 @@ CSS Utils.js and children
     text-align: center;
     width: 100%;
     max-width: 650px;
-    font-size: 1.5vh;
+    font-size: 1.7vh;
+    line-height: 2;
 }

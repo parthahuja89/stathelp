@@ -4,11 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Copy from '@material-ui/icons/AssignmentOutlined';
 import Arrow from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid';
@@ -133,6 +128,13 @@ class Bionomial_Distribution  extends React.Component{
         const { classes } = this.props;
         return(
             <div>    
+            <div class = 'instructions'>
+                Instructions <br/>
+                • Probability must be between 0-1.<br/>
+                • Number of Successes (X) should be less than or equal to trial count.<br/>
+
+            </div>
+
             {/** Once Output recieved calculation fields are removed */}
             <div className= {this.state.showOutput ? 'disappear':'' }>
                 <Grid
@@ -240,7 +242,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
                     
                     <TableRow>
-                        <TableCell>P(X{"=<"}x)</TableCell>
+                        <TableCell>P(X ≤ x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_lt_eq}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_lt_eq)}}>
@@ -250,7 +252,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
 
                     <TableRow>
-                        <TableCell>P(X{">"}x)</TableCell>
+                        <TableCell>P(X ≥ x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_gt}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_gt)}}>

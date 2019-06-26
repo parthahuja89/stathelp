@@ -76,11 +76,11 @@ app.get('/Standard_Error', (req, res) =>  res.json(
   *     {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
   */
 app.get('/Bionomial', (req, res) =>  res.json(
-        {"Answer": String(bio.bionomial(req.query.success, req.query.trial_count, req.query.x).toFixed(8)),
-        "Answer_lt": String(bio.bionomial_lt(req.query.success, req.query.trial_count, req.query.x).toFixed(8)),
-        "Answer_lt_eq": String(bio.bionomial_lt_eq(req.query.success, req.query.trial_count, req.query.x).toFixed(8)),
-        "Answer_gt": String(bio.bionomial_gt(req.query.success, req.query.trial_count, req.query.x).toFixed(8)),
-        "Answer_gt_eq": String(bio.bionomial_gt_eq(req.query.success, req.query.trial_count, req.query.x).toFixed(8))
+        {"Answer": Number(bio.bionomial(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_lt": Number(bio.bionomial_lt(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_lt_eq": Number(bio.bionomial_lt_eq(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_gt": Number(bio.bionomial_gt(req.query.success, req.query.trial_count, req.query.x)),
+        "Answer_gt_eq": Number(bio.bionomial_gt_eq(req.query.success, req.query.trial_count, req.query.x))
         }
 ))
 

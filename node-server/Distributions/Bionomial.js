@@ -52,11 +52,10 @@ module.exports = {
         console.log("x! :" +String(x_factorial))
 
         probability = (n_factorial/(n_x_factorial*x_factorial)*Math.pow(success,x)*Math.pow(1-success,trial_count-x))
-        
-        if(isNaN(probability)){
-            return  '  <0.000001'
-        }
-        return parseFloat(probability)
+
+        probability = parseFloat(probability)
+
+        return probability  
     },
 
     /** 
@@ -76,7 +75,9 @@ module.exports = {
         }
 
         console.log("P(X<x): " + String(probability))
-        return parseFloat(probability)
+        probability = parseFloat(probability)
+
+        return probability  
     },
 
     /**
@@ -94,7 +95,9 @@ module.exports = {
         }
 
         console.log("P(X<=x): " + String(probability))
-        return parseFloat(probability)
+        probability = parseFloat(probability)
+
+        return probability  
 
     },
     /**
@@ -109,7 +112,9 @@ module.exports = {
         
         console.log("P(X>x): " + String(probability))
 
-        return parseFloat(probability)
+        probability = parseFloat(probability)
+
+        return probability  
     },
     /**
      * Calculates Bionomial Distribution of X>=x
@@ -123,7 +128,9 @@ module.exports = {
         
         console.log("P(X>=x): " + String(probability))
 
-        return parseFloat(probability)
+        probability = parseFloat(probability)
+
+        return probability      
 
     }
 };
