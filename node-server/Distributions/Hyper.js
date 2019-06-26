@@ -17,6 +17,12 @@ module.exports = {
      */
 
     Hypergeometric: function(N,k,n,x){
+        console.log("Calculating Hypergeometric Dist")
+        N = mathjs.bignumber(N)
+        n = mathjs.bignumber(n)
+        k = mathjs.bignumber(k)
+        x = mathjs.bignumber(x)
+
         return (mathjs.combinations(k,x)*mathjs.combinations(N-k,n-x))/mathjs.combinations(N,n)
     }
 };
