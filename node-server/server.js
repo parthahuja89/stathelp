@@ -111,7 +111,31 @@ app.get('/Bionomial', (req, res) =>  res.json(
                                         req.query.population_success, 
                                         req.query.sample_size, 
                                         req.query.sample_success
-                                        ),
+                                        ).toFixed(req.query.rounding),
+
+        "Answer_lt": hyper.Hypergeometric_lt(req.query.population_size,
+                                             req.query.population_success, 
+                                             req.query.sample_size, 
+                                             req.query.sample_success
+                                        ).toFixed(req.query.rounding),
+        
+        "Answer_lt_eq": hyper.Hypergeometric_lt_eq(req.query.population_size,
+                                                req.query.population_success, 
+                                                req.query.sample_size, 
+                                                req.query.sample_success
+                                        ).toFixed(req.query.rounding),
+
+        "Answer_gt_eq": hyper.Hypergeometric_gt_eq(req.query.population_size,
+                                                req.query.population_success, 
+                                                req.query.sample_size, 
+                                                req.query.sample_success
+                                        ).toFixed(req.query.rounding),
+
+        "Answer_gt": hyper.Hypergeometric_gt(req.query.population_size,
+                                             req.query.population_success, 
+                                             req.query.sample_size, 
+                                             req.query.sample_success
+                                        ).toFixed(req.query.rounding),
         }
 ))
 
