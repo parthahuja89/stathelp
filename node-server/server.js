@@ -8,6 +8,8 @@ const utils = require('./utilities');
 const bio = require('./Distributions/Bionomial');
 const norm = require('./Distributions/Normal'); 
 const hyper = require('./Distributions/Hyper');
+const poisson = require('./Distributions/Poisson');
+const chi = require('./Distributions/Chi');
 
 app.use(cors())
 app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
@@ -142,3 +144,31 @@ app.get('/Bionomial', (req, res) =>  res.json(
 
 app.listen(port, () => console.log(`Server running on port ${port}!`))
 
+/**
+  * Poisson Distribution
+  * GET Request payload: 
+  *     {average, x}
+  * Response payload: 
+  *     {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
+  */
+ app.get('/Poisson', (req, res) =>  res.json(
+        {"Answer": poisson.Poisson(req.query.average, req.query.x, req.query.rounding).toFixed(req.query.rounding),
+        "Answer_lt": poisson.Poisson_lt(req.query.average, req.query.x, req.query.rounding).toFixed(req.query.rounding),
+        "Answer_lt_eq": poisson.Poisson_lt_eq(req.query.average, req.query.x, req.query.rounding).toFixed(req.query.rounding),
+        "Answer_gt": poisson.Poisson_gt(req.query.average, req.query.x, req.query.rounding).toFixed(req.query.rounding),
+        "Answer_gt_eq": poisson.Poisson_gt_eq(req.query.average, req.query.x, req.query.rounding).toFixed(req.query.rounding)
+        }
+))
+
+/**
+  * Chi Squared Distribution
+  * GET Request payload: 
+  *     {freedom, x}
+  * Response payload: 
+  *     { answer}
+  */
+ app.get('/Chi', (req, res) =>  res.json(
+        {
+        "Answer": chi.Chi(req.query.freedom, req.query.x).toFixed(req.query.rounding),
+        }
+))

@@ -13,6 +13,9 @@ import Grid from '@material-ui/core/Grid';
 import Bionomial_Distribution from './Distributions/Bionomial_Distribution';
 import Normal_Distribution from './Distributions/Normal';
 import Hyper from './Distributions/Hyper';
+import Poisson from './Distributions/Poisson';
+import Chi from './Distributions/Chi';
+
 const styles = {
     root: {
         display: 'flex',
@@ -62,9 +65,7 @@ class Probability extends React.Component{
                         <MenuItem value={'Bionomial_Distribution'}>Bionomial Distribution</MenuItem>
                         <MenuItem value={'Normal_Distribution'}>Normal Distribution</MenuItem>
                         <MenuItem value={'Hypergeometric_Distribution'}>Hypergeometric Distribution</MenuItem>
-                        <MenuItem value={'Uniform_Distribution'}>Uniform Distribution</MenuItem>
                         <MenuItem value={'Poisson_Distribution'}>Poisson Distribution</MenuItem>
-                        <MenuItem value={'Bernoulli_Distribution'}>Bernoulli Distribution</MenuItem>
                         <MenuItem value={'Geometric_Distribution'}>Geometric Distribution</MenuItem>
                         <MenuItem value={'Chi_Squared_Distribution'}>Chi Squared Distribution</MenuItem>
                         <MenuItem value={'Exponential_Distribution'}>Exponential Distribution</MenuItem>
@@ -90,6 +91,19 @@ class Probability extends React.Component{
                 <div className= {this.state.Distribution=='Hypergeometric_Distribution' ? '':'disappear' }>
                     <Hyper />
                 </div>
+               
+                {/** Poisson Distribution */}
+                <div className= {this.state.Distribution=='Poisson_Distribution' ? '':'disappear' }>
+                        <Poisson />
+                </div>
+                
+                {/** Chi Squared Distribution */}
+                <div className= {this.state.Distribution=='Chi_Squared_Distribution' ? '':'disappear' }>
+                        <Chi />
+                </div>
+
+
+
             </div>
         );
     }

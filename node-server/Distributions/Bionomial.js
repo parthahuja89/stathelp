@@ -13,6 +13,10 @@ module.exports = {
      * x: number of success
      * Method: P(X) = n!/(n-x)!x! p^x(1-p)^n-x
      */
+
+    /**
+     * TODO: Implement bionomial dist with the direct combination formula for accuracy 
+     */
     bionomial: function(success, trial_count, x){
         
         
