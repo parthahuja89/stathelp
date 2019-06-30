@@ -10,6 +10,7 @@ const norm = require('./Distributions/Normal');
 const hyper = require('./Distributions/Hyper');
 const poisson = require('./Distributions/Poisson');
 const chi = require('./Distributions/Chi');
+const geo = require('./Distributions/Geometric');
 
 app.use(cors())
 app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
@@ -170,5 +171,23 @@ app.listen(port, () => console.log(`Server running on port ${port}!`))
  app.get('/Chi', (req, res) =>  res.json(
         {
         "Answer": chi.Chi(req.query.freedom, req.query.x).toFixed(req.query.rounding),
+        }
+))
+
+/**
+  * Geometric Distribution
+  * GET Request payload: 
+  *     {probability, failure}
+  * Response payload: 
+  *     { answer}
+  */
+ app.get('/Geo', (req, res) =>  res.json(
+        {
+        "Answer": geo.Geometric(req.query.probability, req.query.failure).toFixed(req.query.rounding),
+        "Answer_lt": geo.Geometric_lt(req.query.probability, req.query.failure).toFixed(req.query.rounding),
+        "Answer_lt_eq": geo.Geometric_lt_eq(req.query.probability, req.query.failure).toFixed(req.query.rounding),
+        "Answer_gt": geo.Geometric_gt(req.query.probability, req.query.failure).toFixed(req.query.rounding),
+        "Answer_gt_eq": geo.Geometric_gt_eq(req.query.probability, req.query.failure).toFixed(req.query.rounding)
+
         }
 ))

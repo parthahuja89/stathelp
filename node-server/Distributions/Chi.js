@@ -9,7 +9,7 @@ const incomplete = require('incomplete-gamma');
 
 module.exports = {
      /**
-     * Calculates P(X<=x) Cumulative Normal Probability
+     * Calculates P(X<=x) Cumulative Chi Probability
      * Arguements: 
      * freedom (v): degrees of freedom
      * x: random variable x

@@ -15,6 +15,7 @@ import Normal_Distribution from './Distributions/Normal';
 import Hyper from './Distributions/Hyper';
 import Poisson from './Distributions/Poisson';
 import Chi from './Distributions/Chi';
+import Geo from './Distributions/Geometric';
 
 const styles = {
     root: {
@@ -102,7 +103,11 @@ class Probability extends React.Component{
                         <Chi />
                 </div>
 
-
+                {/** Geometric Squared Distribution */}
+                <div className= {this.state.Distribution=='Geometric_Distribution' ? '':'disappear' }>
+                        <Geo />
+                </div>
+        
 
             </div>
         );
