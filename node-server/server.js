@@ -181,13 +181,18 @@ app.listen(port, () => console.log(`Server running on port ${port}!`))
   * Response payload: 
   *     { answer}
   */
- app.get('/Geo', (req, res) =>  res.json(
+ app.get('/Geo', (req, res) =>  
+
+ res.json(
         {
-        "Answer": geo.Geometric(req.query.probability, req.query.failure).toFixed(req.query.rounding),
-        "Answer_lt": geo.Geometric_lt(req.query.probability, req.query.failure).toFixed(req.query.rounding),
-        "Answer_lt_eq": geo.Geometric_lt_eq(req.query.probability, req.query.failure).toFixed(req.query.rounding),
-        "Answer_gt": geo.Geometric_gt(req.query.probability, req.query.failure).toFixed(req.query.rounding),
-        "Answer_gt_eq": geo.Geometric_gt_eq(req.query.probability, req.query.failure).toFixed(req.query.rounding)
+        "Answer": geo.Geometric(req.query.probability, req.query.failure),
+        "Answer_lt": geo.Geometric_lt(req.query.probability, req.query.failure),
+        "Answer_lt_eq": geo.Geometric_lt_eq(req.query.probability, req.query.failure),
+        "Answer_gt": geo.Geometric_gt(req.query.probability, req.query.failure),
+        "Answer_gt_eq": geo.Geometric_gt_eq(req.query.probability, req.query.failure)
 
         }
-))
+
+)
+
+)
