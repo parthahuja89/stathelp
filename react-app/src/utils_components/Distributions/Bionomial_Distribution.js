@@ -145,49 +145,37 @@ class Bionomial_Distribution  extends React.Component{
                     spacing= {24}
                     style = {{transform: 'translateY(10%)'}}
                 > 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Probability of Success
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
-                        
+                        id="outlined-name"
+                        label="Probability of Success"
+                        variant="outlined"
                         className={classes.textField}                       
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({success: e.target.value})} 
-                    />  
+                    />
                 </Grid> 
 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Trial Count
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
-                        
-                        className={classes.textField}                       
-                        
+                        id="outlined-trial_count"
+                        label="Trial Count"
+                        variant="outlined"
+                        className={classes.textField}
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({ trial_count: e.target.value})} 
                     />  
                 </Grid> 
                 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Number of Successes (X)
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                
+                <Grid align ='center' item xs= {12}> 
                     <TextField
-                        
+                        id="outlined-x"
+                        label="Number of Successes (X)"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin="normal"
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({ x: e.target.value})} 
                     />  
                 </Grid>

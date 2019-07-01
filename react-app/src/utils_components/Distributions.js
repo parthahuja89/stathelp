@@ -8,7 +8,8 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid';
-
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 // ./Distributions imports 
 import Bionomial_Distribution from './Distributions/Bionomial_Distribution';
 import Normal_Distribution from './Distributions/Normal';
@@ -16,29 +17,35 @@ import Hyper from './Distributions/Hyper';
 import Poisson from './Distributions/Poisson';
 import Chi from './Distributions/Chi';
 import Geo from './Distributions/Geometric';
+import Expo from './Distributions/Exponential';
 
 const styles = {
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        minWidth: 200,
-    },
-    button: {
-        marginTop: '10%',
-        fontSize: '1.5vh',
-        textTransform: 'none',
-    },
 }; 
+
+const distributions = [
+    <Bionomial_Distribution />,
+    <Normal_Distribution />,
+    <Hyper />,
+    <Poisson />,
+    <Chi />,
+    <Geo/>,
+    <Expo />,
+]
 
 
 class Probability extends React.Component{
     state = {
         //starting distribution state shows bionomial distribution
-        Distribution: 'Bionomial_Distribution',
+        Distribution: 0,
 
     };
+
+    /**
+     * Changes Tab Selection
+     */
+    handleChange = (event, value) => {
+        this.setState({ Distribution: value});
+    }
 
     /**Changes Distribution selection from menu*/
     setDistribution = (event, value) => {
@@ -49,65 +56,36 @@ class Probability extends React.Component{
     }
     render(){
         const { classes } = this.props;
+        
         return(
             <div>
-                {/* Menu for Distribution Selection */}
-                <form className={classes.root} autoComplete="off" >
-                    <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="ops-label">Probability Distribution</InputLabel>
-                        <Select
-                        value = {this.state.Distribution}
-                        onChange = {this.setDistribution}
-                        inputProps={{
-                            name: 'ops',
-                            id: 'ops-label',
-                          }}
-                        >
-                        <MenuItem value={'Bionomial_Distribution'}>Bionomial Distribution</MenuItem>
-                        <MenuItem value={'Normal_Distribution'}>Normal Distribution</MenuItem>
-                        <MenuItem value={'Hypergeometric_Distribution'}>Hypergeometric Distribution</MenuItem>
-                        <MenuItem value={'Poisson_Distribution'}>Poisson Distribution</MenuItem>
-                        <MenuItem value={'Geometric_Distribution'}>Geometric Distribution</MenuItem>
-                        <MenuItem value={'Chi_Squared_Distribution'}>Chi Squared Distribution</MenuItem>
-                        <MenuItem value={'Exponential_Distribution'}>Exponential Distribution</MenuItem>
-                        <MenuItem value={'Logarithmic_Distribution'}>Logarithmic Distribution</MenuItem>
-                        <MenuItem value={'Hyperbolic_Distribution'}>Hyperbolic Distribution</MenuItem>
-                        </Select>
-                </FormControl>
-                </form>
-
+                {/** Distribution Selection Tab*/}
+                <Tabs
+                value={this.state.Distribution}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="scrollable"
+                scrollButtons="auto"
+                >
+                {/** Tabs
+                1. ./utils_components/centeral_tendencies
+                2. ./utils_components/Distributions.js
+                */}
+                <Tab style = {{ fontWeight: 'Bold' }} label="Bionomial" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Normal" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Hypergeometric" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Poisson" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Geometric" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Chi Squared" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Exponential" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Logarithmic" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Hyperbolic" />
+                </Tabs>
                 {/**Conditional Rendering based on menu selection hooks for each distribution*/}
-
-                {/** Bionomial Distribution */}
-                <div className= {this.state.Distribution=='Bionomial_Distribution' ? '':'disappear' }>
-                    <Bionomial_Distribution />
+                <div>
+                    {distributions[this.state.Distribution]}
                 </div>
-
-                {/** Normal Distribution */}
-                <div className= {this.state.Distribution=='Normal_Distribution' ? '':'disappear' }>
-                    <Normal_Distribution />
-                </div>
-
-                {/** Hypergeometric Distribution */}
-                <div className= {this.state.Distribution=='Hypergeometric_Distribution' ? '':'disappear' }>
-                    <Hyper />
-                </div>
-               
-                {/** Poisson Distribution */}
-                <div className= {this.state.Distribution=='Poisson_Distribution' ? '':'disappear' }>
-                        <Poisson />
-                </div>
-                
-                {/** Chi Squared Distribution */}
-                <div className= {this.state.Distribution=='Chi_Squared_Distribution' ? '':'disappear' }>
-                        <Chi />
-                </div>
-
-                {/** Geometric Squared Distribution */}
-                <div className= {this.state.Distribution=='Geometric_Distribution' ? '':'disappear' }>
-                        <Geo />
-                </div>
-        
 
             </div>
         );

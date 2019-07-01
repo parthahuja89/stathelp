@@ -8,8 +8,11 @@ CSS Utils.js and children
     background-color: #5E3656;
     background-repeat: no-repeat;
     background-position: 50% 0;
+    
 }
-
+::-webkit-scrollbar { 
+    display: none; 
+ }
 .title{
     font-family: 'Overpass', sans-serif;
     font-size: 3vh; 

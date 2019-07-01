@@ -11,6 +11,7 @@ const hyper = require('./Distributions/Hyper');
 const poisson = require('./Distributions/Poisson');
 const chi = require('./Distributions/Chi');
 const geo = require('./Distributions/Geometric');
+const expo = require('./Distributions/Exponential');
 
 app.use(cors())
 app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
@@ -189,5 +190,18 @@ app.listen(port, () => console.log(`Server running on port ${port}!`))
         "Answer_gt": geo.Geometric_gt(req.query.probability, req.query.failure).toFixed(req.query.rounding),
         "Answer_gt_eq": geo.Geometric_gt_eq(req.query.probability, req.query.failure).toFixed(req.query.rounding)
 
+        }
+))
+
+/**
+  * Exponential Distribution
+  * GET Request payload: 
+  *     {x, beta, rounding}
+  * Response payload: 
+  *     { answer}
+  */
+app.get('/Expo', (req, res) =>  res.json(
+        {
+        "Answer": expo.Exponential(req.query.x, req.query.beta).toFixed(req.query.rounding),
         }
 ))

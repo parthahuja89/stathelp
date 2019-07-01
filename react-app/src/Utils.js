@@ -40,6 +40,7 @@ const styles = {
 };
 
 const theme = createMuiTheme({
+
     palette: {
         primary:{
             main: '#9148BC'
@@ -69,40 +70,15 @@ TabContainer.propTypes = {
 
   
 class Utils extends React.Component {
-    state = { value:0, };
-    handleChange = (event, value) => {
-        this.setState({ value });
-    };
     render() {
-        const { classes } = this.props; //props for material ui
+    const { classes } = this.props; //props for material ui
     return(
         <div class='utils'>
         <MuiThemeProvider theme={theme}>
         <div class='title'>Distributions and Utilities</div>
         <Card className={classes.card}>
             <CardContent >
-            <AppBar width = '10%' position="static" style={{ background: 'transparent', boxShadow: 'none'}}>  
-                <Tabs
-                value={this.state.value}
-                onChange={this.handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                centered
-                >
-                {/** Tabs
-                1. ./utils_components/centeral_tendencies
-                2. ./utils_components/Distributions.js
-                */}
-                <Tab style = {{ fontWeight: 'Bold' }} label="Utilities" />
-                <Tab style = {{ fontWeight: 'Bold' }}label="Distributions" />
-                </Tabs>      
-            </AppBar>
-            {/*Content depeneds on tab selections
-            Selection of tabs is avail @ this.state.value 
-            Tabs render the files avail in ./utils_components
-            */}
-            {this.state.value === 0 && <TabContainer> <Tendency/> </TabContainer>}
-            {this.state.value === 1 && <TabContainer> <Distributions/> </TabContainer>}
+            <Distributions/>
         </CardContent>
           </Card>
         </MuiThemeProvider>

@@ -178,7 +178,7 @@ class Chi extends React.Component{
                         <TableBody>
 
                             <TableRow>
-                                <TableCell> P( Z {"<"} z): </TableCell>
+                                <TableCell> P(X ≤ x) </TableCell>
                                 <TableCell align="right">
                                     {this.state.answer}
                                     <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer)}}>
@@ -188,7 +188,7 @@ class Chi extends React.Component{
                             </TableRow>
 
                             <TableRow>
-                                <TableCell>P( Z {">"} z):</TableCell>
+                                <TableCell>P(X ≥ x)</TableCell>
                                 <TableCell align="right">
                                     {parseFloat(1-this.state.answer).toFixed(this.state.rounding)}
                                     <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(1-this.state.answer)}}>
