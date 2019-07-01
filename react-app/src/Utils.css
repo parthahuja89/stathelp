@@ -5,9 +5,8 @@ CSS Utils.js and children
     background-image: url('../assets/utils/background.svg');
     height: 100vh;
     width: 100%;
-    background-color: #5E3656;
     background-repeat: no-repeat;
-    background-position: 50% 0;
+    background-position: right bottom;
     
 }
 ::-webkit-scrollbar { 

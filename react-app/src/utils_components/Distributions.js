@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import './dist.css';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,6 +11,9 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 // ./Distributions imports 
 import Bionomial_Distribution from './Distributions/Bionomial_Distribution';
 import Normal_Distribution from './Distributions/Normal';
@@ -18,9 +22,26 @@ import Poisson from './Distributions/Poisson';
 import Chi from './Distributions/Chi';
 import Geo from './Distributions/Geometric';
 import Expo from './Distributions/Exponential';
+import { purple } from '@material-ui/core/colors';
 
 const styles = {
 }; 
+
+const theme = createMuiTheme({
+
+    palette: {
+        primary:{
+            main: '#9148BC'
+
+        },
+        secondary: {
+            main: '#5E3656'
+        },
+        purple: {
+            main: '5E3656'
+        }
+      },
+});
 
 const distributions = [
     <Bionomial_Distribution />,
@@ -58,7 +79,8 @@ class Probability extends React.Component{
         const { classes } = this.props;
         
         return(
-            <div>
+            <div class= 'distributions'>
+                <MuiThemeProvider theme={theme}>
                 {/** Distribution Selection Tab*/}
                 <Tabs
                 value={this.state.Distribution}
@@ -83,10 +105,10 @@ class Probability extends React.Component{
                 <Tab style = {{ fontWeight: 'Bold' }}label="Hyperbolic" />
                 </Tabs>
                 {/**Conditional Rendering based on menu selection hooks for each distribution*/}
-                <div>
+                <div class= 'dist_content'>
                     {distributions[this.state.Distribution]}
                 </div>
-
+                </MuiThemeProvider>
             </div>
         );
     }

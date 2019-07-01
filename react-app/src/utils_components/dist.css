@@ -1,0 +1,11 @@
+.distributions{
+    background-image: url('../../assets/utils/background.svg');
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+.dist_content{
+    transform: translateY(25%);
+}

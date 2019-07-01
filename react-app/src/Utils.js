@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 //card tab components: Tendency..
 import Tendency from './utils_components/centeral_tendencies';
-import Distributions from './utils_components/Distributions';
+import centeral_tendencies from './utils_components/centeral_tendencies';
 //matrial styles 
 const styles = {
     card: { 
@@ -78,7 +78,7 @@ class Utils extends React.Component {
         <div class='title'>Distributions and Utilities</div>
         <Card className={classes.card}>
             <CardContent >
-            <Distributions/>
+            <Tendency/>
         </CardContent>
           </Card>
         </MuiThemeProvider>

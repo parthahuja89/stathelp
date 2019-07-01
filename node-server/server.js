@@ -193,7 +193,6 @@ app.listen(port, () => console.log(`Server running on port ${port}!`))
         "Answer_gt_eq": geo.Geometric_gt_eq(req.query.probability, req.query.failure)
 
         }
-<<<<<<< HEAD
 ))
 
 /**
@@ -208,9 +207,3 @@ app.get('/Expo', (req, res) =>  res.json(
         "Answer": expo.Exponential(req.query.x, req.query.beta).toFixed(req.query.rounding),
         }
 ))
-=======
-
-)
-
-)
->>>>>>> 6eda0222a8ad5e394878bcffca1b68ae9c6ad91d
