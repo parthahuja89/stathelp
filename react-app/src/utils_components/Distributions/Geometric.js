@@ -51,7 +51,7 @@ class Geo extends React.Component{
      */
     calculateGeo(){
         //checking for errors and sending warning
-        if(this.state.failure == '' || this.state.probability == '' || this.state.rounding == ''){
+        if(this.state.failure == '' || this.state.probability == ''){
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
             this.setState({ empty_data_warning: true })
         }

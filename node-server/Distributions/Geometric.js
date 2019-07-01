@@ -15,8 +15,7 @@ module.exports = {
      * Method: P(X=x) = P(1-P)^(failure)
      */
     Geometric: function(probability, failure){
-        failure -= 1 
-        return (probability)*mathjs.pow(1-probability, failure)
+        return parseFloat(mathjs.bignumber((probability)*mathjs.pow(1-probability, failure-1)))
     },
 
     /** 
@@ -28,14 +27,14 @@ module.exports = {
 
    Geometric_lt: function(probability, failure){
         failure -= 1
-        prob = 0
+        prob = 0.0
 
-        while(failure>=0){
-            prob += module.exports.Geometric(probability, failure)
+        while(failure>0){
+            prob += module.exports.Geometric(probability, failure) 
             failure -= 1
         }
 
-        return parseFloat(mathjs.abs(1-prob))
+        return parseFloat(prob)
     },
 
     /**
@@ -43,14 +42,14 @@ module.exports = {
      * Method: P(x=i) ---> 0<=i<=x
      */
     Geometric_lt_eq: function(probability, failure){
-        prob = 0
+        prob = 0.0
 
-        while(failure>=0){
+        while(failure>0){
             prob += module.exports.Geometric(probability, failure)
             failure -= 1
         }
 
-        return parseFloat(mathjs.abs(1-prob))
+        return parseFloat(prob)
     },
 
     /**
