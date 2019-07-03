@@ -4,6 +4,10 @@
 body{
   font-family: 'Overpass', sans-serif;
 }
+html,body{
+  margin:0;
+}
+
 .main_app{
   height: 100vh;
   background-image: url('../assets/main_bg.svg');

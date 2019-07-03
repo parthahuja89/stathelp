@@ -114,49 +114,40 @@ class Normal extends React.Component{
                     spacing= {24}
                     style = {{transform: 'translateY(10%)'}}
                 > 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Z score (z)
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
+                        id="outlined-name"
+                        label="Z Score (z)"
+                        variant="outlined"
                         className={classes.textField}                       
+                        margin = 'normal'
                         align= 'left'
-                        onChange = {e => this.setState({z_score: e.target.value})}
-                        
-                    />  
+                        onChange = {e => this.setState({ z_score: e.target.value})} 
+                />  
                 </Grid>  
                 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Mean
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
+                        id="outlined-name"
+                        label="Mean"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin = 'normal'
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({ mean: e.target.value})} 
-                    />  
+                />  
                 </Grid>
 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Standard Deviation
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
+                        id="outlined-name"
+                        label="Standard Deviation"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin = 'normal'
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
                         onChange = {e => this.setState({ standard_dev: e.target.value})} 
-                    />  
+                />  
                 </Grid>
 
 

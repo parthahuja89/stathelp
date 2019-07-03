@@ -106,50 +106,41 @@ class Poisson extends React.Component{
                     spacing= {24}
                     style = {{transform: 'translateY(10%)'}}
                 > 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Average (μ):
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
-                    <TextField
-                        
-                        className={classes.textField}                       
-                        align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
-                        onChange = {e => this.setState({average: e.target.value})} 
-                    />  
-                </Grid> 
-
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.8vh', verticalAlign:'middle'}}>
-                    Random Variable (x):
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
-                    <TextField
-                        
-                        className={classes.textField}                       
-                        
-                        align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '5px'}}
-                        onChange = {e => this.setState({ x: e.target.value})} 
-                    />  
-                </Grid> 
                 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    Round Decimal Place
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
+                        id="outlined-name"
+                        label="Average (μ)"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin = 'normal'
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
+                        onChange = {e => this.setState({ average: e.target.value})} 
+                />  
+                </Grid>
+
+                <Grid align ='center' item xs= {12}> 
+                    <TextField
+                        id="outlined-name"
+                        label="Random Variable (X)"
+                        variant="outlined"
+                        className={classes.textField}                       
+                        margin = 'normal'
+                        align= 'left'
+                        onChange = {e => this.setState({ x: e.target.value})} 
+                />  
+                </Grid>
+                
+                <Grid align ='center' item xs= {12}> 
+                    <TextField
+                        id="outlined-name"
+                        label="Rounding Decimal Place"
+                        variant="outlined"
+                        className={classes.textField}                       
+                        margin = 'normal'
+                        align= 'left'
                         onChange = {e => this.setState({ rounding: e.target.value})} 
-                    />  
+                />  
                 </Grid>
 
                 <Grid item align = 'center'>

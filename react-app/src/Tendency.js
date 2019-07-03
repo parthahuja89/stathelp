@@ -1,8 +1,10 @@
 import React from 'react';
+import './Tendency.css';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
-
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,9 +16,19 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Copy from '@material-ui/icons/AssignmentOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 //material styles 
 const styles ={
+    card: { 
+        width: '90%',
+        maxWidth: '1000px',
+        minHeight: '80%',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        position: 'absolute',
+        borderRadius: '5px',
+        justifyContent: 'center',
+    },
     root: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -128,8 +140,13 @@ class Tendencies extends React.Component{
     render(){
         const { classes } = this.props;
         return(
-            <div>
+            <div class = 'utils'>
             <MuiThemeProvider theme={theme}>
+                <div class= 'title'>
+                    Utilities and Centeral Tendencies
+                </div>
+            <Card className={classes.card}>
+            <CardContent >
             <Grid
                 container
                 direction="row"
@@ -232,6 +249,8 @@ class Tendencies extends React.Component{
                 onClose={() => this.setState({clipboard: false})}
                 message={<span id="message-id"> Copied to clipboard! </span>}
             />
+            </CardContent>
+            </Card>
         </MuiThemeProvider>
         </div>
         );

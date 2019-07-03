@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import './dist.css';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid';
+import './dist.css'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar'
@@ -98,8 +91,8 @@ class Probability extends React.Component{
                 <Tab style = {{ fontWeight: 'Bold' }}label="Normal" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Hypergeometric" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Poisson" />
-                <Tab style = {{ fontWeight: 'Bold' }}label="Geometric" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Chi Squared" />
+                <Tab style = {{ fontWeight: 'Bold' }}label="Geometric" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Exponential" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Logarithmic" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Hyperbolic" />

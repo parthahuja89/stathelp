@@ -131,49 +131,43 @@ class Exponential extends React.Component{
                     spacing= {24}
                     style = {{transform: 'translateY(10%)'}}
                 > 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    β (1/λ)
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                
+                <Grid align ='center' item xs= {12}> 
                     <TextField
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
+                        id="outlined-name"
+                        label="β (1/λ)"
+                        variant="outlined"
                         className={classes.textField}                       
+                        margin = 'normal'
                         align= 'left'
-                        onChange = {e => this.setState({beta: e.target.value})}
+                        onChange = {e => this.setState({ beta: e.target.value})} 
+                    />  
+                </Grid>  
+
+                <Grid align ='center' item xs= {12}> 
+                    <TextField
+                        id="outlined-name"
+                        label="Random Variable (X)"
+                        variant="outlined"
+                        className={classes.textField}                       
+                        margin = 'normal'
+                        align= 'left'
+                        onChange = {e => this.setState({ x: e.target.value})} 
                     />  
                 </Grid>  
                 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    X: 
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
+                        id="outlined-name"
+                        label="Rounding"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin = 'normal'
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
-                        onChange = {e => this.setState({ x: e.target.value})} 
-                    />  
-                </Grid>
-                
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    Round Decimal Place
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
-                    <TextField
-                        className={classes.textField}                       
-                        margin = 'normal'
-                        align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
                         onChange = {e => this.setState({ rounding: e.target.value})} 
                     />  
                 </Grid>
+                
 
                 <Grid item align = 'center'>
                     <Button 

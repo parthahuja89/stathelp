@@ -165,78 +165,52 @@ class Hyper extends React.Component{
                     spacing= {24}
                     style = {{transform: 'translateY(10%)'}}
                 > 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    Population Size(N) 
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
-                        className={classes.textField}                       
-                        align= 'left'
-                        onChange = {e => this.setState({population_size: e.target.value})}
-                    />  
-                </Grid>  
-                
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    Number of successes of Population
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
-                    <TextField
+                        id="outlined-name"
+                        label="Population Size(N)"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin = 'normal'
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
+                        onChange = {e => this.setState({ population_size: e.target.value})} 
+                />  
+                </Grid>
+                
+                <Grid align ='center' item xs= {12}> 
+                    <TextField
+                        id="outlined-name"
+                        label="Successes in Population"
+                        variant="outlined"
+                        className={classes.textField}                       
+                        margin = 'normal'
+                        align= 'left'
                         onChange = {e => this.setState({ population_success: e.target.value})} 
-                    />  
+                />  
                 </Grid>
 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                        Sample Size(n)
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
+                        id="outlined-name"
+                        label="Sample Size"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin = 'normal'
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
                         onChange = {e => this.setState({ sample_size: e.target.value})} 
-                    />  
-                </Grid>
-
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    Number of successes of sample
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
-                    <TextField
-                        className={classes.textField}                       
-                        margin = 'normal'
-                        align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
-                        onChange = {e => this.setState({ sample_success: e.target.value})} 
-                    />  
+                />  
                 </Grid>
                 
-                <Grid align= 'right' item xs ={6}>
-                    <div style = {{fontSize:'1.5vh', verticalAlign:'middle'}}>
-                    Round Decimal Place
-                    </div>
-                </Grid>
-                <Grid align ='left' item xs= {6}> 
+                <Grid align ='center' item xs= {12}> 
                     <TextField
+                        id="outlined-name"
+                        label="Rounding Decimal Place"
+                        variant="outlined"
                         className={classes.textField}                       
                         margin = 'normal'
                         align= 'left'
-                        style = {{maxWidth: '70px', marginTop: '-5px'}}
                         onChange = {e => this.setState({ rounding: e.target.value})} 
-                    />  
+                />  
                 </Grid>
 
                 <Grid item align = 'center'>
