@@ -146,7 +146,8 @@ class Tendencies extends React.Component{
                     Utilities and Centeral Tendencies
                 </div>
             <Card className={classes.card}>
-            <CardContent >
+            <CardContent>
+            <div class='card_content'>
             <Grid
                 container
                 direction="row"
@@ -156,7 +157,8 @@ class Tendencies extends React.Component{
                 <Grid item xs={12} s={12} align= 'center'>
                 
                     <TextField
-                        id="standard-full-width"
+                        id="outlined-full-width"
+                        
                         value = {this.state.input_data}
                         onChange = {e => this.setState({input_data: e.target.value})} 
                         label="Input Data"
@@ -249,6 +251,7 @@ class Tendencies extends React.Component{
                 onClose={() => this.setState({clipboard: false})}
                 message={<span id="message-id"> Copied to clipboard! </span>}
             />
+            </div>
             </CardContent>
             </Card>
         </MuiThemeProvider>

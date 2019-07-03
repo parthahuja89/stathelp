@@ -2,27 +2,26 @@
 CSS Utils.js and children 
 */
 .utils{
-    background-image: url('../assets/utils/background.svg');
+    background-image: url('../assets/utils/background_box.svg');
+    overflow: hidden;
     height: 100vh;
     width: 100%;
     background-repeat: no-repeat;
-    background-position: right bottom;
     
+}
+.card_content{
+    margin-top: 10%;
 }
 ::-webkit-scrollbar { 
     display: none; 
- }
+}
 .title{
     font-family: 'Overpass', sans-serif;
     font-size: 3vh; 
     transform: translateY(75%);
     text-align: center;
-    color: black;
+    color: white;
   }
-.bg_card_image{
-    width: 50%;
-    margin-top: 10%; 
-}
 
 .final_output{
     font-family: 'Overpass', sans-serif;
