@@ -5,3 +5,10 @@
     width: 100%;
     background-repeat: no-repeat; 
 }
+
+.modebar {
+    display: none !important;
+}
+.plotly_output{
+    transform: translateX(10%);
+}

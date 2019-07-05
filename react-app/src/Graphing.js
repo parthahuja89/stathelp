@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import TextField from '@material-ui/core/TextField';
-
-import Plot from 'react-plotly.js';
+import Grid from '@material-ui/core/Grid';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import BoxPlot from './Graphs/BoxPlot';
+import Histogram from './Graphs/Histogram';
+import BarChart from './Graphs/BarChart';
+import PieChart from './Graphs/PieChart';
 
 import './Graphing.css';
 const styles = {
@@ -19,13 +23,28 @@ const styles = {
         position: 'absolute',
         borderRadius: '5px',
         justifyContent: 'center',
+    
     },
 }; 
 
+const graphs = [
+    <BoxPlot/>,
+    <Histogram/>,
+    <BarChart/>,
+    <PieChart/>
+]
 class Graphing extends React.Component{
     state = {
-        input_data: ''
+        Graph: 0
     };
+
+    /**
+     * Changes Tab Selection
+     */
+    handleChange = (event, value) => {
+        this.setState({ Graph: value});
+    
+    }
     render(){
         const { classes } = this.props;
         return(
@@ -33,37 +52,40 @@ class Graphing extends React.Component{
                 <div class ='title'>
                     Graphing
                 </div>
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+                <Grid item xs = {12}>
                 <Card className={classes.card}>
                 <CardContent>
-                    <TextField
-                            id="outlined-full-width"
-                            
-                            value = {this.state.input_data}
-                            onChange = {e => this.setState({input_data: e.target.value})} 
-                            label="Input Data"
-                            placeholder="Example: 12, 33, 44"
-                            fullWidth
-                            margin="normal"
-                            InputLabelProps={{
-                            shrink: true,
-                            }}
-                    />
-
-                {/** Graph Plot */}
-                <Plot
-                    data={[
-                    {
-                        x: [20, 14, 23],
-                        y: [20, 14, 21],
-                        mode: 'lines',
-                        type: 'scatter'
-                    },
-                    ]}
-                    layout={ {width: '10vh', height: '20vh', title: 'Chart'} }
-                />
+                
+                {/** Graph Selection Tab*/}
+                <Tabs
+                value={this.state.Graph}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="scrollable"
+                scrollButtons="auto"
+                >
+                    <Tab style = {{ fontWeight: 'Bold' }} label="BoxPlot" />
+                    <Tab style = {{ fontWeight: 'Bold' }} label="Histogram" />
+                    <Tab style = {{ fontWeight: 'Bold' }} label="BarChart" />
+                    <Tab style = {{ fontWeight: 'Bold' }} label="PieChart" />
+                </Tabs>
+                
+                {/**Conditional Rendering based on menu selection hooks for each distribution*/}
+                <div>
+                    {graphs[this.state.Graph]}
+                </div>
                 
                 </CardContent>
                 </Card>
+                </Grid>
+                </Grid>
             </div>
         );
     }
