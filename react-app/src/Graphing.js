@@ -10,6 +10,7 @@ import BoxPlot from './Graphs/BoxPlot';
 import Histogram from './Graphs/Histogram';
 import BarChart from './Graphs/BarChart';
 import PieChart from './Graphs/PieChart';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import './Graphing.css';
 const styles = {
@@ -25,7 +26,27 @@ const styles = {
         justifyContent: 'center',
     
     },
+
 }; 
+
+const theme = createMuiTheme({
+
+    palette: {
+        primary:{
+            main: '#9148BC'
+
+        },
+        secondary: {
+            main: '#5E3656'
+        },
+        purple: {
+            main: '5E3656'
+        }
+    },
+    typography: {
+        fontFamily: 'Overpass',
+    },
+});
 
 const graphs = [
     <BoxPlot/>,
@@ -49,6 +70,7 @@ class Graphing extends React.Component{
         const { classes } = this.props;
         return(
             <div class = 'Graphing'>
+                <MuiThemeProvider theme={theme}>
                 <div class ='title'>
                     Graphing
                 </div>
@@ -69,12 +91,13 @@ class Graphing extends React.Component{
                 indicatorColor="primary"
                 textColor="primary"
                 variant="scrollable"
-                scrollButtons="auto"
+                centered
                 >
                     <Tab style = {{ fontWeight: 'Bold' }} label="BoxPlot" />
                     <Tab style = {{ fontWeight: 'Bold' }} label="Histogram" />
                     <Tab style = {{ fontWeight: 'Bold' }} label="BarChart" />
                     <Tab style = {{ fontWeight: 'Bold' }} label="PieChart" />
+                
                 </Tabs>
                 
                 {/**Conditional Rendering based on menu selection hooks for each distribution*/}
@@ -86,6 +109,7 @@ class Graphing extends React.Component{
                 </Card>
                 </Grid>
                 </Grid>
+            </MuiThemeProvider>
             </div>
         );
     }

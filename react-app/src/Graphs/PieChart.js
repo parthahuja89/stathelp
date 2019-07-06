@@ -4,11 +4,19 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import Grid from '@material-ui/core/Grid';
 
 import Plot from 'react-plotly.js';
 
 const styles = {
-
+    root: {
+        justifyContent: 'center'
+    },
+    button: {
+        margin: '10% 0% 0% 0%',
+        fontSize: '1.5vh',
+        textTransform: 'none',
+    },
 }; 
 
 class PieChart extends React.Component{
@@ -62,7 +70,7 @@ class PieChart extends React.Component{
     render(){
         const { classes } = this.props;
         return(
-            <div>
+            <div style={{justifyContent: 'center'}}>
                 <TextField
                     id="outlined-full-width"
                     
@@ -90,19 +98,21 @@ class PieChart extends React.Component{
                     shrink: true,
                     }}
                 />
+                <Grid item align = 'center'>
                 <Button 
                         variant="contained"
                             color="secondary" 
                             onClick={this.plot}
                             className={classes.button}
                             style={{justifyContent: 'center'}}
-                            size="large"
-                        >
+                            size="medium"
+                >
                             Plot
                 </Button>
-
+                </Grid>
                 <div className= {this.state.showOutput ? '':'disappear' }>
                 {/** Plotly Graph */}
+                <Grid item align = 'center'>
                 <Plot
                     data={[
                     {
@@ -112,9 +122,11 @@ class PieChart extends React.Component{
                         type: 'pie',
                     },
                     ]}
-                    layout={ {title: 'BarChart'} }
-                    useResizeHandler={true}
+                    layout={ {height: '100px', title: 'Pie Chart', autosize:true} }
+                    useResizeHandler= {true}
+                    style = {{width: "90%", height: "50%"}}
                 />
+                </Grid>
                 </div>
 
                 {/** Empty data Warning SnackBar */}

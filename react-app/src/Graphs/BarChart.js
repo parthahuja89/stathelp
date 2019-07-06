@@ -4,11 +4,19 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import Grid from '@material-ui/core/Grid';
 
 import Plot from 'react-plotly.js';
 
 const styles = {
-
+    root: {
+        justifyContent: 'center'
+    },
+    button: {
+        margin: '10% 0% 0% 0%',
+        fontSize: '1.5vh',
+        textTransform: 'none',
+    },
 }; 
 
 class BarChart extends React.Component{
@@ -90,18 +98,21 @@ class BarChart extends React.Component{
                     }}
                 />
 
-                <Button 
-                        variant="contained"
-                            color="secondary" 
-                            onClick={this.plot}
-                            className={classes.button}
-                            style={{justifyContent: 'center'}}
-                            size="large"
-                >
-                            Plot
-                </Button>
+                <Grid item align = 'center'>
+                    <Button 
+                            variant="contained"
+                                color="secondary" 
+                                onClick={this.plot}
+                                className={classes.button}
+                                style={{justifyContent: 'center'}}
+                                size="medium"
+                    >
+                                Plot
+                    </Button>
+                </Grid>
                 </div>
                 <div className= {this.state.showOutput ? 'plotly_output':'disappear' }>
+                <Grid item align = 'center'>
                 {/** Plotly Graph */}
                 <Plot
                     data={[
@@ -115,6 +126,7 @@ class BarChart extends React.Component{
                     useResizeHandler= {true}
                     style = {{width: "80%", height: "40%"}}
                 />
+                </Grid>
                 </div>
 
                 {/** Empty data Warning SnackBar */}

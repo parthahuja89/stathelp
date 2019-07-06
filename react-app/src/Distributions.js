@@ -33,7 +33,11 @@ const theme = createMuiTheme({
         purple: {
             main: '5E3656'
         }
-      },
+    },
+    typography: {
+        fontFamily: 'Overpass',
+    },
+    
 });
 
 const distributions = [
