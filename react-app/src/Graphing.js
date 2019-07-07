@@ -24,7 +24,7 @@ const styles = {
         position: 'absolute',
         borderRadius: '5px',
         justifyContent: 'center',
-    
+        overflow: 'auto',
     },
 
 }; 

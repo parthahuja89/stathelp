@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Grid from '@material-ui/core/Grid';
+import Arrow from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
 
 import Plot from 'react-plotly.js';
 
@@ -111,7 +113,13 @@ class BarChart extends React.Component{
                     </Button>
                 </Grid>
                 </div>
+
                 <div className= {this.state.showOutput ? 'plotly_output':'disappear' }>
+                {/** Button to go Back from the output screen*/}
+                <IconButton style = {{ marginLeft: '1%'}}  size="small" color="primary" aria-label="Add" onClick = {() => {this.setState({ showOutput: false })}}>
+                         <Arrow/> 
+                </IconButton>
+                
                 <Grid item align = 'center'>
                 {/** Plotly Graph */}
                 <Plot
@@ -120,6 +128,9 @@ class BarChart extends React.Component{
                         x: this.state.x_array,
                         y: this.state.y_array,
                         type: 'bar',
+                        marker: {
+                            color: '#C8A2C8',
+                        },
                     },
                     ]}
                     layout={ {  height: '100px',title: 'Bar Chart', autosize:true} }

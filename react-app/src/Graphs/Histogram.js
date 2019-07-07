@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Arrow from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
 
 import Plot from 'react-plotly.js';
 
@@ -58,6 +60,8 @@ class Histogram extends React.Component{
         const { classes } = this.props;
         return(
             <div>
+                <div className= {this.state.showOutput ? 'disappear':'' } >
+
                 <TextField
                     id="outlined-full-width"
                     
@@ -83,8 +87,13 @@ class Histogram extends React.Component{
                                 Plot
                     </Button>
                 </Grid>
+                </div>
 
                 <div className= {this.state.showOutput ? '':'disappear' }>
+                <IconButton style = {{ marginLeft: '1%'}}  size="small" color="primary" aria-label="Add" onClick = {() => {this.setState({ showOutput: false })}}>
+                         <Arrow/> 
+                </IconButton>
+
                 <Grid item align = 'center'>
                 {/** Plotly Graph */}
                 <Plot
@@ -92,6 +101,9 @@ class Histogram extends React.Component{
                     {
                         x: this.state.plot_array,
                         type: 'histogram',
+                        marker: {
+                            color: '#C8A2C8',
+                        },
                     },
                     ]}
                     layout={ {height: '100px', title: 'Histogram', autosize:true} }

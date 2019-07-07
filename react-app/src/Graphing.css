@@ -12,3 +12,6 @@
 .plotly_output{
     
 }
+.svg-container{
+    height: 400px !important ;
+}

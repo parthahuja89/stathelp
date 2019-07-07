@@ -16,6 +16,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Copy from '@material-ui/icons/AssignmentOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
 //material styles 
 const styles ={
     card: { 
@@ -141,6 +143,7 @@ class Tendencies extends React.Component{
         const { classes } = this.props;
         return(
             <div class = 'utils'>
+
             <MuiThemeProvider theme={theme}>
                 <div class= 'title'>
                     Utilities and Centeral Tendencies

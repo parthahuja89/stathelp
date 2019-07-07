@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Grid from '@material-ui/core/Grid';
+import Arrow from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
 
 import Plot from 'react-plotly.js';
 
@@ -70,7 +72,8 @@ class PieChart extends React.Component{
     render(){
         const { classes } = this.props;
         return(
-            <div style={{justifyContent: 'center'}}>
+            <div>
+                <div className= {this.state.showOutput ? 'disappear':'' } >
                 <TextField
                     id="outlined-full-width"
                     
@@ -110,7 +113,13 @@ class PieChart extends React.Component{
                             Plot
                 </Button>
                 </Grid>
+                </div>
+
                 <div className= {this.state.showOutput ? '':'disappear' }>
+                <IconButton style = {{ marginLeft: '1%'}}  size="small" color="primary" aria-label="Add" onClick = {() => {this.setState({ showOutput: false })}}>
+                         <Arrow/> 
+                </IconButton>
+                
                 {/** Plotly Graph */}
                 <Grid item align = 'center'>
                 <Plot

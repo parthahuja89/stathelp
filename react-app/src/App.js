@@ -14,6 +14,8 @@ import testing_url from '../assets/testing.svg'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
+import Grow from '@material-ui/core/Grow';
+
 //animation 
 import Anime from 'animejs'
 
@@ -102,11 +104,23 @@ class App extends React.Component {
   hideNav = () => {
     this.setState({ anchorEl: null });
   }
-  //Navigates the user to next page
-  navigate() {
+
+  //avoid async 
+  animateCard(){
+    this.setState({grow: !this.state.grow})
+  }
+  //Navigates the user to next page with card fade animation 
+  navigate(route) {
     console.log("Navigation issued from card")
+    //fading card 
+    this.setState({grow: !this.state.grow})
+
+    //waiting for animation to finish 
+    setTimeout(function(props){
+      this.props.history.push(route);
+    }.bind(this), 250);
     //Routing to /Utils 
-    this.props.history.push('/Utils');
+    
   }
 
   //loads logo animation on mounting 
@@ -117,6 +131,8 @@ class App extends React.Component {
   //current state only includes trigger for nav menu
   state = {
     anchorEl: null,
+    //cards growing animation on load
+    grow: true,
   }; 
 
   render(){
@@ -164,9 +180,9 @@ class App extends React.Component {
             onClose={this.hideNav}
             TransitionComponent={Fade}
           >
-            <MenuItem onClick={this.hideNav}>Profile</MenuItem>
-            <MenuItem onClick={this.hideNav}>My account</MenuItem>
-            <MenuItem onClick={this.hideNav}>Logout</MenuItem>
+            <MenuItem onClick={this.hideNav}>Play Store</MenuItem>
+            <MenuItem onClick={this.hideNav}>Donate</MenuItem>
+            <MenuItem onClick={this.hideNav}>Report Bug</MenuItem>
         </Menu>
 
       </Grid>
@@ -174,7 +190,10 @@ class App extends React.Component {
       <div class='get_started'>
         Get started by selecting a category. 
       </div>
-      {/*Card Grid*/}
+      {/*Card Grid
+      Animations:
+      1. Growing animation: occcurs at intervals of 500 --> Card1(0) --> Card2 (500) -> Card3(1000)
+      */}
       <Grid
         container
         justify="center"
@@ -186,18 +205,28 @@ class App extends React.Component {
         }}
       > 
       <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
-          <Card className={classes.card} >
+      <Grow
+          in={this.state.grow} 
+      > 
+          <Card className={classes.card} onClick={() => this.navigate('/utils')}>
               <CardContent>
               <img src={dist_url} class='vectors'/>
               <div id='categories'>
-                Utilities and Distributions  
+                Utilities and Centeral Tendencies
               </div>
               </CardContent>
           </Card>
+         
+        </Grow>
       </Grid>
 
       <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
-          <Card className={classes.card} >
+      <Grow
+          in={this.state.grow} 
+          {...(this.state. grow
+             ? { timeout: 500 } : {})}
+      >
+          <Card className={classes.card} onClick={() => this.navigate('/graphing')}>
               <CardContent>
               <img src={graph_url}  class='vectors'/>
               <div id='categories'>
@@ -205,17 +234,24 @@ class App extends React.Component {
               </div>
               </CardContent>
           </Card>
+      </Grow>
       </Grid>
 
       <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 
-          <Card className={classes.card} >
+      <Grow
+          in={this.state.grow} 
+          {...(this.state. grow
+             ? { timeout: 1000 } : {})}
+      >
+          <Card className={classes.card} onClick={() => this.navigate('/dist')}>
               <CardContent>
               <img src={testing_url} class='vectors'/>
               <div id='categories'>
-                Testing
+                Probabilty Distributions
               </div>
               </CardContent>
           </Card>
+      </Grow>
       </Grid>
       </Grid>
     </div>
