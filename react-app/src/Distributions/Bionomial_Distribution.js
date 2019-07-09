@@ -5,7 +5,7 @@ import Copy from '@material-ui/icons/AssignmentOutlined';
 import Arrow from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
 import Table from '@material-ui/core/Table';

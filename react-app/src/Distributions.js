@@ -33,7 +33,11 @@ const theme = createMuiTheme({
         purple: {
             main: '5E3656'
         }
-      },
+    },
+    typography: {
+        fontFamily: 'Overpass',
+    },
+    
 });
 
 const distributions = [
@@ -83,10 +87,7 @@ class Probability extends React.Component{
                 variant="scrollable"
                 scrollButtons="auto"
                 >
-                {/** Tabs
-                1. ./utils_components/centeral_tendencies
-                2. ./utils_components/Distributions.js
-                */}
+                
                 <Tab style = {{ fontWeight: 'Bold' }} label="Bionomial" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Normal" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Hypergeometric" />
