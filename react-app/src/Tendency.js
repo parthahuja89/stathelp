@@ -18,7 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
-//material styles 
+//material styles
 const styles ={
     card: { 
         width: '90%',
@@ -236,7 +236,6 @@ class Tendencies extends React.Component{
                 </IconButton>
             </div>
             </div>
-
             </Grid>
             </Grid>
             {/** Snackbar warning when user makes request with empty data */}
