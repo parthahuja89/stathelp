@@ -11,6 +11,7 @@ import {
   withTheme,
 } from 'react-native-paper';
 
+import { IconButton, Colors } from 'react-native-paper';
 
 
 class App extends React.Component {
@@ -23,11 +24,17 @@ class App extends React.Component {
         style={styles.container}
         contentContainerStyle={styles.content}
       >
-
+        <IconButton
+          icon="menu"
+          color={Colors.black}
+          size={30}
+          onPress={() => console.log('Pressed')}
+        />
+        
         <Card style={styles.card}>
           <Card.Content style={styles.aligments} >
               <Title style={styles.aligments}>Utilities and Centeral Tendencies</Title>
-              <Image source={require('./assets/main_page_svgs/dist.png')} style = {styles.graphics}/>
+              <Image source={require('./assets/main_page_svgs/dist.png')} style = {styles.dist}/>
               <Card.Actions style={styles.aligments} >
                 <Button onPress={() => {}}> More Info </Button>
                 <Button onPress={() => {}}> Open </Button>
@@ -38,7 +45,7 @@ class App extends React.Component {
         <Card style={styles.card}>
           <Card.Content style={styles.aligments} >
               <Title style={styles.aligments}>Graphing Tools</Title>
-              <Image source={require('./assets/main_page_svgs/dist.png')} style = {styles.graphics}/>
+              <Image source={require('./assets/main_page_svgs/graph.png')} style = {styles.graphing}/>
               <Card.Actions style={styles.aligments} >
                 <Button onPress={() => {}}> More Info </Button>
                 <Button onPress={() => {}}> Open </Button>
@@ -49,7 +56,7 @@ class App extends React.Component {
         <Card style={styles.card}>
           <Card.Content style={styles.aligments} >
               <Title style={styles.aligments}>Probability Distributions</Title>
-              <Image source={require('./assets/main_page_svgs/dist.png')} style = {styles.graphics}/>
+              <Image source={require('./assets/main_page_svgs/probability.png')} style = {styles.prob}/>
               <Card.Actions style={styles.aligments} >
                 <Button onPress={() => {}}> More Info </Button>
                 <Button onPress={() => {}}> Open </Button>
@@ -72,9 +79,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
 
-  graphics:{
+  dist:{
     height: 183,
     width: 241,
+  },
+  graphing:{
+    height: 183,
+    width: 263,
+  },
+  prob:{
+    height: 183,
+    width: 212,
   },
   card: {
     margin: 25,
