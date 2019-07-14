@@ -14,6 +14,7 @@ import {
     IconButton,
     DataTable  
   } from 'react-native-paper';
+
 import {ScrollView } from 'react-native-gesture-handler';
 
 import axios from 'axios';
@@ -60,7 +61,7 @@ class Utils extends React.Component {
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
         }else{
 
-        axios.get('http://192.168.1.6:5000/' + String(this.state.operation), {
+        axios.get('http://stathelp.herokuapp.com/' + String(this.state.operation), {
             //GET Request payload 
             params: {
                 values: String(this.state.input_data)
@@ -95,9 +96,16 @@ class Utils extends React.Component {
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
             <ScrollView>
                 <Card style={styles.card}>
-                <Card.Content style={styles.aligments} >
-                    <Title style={styles.aligments}>Utilities and Centeral Tendencies</Title>
-                    <Caption>Instructions</Caption>
+                <Card.Content style={styles.content} >
+                    <Title style={styles.title}>Utilities and Centeral Tendencies</Title>
+
+                    <Caption style= {styles.instructions}> 
+                    Instructions {"\n"}
+                    1. Enter Values separated by commma Example: 1,23,4 {"\n"}
+                    2. Select Operation and click calculate.
+
+                    </Caption>
+                    
                     <TextInput
                         label='Input Data'
                         value={this.state.input_data}
@@ -134,10 +142,10 @@ class Utils extends React.Component {
                      <Button  mode="contained" onPress={this.apiRequest} style={styles.button}>
                         Calculate
                     </Button>
-
-                    {/** Shows server response -- Hidden until res accepted*/}
-                    
-                    {this.state.showOutput &&
+        
+                </Card.Content>
+                {/** Server Output */}
+                {this.state.showOutput &&
                         <View style={styles.outputFlexbox}>
  
                          <DataTable>
@@ -147,17 +155,17 @@ class Utils extends React.Component {
                             </DataTable.Header>
 
                             <DataTable.Row>
-                            <DataTable.Cell>{this.state.operation.replace(/_/g, ' ')}</DataTable.Cell>
+                            <DataTable.Cell> Answer</DataTable.Cell>
                             <DataTable.Cell numeric>{this.state.answer} 
                             </DataTable.Cell>
                             </DataTable.Row>
-                        </DataTable>
+                      </DataTable>
                         <Button  onPress={this.copytoclipboard} style={styles.button}>
                             Copy to clipboard
                         </Button>  
                         </View>
-                    }
-                </Card.Content>  
+                }
+
                 </Card>
             </ScrollView>
             </ImageBackground>
@@ -186,11 +194,14 @@ class Utils extends React.Component {
 }
 
 const styles = StyleSheet.create({
+
     title:{
         fontSize: 20,
         textAlign: 'center',
-        fontWeight: 'bold',
-
+    },
+    instructions:{
+        textAlign: 'center',
+        top: 10,
     },
     bg_image:{
         flex: 1,
@@ -199,22 +210,29 @@ const styles = StyleSheet.create({
         height: win.height,
     },
     card: {
-        margin: 23,
-        height: win.height/1.2,
+        margin: 20,
+        height: win.height*0.93,
         alignItems: 'center',
         textAlign: 'center',
-       
+    },
+    content:{
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: win.width/1.30
     },
     textField:{
         top: 50,
+        width: win.width/1.30,
         backgroundColor: 'white',
     },
     button:{
         top: 50,
+        maxWidth: win.width/1.30,
     },
     menu:{
-        height:    100,                     
-        width: 300,                  
+        height: 100,                     
+        width: win.width/1.30,                  
         top: 50,                   
     },
     outputFlexbox:{

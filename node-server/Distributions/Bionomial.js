@@ -11,7 +11,7 @@ module.exports = {
      * Arguements: sucess: probability of success
      * trial_count : n 
      * x: number of success
-     * Method: P(X) = n!/(n-x)!x! p^x(1-p)^n-x
+     * Method: P(X) = Trial_Count(C)x (p)^x(1-p)^x
      */
 
     /**
@@ -23,29 +23,12 @@ module.exports = {
 
         console.log("Calculating p(X=x)!")
 
-        success = parseFloat(success)
-        trial_count = parseInt(trial_count)
-        x = parseFloat(x)
-        
-        console.log("Sucess: " + success)
-        console.log("Trial Count: " + trial_count)
-        console.log("X: " + x)
+        success = mathjs.bignumber(success)
+        trial_count = mathjs.bignumber(trial_count)
+        x = mathjs.bignumber(x)
 
-        
-
-        const n_factorial = mathjs.factorial(trial_count)
-        const n_x_factorial = mathjs.factorial(trial_count- x)
-        const x_factorial = mathjs.factorial(x)
-
-        console.log("n! : " + String(n_factorial))
-        console.log("n-x! : " + String(n_x_factorial))
-        console.log("x! :" +String(x_factorial))
-
-        probability = (n_factorial/(n_x_factorial*x_factorial)*Math.pow(success,x)*Math.pow(1-success,trial_count-x))
-
-        probability = parseFloat(probability)
-
-        return probability  
+        return mathjs.combinations(trial_count, x)*mathjs.pow(success, x)*mathjs.pow(1-success, trial_count-x)
+ 
     },
 
     /** 

@@ -80,7 +80,7 @@ class Home extends React.Component {
               <Image source={require('./assets/main_page_svgs/probability.png')} style = {styles.prob}/>
               <Card.Actions style={styles.aligments} >
                 <Button onPress={() => this._showDialog('Includes probability distributions like bionomial, normal, poisson etc.')}> More Info </Button>
-                <Button onPress={() => {}}> Open </Button>
+                <Button onPress={() => this.props.navigation.navigate('Dist')}> Open </Button>
               </Card.Actions>
           </Card.Content>
         </Card>
