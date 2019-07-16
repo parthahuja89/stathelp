@@ -5,54 +5,52 @@ import axios from 'axios';
 
 const win = Dimensions.get('window')
 
-export default class Normal extends React.Component{
+export default class Chi extends React.Component{
     constructor(){
         super();
-        this.calculateNormal = this.calculateNormal.bind(this);
+        this.calculateChi = this.calculateChi.bind(this);
     }
     state = {
-        z_score: '',
-        standard_dev: '',
-        mean: '',
+        freedom: '',
+        x: '',
+        rounding: '',
 
         //warnings
         empty_data_warning: '',
 
-        //server res
-        answer: '',
     }
 
-    /**
-     * Sends GET request to server 
-     * Request: /Normal
-     * Json payload: {z_score, mean, standard_dev}
-     */
-    calculateNormal(){
-        if(this.state.z_score == '' || this.state.mean == '' || this.state.standard_dev == ''){
+    /*
+    * Sends GET request to server 
+    * Request: /Chi
+    * Json payload: {freedom: '',  x: 'random variable', rounding: 'rounding decimal place'}
+    */
+    calculateChi(){
+        //checking for errors and sending warning
+        if(this.state.x == '' || this.state.freedom == '' || this.state.rounding == ''){
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
             this.setState({ empty_data_warning: true })
         }
         else{
-            console.log("Mean: " + this.state.mean)
-            console.log("Standard dev: " + this.state.standard_dev)
-            console.log("Z Score: " + this.state.z_score)
+            console.log("freedom: " + this.state.freedom)
+            console.log("X: " + this.state.x)
 
-
-            axios.get('http://stathelp.herokuapp.com/Normal', {
+            axios.get('http://stathelp.herokuapp.com/Chi', {
                 //GET Request payload 
                 params: {
-                    z_score: String(this.state.z_score),
-                    mean: String(this.state.mean),
-                    standard_dev: String(this.state.standard_dev)
+                    freedom: String(this.state.freedom),
+                    x: String(this.state.x),
+                    rounding: String(this.state.rounding),
                 }
             })
             .then(res =>{
                 //response 
                 var res_json = res.data
                 console.log("Server Response: " + JSON.stringify(res_json))
+                //Response JSON: {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
                 this.setState({
-                    showOutput: true, 
-                    answer: res_json['Answer']
+                    answer: res_json['Answer'],           
+                    showOutput: true,
                 })
             })
     
@@ -64,9 +62,9 @@ export default class Normal extends React.Component{
             <View>
                 {/** Input Field */}
                 <TextInput
-                        label='Z Score (z)'
-                        value={this.state.z_score}
-                        onChangeText= {text  => this.setState({z_score: text})}
+                        label='Degrees of freedom'
+                        value={this.state.freedom}
+                        onChangeText= {text  => this.setState({freedom: text})}
                         style= {styles.textField}
                         multiline= {true}
                         mode= 'outlined'
@@ -75,9 +73,9 @@ export default class Normal extends React.Component{
 
 
                 <TextInput
-                        label='Mean'
-                        value={this.state.mean}
-                        onChangeText= {text  => this.setState({mean: text})}
+                        label='Random Variable (X)'
+                        value={this.state.x}
+                        onChangeText= {text  => this.setState({x: text})}
                         style= {styles.textField}
                         multiline= {true}
                         mode= 'outlined'
@@ -85,15 +83,15 @@ export default class Normal extends React.Component{
                 />
 
                 <TextInput
-                        label='Standard Deviation'
-                        value={this.state.standard_dev}
-                        onChangeText= {text  => this.setState({standard_dev: text})}
+                        label='Rounding'
+                        value={this.state.rounding}
+                        onChangeText= {text  => this.setState({rounding: text})}
                         style= {styles.textField}
                         multiline= {true}
                         mode= 'outlined'
                         keyboardType='numeric'
                 />
-                <Button  mode="contained" onPress={this.calculateNormal} style={styles.button}>
+                <Button  mode="contained" onPress={this.calculateChi} style={styles.button}>
                         Calculate
                 </Button>
 
@@ -126,7 +124,7 @@ export default class Normal extends React.Component{
 
                             <DataTable.Row>
                             <DataTable.Cell> P(X ≥ x) </DataTable.Cell>
-                            <DataTable.Cell numeric>{parseFloat(1-this.state.answer)} 
+                            <DataTable.Cell numeric>{parseFloat(1-this.state.answer).toFixed(this.state.rounding)} 
                             </DataTable.Cell>
                             </DataTable.Row>
                             

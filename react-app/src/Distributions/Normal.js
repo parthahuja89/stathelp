@@ -72,7 +72,7 @@ class Normal extends React.Component{
             console.log("Z Score: " + this.state.z_score)
 
 
-            axios.get('http://localhost:5000/Normal', {
+            axios.get('http://stathelp.herokuapp.com/Normal', {
                 //GET Request payload 
                 params: {
                     z_score: String(this.state.z_score),

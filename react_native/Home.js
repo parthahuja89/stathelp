@@ -69,7 +69,7 @@ class Home extends React.Component {
               <Image source={require('./assets/main_page_svgs/graph.png')} style = {styles.graphing}/>
               <Card.Actions style={styles.aligments} >
                 <Button onPress={() => this._showDialog('Includes graphing tools like bar charts, box plots, histogram, and pie charts.')}> More Info </Button>
-                <Button onPress={() => {}}> Open </Button>
+                <Button onPress={ () => this.props.navigation.navigate('Graphing') }> Open </Button>
               </Card.Actions>
           </Card.Content>
         </Card>

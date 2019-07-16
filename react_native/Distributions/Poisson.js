@@ -1,72 +1,46 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
-
 import {TextInput, Button, Snackbar, DataTable} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
 
-export default class Bio extends React.Component{
+export default class Chi extends React.Component{
     constructor(){
         super();
-        this.calculateBio = this.calculateBio.bind(this);
-        this.routeToTableView = this.routeToTableView.bind(this);
+        this.calculatePoisson = this.calculatePoisson.bind(this);
     }
-    state ={
-        trial_count: '',
-        success: '',
+    state = {
+        average: '',
         x: '',
+        rounding: '',
 
-        empty_data_warning: false,
-        probability_warning: false,
+        //warnings
+        empty_data_warning: '',
 
-        //server res
-        answer: '',
-        answer_lt: '',
-        answer_gt: '',
-        answer_lt_eq: '',
-        answer_gt_eq: '',
-
-        //true once server output is recieved
-        showOutput:false, 
     }
-    /**
-     * Routes to the FullTableOutput once server response is recieved 
-     */
-    routeToTableView = () => {
-        console.log('Routing')
-        this.props.navigation.navigate('Utils')
-    }
+
     /**
      * Sends GET request to server 
-     * Request: /Bionomial 
-     * Json payload: {success: '0<=X<=1', trial_count: '1->INF' , x: 'num of success'}
+     * Request: /Poisson
+     * Json payload: {average: '',  x: 'random variable', rounding: 'rounding decimal place'}
      */
-    calculateBio(){
+    calculatePoisson(){
         //checking for errors and sending warning
-        
-        //empty data
-        if(this.state.success == '' || this.state.trial_count == '' || this.state.x == ''){
+        if(this.state.x == '' || this.state.average == '' || this.state.rounding == ''){
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
             this.setState({ empty_data_warning: true })
         }
-
-        else if(this.state.success <0 || this.state.success > 1){
-            console.log("Probability not in range")
-            this.setState({probability_warning: true})
-        }
-        //passed safety checks
         else{
-            console.log("Sucess: " + this.state.success)
-            console.log("Trial Count: " + this.state.trial_count)
+            console.log("Average: " + this.state.average)
             console.log("X: " + this.state.x)
 
-            axios.get('http://stathelp.herokuapp.com/Bionomial', {
+            axios.get('http://stathelp.herokuapp.com/Poisson', {
                 //GET Request payload 
                 params: {
-                    success: String(this.state.success),
-                    trial_count: String(this.state.trial_count),
-                    x: String(this.state.x)
+                    average: String(this.state.average),
+                    x: String(this.state.x),
+                    rounding: String(this.state.rounding),
                 }
             })
             .then(res =>{
@@ -76,27 +50,25 @@ export default class Bio extends React.Component{
                 //Response JSON: {answer(=) , answer_lt(<), answer_lt_eq(=<), answer_gt_eq(>=)}
                 this.setState({
                     answer: res_json['Answer'],
-                    answer_lt : res_json['Answer_lt'],
+                    answer_lt: res_json['Answer_lt'],
                     answer_lt_eq: res_json['Answer_lt_eq'],
                     answer_gt: res_json['Answer_gt'],
                     answer_gt_eq: res_json['Answer_gt_eq'],
-
-                    showOutput: true
+                    
+                    showOutput: true,
                 })
-
             })
     
-        }
-    }   
+    }}
 
     render(){
         return(
             <View>
                 {/** Input Field */}
                 <TextInput
-                        label='Trial Count'
-                        value={this.state.trial_count}
-                        onChangeText= {text  => this.setState({trial_count: text})}
+                        label='Average'
+                        value={this.state.average}
+                        onChangeText= {text  => this.setState({average: text})}
                         style= {styles.textField}
                         multiline= {true}
                         mode= 'outlined'
@@ -105,17 +77,7 @@ export default class Bio extends React.Component{
 
 
                 <TextInput
-                        label='Probability of Success'
-                        value={this.state.success}
-                        onChangeText= {text  => this.setState({success: text})}
-                        style= {styles.textField}
-                        multiline= {true}
-                        mode= 'outlined'
-                        keyboardType='numeric'
-                />
-
-                <TextInput
-                        label='Number of Successes (X)'
+                        label='Random Variable (X)'
                         value={this.state.x}
                         onChangeText= {text  => this.setState({x: text})}
                         style= {styles.textField}
@@ -123,7 +85,17 @@ export default class Bio extends React.Component{
                         mode= 'outlined'
                         keyboardType='numeric'
                 />
-                <Button  mode="contained" onPress={this.calculateBio} style={styles.button}>
+
+                <TextInput
+                        label='Rounding'
+                        value={this.state.rounding}
+                        onChangeText= {text  => this.setState({rounding: text})}
+                        style= {styles.textField}
+                        multiline= {true}
+                        mode= 'outlined'
+                        keyboardType='numeric'
+                />
+                <Button  mode="contained" onPress={this.calculatePoisson} style={styles.button}>
                         Calculate
                 </Button>
 
@@ -135,16 +107,6 @@ export default class Bio extends React.Component{
                         style = {styles.Snackbar}
                         >
                         Incomplete Data. 
-                </Snackbar>
-
-                {/**  Probability not in 1-0 Range Warning */}
-                <Snackbar
-                        visible={this.state.probability_warning}
-                        onDismiss={() => this.setState({ probability_warning: false })}
-                        duration = {600}
-                        style = {styles.Snackbar}
-                        >
-                        Probability must be between 0-1. 
                 </Snackbar>
 
                 {/** Server Output */}
@@ -219,3 +181,4 @@ const styles = StyleSheet.create({
         top: 50,
     },
 })
+

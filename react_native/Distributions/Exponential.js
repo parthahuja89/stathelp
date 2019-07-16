@@ -1,72 +1,74 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
+
 import {TextInput, Button, Snackbar, DataTable} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
 
-export default class Normal extends React.Component{
+export default class Exponential extends React.Component{
     constructor(){
         super();
-        this.calculateNormal = this.calculateNormal.bind(this);
+        this.calculateExponential = this.calculateExponential.bind(this);
     }
-    state = {
-        z_score: '',
-        standard_dev: '',
-        mean: '',
+    state ={
+        beta: '',
+        rounding: '',
+        x: '',
 
-        //warnings
-        empty_data_warning: '',
+        empty_data_warning: false,
 
         //server res
         answer: '',
+
+        //true once server output is recieved
+        showOutput:false, 
     }
 
     /**
      * Sends GET request to server 
-     * Request: /Normal
-     * Json payload: {z_score, mean, standard_dev}
+     * Request: /Exponential
+     * Json payload: {population_size, population_success, sample_size,sample_success}
      */
-    calculateNormal(){
-        if(this.state.z_score == '' || this.state.mean == '' || this.state.standard_dev == ''){
+    calculateExponential(){
+
+        //Safety Checks 
+        if( this.state.beta == '' || this.state.x == ''  || this.state.rounding == ''){
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
             this.setState({ empty_data_warning: true })
         }
+
+        //Requesting 
         else{
-            console.log("Mean: " + this.state.mean)
-            console.log("Standard dev: " + this.state.standard_dev)
-            console.log("Z Score: " + this.state.z_score)
 
-
-            axios.get('http://stathelp.herokuapp.com/Normal', {
+            axios.get('http://stathelp.herokuapp.com/Expo', {
                 //GET Request payload 
                 params: {
-                    z_score: String(this.state.z_score),
-                    mean: String(this.state.mean),
-                    standard_dev: String(this.state.standard_dev)
+                    x: String(this.state.x),
+                    beta: String(this.state.beta),
+                    rounding: String(this.state.rounding)
                 }
             })
             .then(res =>{
                 //response 
                 var res_json = res.data
                 console.log("Server Response: " + JSON.stringify(res_json))
-                this.setState({
-                    showOutput: true, 
-                    answer: res_json['Answer']
+                this.setState({ 
+                    answer: res_json['Answer'],
+                    showOutput: true,
                 })
             })
     
         }
     }
-
     render(){
         return(
             <View>
                 {/** Input Field */}
                 <TextInput
-                        label='Z Score (z)'
-                        value={this.state.z_score}
-                        onChangeText= {text  => this.setState({z_score: text})}
+                        label='β (1/λ)'
+                        value={this.state.beta}
+                        onChangeText= {text  => this.setState({beta: text})}
                         style= {styles.textField}
                         multiline= {true}
                         mode= 'outlined'
@@ -75,9 +77,9 @@ export default class Normal extends React.Component{
 
 
                 <TextInput
-                        label='Mean'
-                        value={this.state.mean}
-                        onChangeText= {text  => this.setState({mean: text})}
+                        label='Random Variable(X)'
+                        value={this.state.x}
+                        onChangeText= {text  => this.setState({x: text})}
                         style= {styles.textField}
                         multiline= {true}
                         mode= 'outlined'
@@ -85,15 +87,15 @@ export default class Normal extends React.Component{
                 />
 
                 <TextInput
-                        label='Standard Deviation'
-                        value={this.state.standard_dev}
-                        onChangeText= {text  => this.setState({standard_dev: text})}
+                        label='Rounding'
+                        value={this.state.rounding}
+                        onChangeText= {text  => this.setState({rounding: text})}
                         style= {styles.textField}
                         multiline= {true}
                         mode= 'outlined'
                         keyboardType='numeric'
                 />
-                <Button  mode="contained" onPress={this.calculateNormal} style={styles.button}>
+                <Button  mode="contained" onPress={this.calculateExponential} style={styles.button}>
                         Calculate
                 </Button>
 
@@ -126,7 +128,7 @@ export default class Normal extends React.Component{
 
                             <DataTable.Row>
                             <DataTable.Cell> P(X ≥ x) </DataTable.Cell>
-                            <DataTable.Cell numeric>{parseFloat(1-this.state.answer)} 
+                            <DataTable.Cell numeric>{parseFloat(1-this.state.answer).toFixed(this.state.rounding)} 
                             </DataTable.Cell>
                             </DataTable.Row>
                             
@@ -162,4 +164,3 @@ const styles = StyleSheet.create({
         top: 50,
     },
 })
-

@@ -104,7 +104,7 @@ class Hyper extends React.Component{
         //Requesting 
         else{
 
-            axios.get('http://localhost:5000/Hyper', {
+            axios.get('http://stathelp.herokuapp.com/Hyper', {
                 //GET Request payload 
                 params: {
                     population_size: String(this.state.population_size),
@@ -204,6 +204,18 @@ class Hyper extends React.Component{
                 <Grid align ='center' item xs= {12}> 
                     <TextField
                         id="outlined-name"
+                        label="Sample Success"
+                        variant="outlined"
+                        className={classes.textField}                       
+                        margin = 'normal'
+                        align= 'left'
+                        onChange = {e => this.setState({ sample_success: e.target.value})} 
+                />  
+                </Grid>
+
+                <Grid align ='center' item xs= {12}> 
+                    <TextField
+                        id="outlined-name"
                         label="Rounding Decimal Place"
                         variant="outlined"
                         className={classes.textField}                       
@@ -212,6 +224,7 @@ class Hyper extends React.Component{
                         onChange = {e => this.setState({ rounding: e.target.value})} 
                 />  
                 </Grid>
+
 
                 <Grid item align = 'center'>
                     <Button 
@@ -263,7 +276,7 @@ class Hyper extends React.Component{
                         
                         open={this.state.warning_4}
                         onClose={() => this.setState({warning_4: false})}
-                        message={<span id="message-id">Sample Success can't be greater than Population Success</span>}
+                        message={<span id="message-id">Sample Success can't be greater than Population Success.</span>}
                 />
 
 

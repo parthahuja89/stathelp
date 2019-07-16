@@ -64,7 +64,7 @@ class Geo extends React.Component{
             console.log("Probability of success: " + this.state.probability)
             console.log("Number of failures: " + this.state.failure)
 
-            axios.get('http://localhost:5000/Geo', {
+            axios.get('http://stathelp.herokuapp.com/Geo', {
                 //GET Request payload 
                 params: {
                     probability: String(this.state.probability),
