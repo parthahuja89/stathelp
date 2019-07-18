@@ -1,8 +1,18 @@
 import * as React from 'react';
 import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
-import { Dimensions, Clipboard} from 'react-native';
+import { ScrollView, Dimensions,Image} from 'react-native';
 import BarChart from './Graphs/BarChart';
-
+import BoxPlot from './Graphs/BoxPlot';
+import PieChart from './Graphs/PieChart';
+import {
+    Title,
+    Caption,
+    Paragraph,
+    Card,
+    Button,
+    withTheme,
+    Dialog, Portal,
+  } from 'react-native-paper';
 
 const win = Dimensions.get('window')
 
@@ -11,23 +21,58 @@ class Graphing extends React.Component {
     render(){
         return(
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
-                <BarChart/>
-            </ImageBackground>
+                <ScrollView
+                style={styles.container}
+                contentContainerStyle={styles.content}
+                >    
+                {/** Chart Selection */}
+                <Card style={styles.card}>
+                    <Card.Content style={styles.aligments} >
+                        <Title style={styles.aligments}> Bar Chart </Title>
+                        <Image source={require('./assets/main_page_svgs/dist.png')} style = {styles.dist}/>
+                        <Card.Actions style={styles.aligments} >
+                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
+                            <Button onPress={() => this.props.navigation.navigate('BarChart')}> Open </Button>
+                        </Card.Actions>
+                    </Card.Content>
+                </Card>
 
+                <Card style={styles.card}>
+                    <Card.Content style={styles.aligments} >
+                        <Title style={styles.aligments}> Box Plot </Title>
+                        <Image source={require('./assets/main_page_svgs/dist.png')} style = {styles.dist}/>
+                        <Card.Actions style={styles.aligments} >
+                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
+                            <Button onPress={() => this.props.navigation.navigate('BoxPlot')}> Open </Button>
+                        </Card.Actions>
+                    </Card.Content>
+                </Card>
+                
+                <Card style={styles.card}>
+                    <Card.Content style={styles.aligments} >
+                        <Title style={styles.aligments}> Pie Chart </Title>
+                        <Image source={require('./assets/main_page_svgs/dist.png')} style = {styles.dist}/>
+                        <Card.Actions style={styles.aligments} >
+                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
+                            <Button onPress={() => this.props.navigation.navigate('PieChart')}> Open </Button>
+                        </Card.Actions>
+                    </Card.Content>
+                </Card>
+            </ScrollView>
+            </ImageBackground>
            
         );
     }
 }
 
 const styles = StyleSheet.create({
-
-    title:{
-        fontSize: 20,
-        textAlign: 'center',
+    //main container flexbox 
+    container: {
+        flex: 1,
     },
-    instructions:{
-        textAlign: 'center',
-        top: 10,
+    content: {
+        padding: 2,
+        justifyContent: 'center'
     },
     bg_image:{
         flex: 1,
@@ -36,46 +81,17 @@ const styles = StyleSheet.create({
         height: win.height,
     },
     card: {
-        margin: 20,
-        height: win.height*0.93,
+        margin: 23,
         alignItems: 'center',
-        textAlign: 'center',
+        textAlign: 'center'
     },
-    content:{
-        flex: 1,
-        flexDirection: 'column',
+    dist:{
+        height: 183,
+        width: 241,
+    },
+    aligments: {
         alignItems: 'center',
-        width: win.width/1.30
-    },
-    textField:{
-        top: 50,
-        width: win.width/1.30,
-        backgroundColor: 'white',
-    },
-    button:{
-        top: 50,
-        maxWidth: win.width/1.30,
-    },
-    menu:{
-        height: 100,                     
-        width: win.width/1.30,                  
-        top: 50,                   
-    },
-    outputFlexbox:{
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-        top: 100,
-    },
-    output:{
-        alignItems: 'center',
-        textAlign: 'center',
-        fontSize: 17, 
-        top: 125, 
-    },
-    copy:{
-        top: 100,
-    },
+        textAlign: 'center'
+    }
 })
 export default Graphing;

@@ -10,12 +10,12 @@ import {ScrollView } from 'react-native-gesture-handler';
 import axios from 'axios';
 //Victory charts
 
-import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
+import { VictoryPie, VictoryChart, VictoryTheme } from "victory-native";
 
 
 const win = Dimensions.get('window')
 
-class BarChart extends React.Component {
+class PieChart extends React.Component {
     constructor(){
         super();
         this.plot = this.plot.bind(this);
@@ -65,9 +65,9 @@ class BarChart extends React.Component {
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content style={styles.content} >
-                    <Title style={styles.title}>BarChart</Title>
+                    <Title style={styles.title}>Pie Chart</Title>
                     <TextInput
-                        label='X Axis'
+                        label='Labels'
                         value={this.state.x_axis}
                         onChangeText= {text  => this.setState({x_axis: text})}
                         style= {styles.textField}
@@ -77,7 +77,7 @@ class BarChart extends React.Component {
                     />
 
                     <TextInput
-                        label='Y Axis'
+                        label='Values'
                         value={this.state.y_axis}
                         onChangeText= {text  => this.setState({y_axis: text})}
                         style= {styles.textField}
@@ -90,18 +90,15 @@ class BarChart extends React.Component {
                     <Button  mode="contained" style = {styles.button} onPress={this.plot}>
                         Plot
                     </Button>
-
-                    <VictoryChart
-                    theme={VictoryTheme.material}
-                    domainPadding={10}
-                    >
-                    <VictoryBar
-                        style={{ data: { fill: "#EA4081" } }}
+                    <VictoryPie
                         data={this.state.graph_data}
                         x={0}
                         y={1}
+                        innerRadius={100}
+                        padAngle={3}
+                        height={400}
+                        colorScale={["tomato", "orange", "pink", "cyan", "navy" ]}
                     />
-                    </VictoryChart>
 
                 </Card.Content>
                 </Card>
@@ -169,4 +166,4 @@ const styles = StyleSheet.create({
     },
 
 })
-export default BarChart;
+export default PieChart;
