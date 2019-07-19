@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { Alert, ScrollView, StyleSheet , Image, Text, View} from 'react-native';
+import { Alert, ScrollView, StyleSheet , Image, Text, View, Dimensions, ImageBackground} from 'react-native';
 import {
   Title,
   Caption,
@@ -13,6 +13,8 @@ import {
 } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { IconButton, Colors } from 'react-native-paper';
+
+const win = Dimensions.get('window')
 
 class Home extends React.Component {
   static title = 'Card';
@@ -36,7 +38,9 @@ class Home extends React.Component {
         style={styles.container}
         contentContainerStyle={styles.content}
       >
-      {/** Row Flexbox  */}
+
+
+      {/** Navabar Row Flexbox  */}
       <View style= {styles.inputWrap}>
         <Image source={require('./assets/main_page_svgs/logo.png')} style ={styles.logo_image}/>
         
@@ -48,6 +52,7 @@ class Home extends React.Component {
           icon="menu"
           color={Colors.black}
           size={30}
+          
           onPress={() => console.log('Pressed')}
         />
       </View>
@@ -99,9 +104,11 @@ class Home extends React.Component {
             </Dialog.Actions>
           </Dialog>
         </Portal>
-
       </ScrollView>
+
+      <ImageBackground source={require('./assets/main_page_svgs/background_curve.png')} style ={styles.bg_image} />
       </PaperProvider>
+      
     );
   }
 }
@@ -118,14 +125,15 @@ const styles = StyleSheet.create({
   //Row flex box for logo and iconbutton
   inputWrap:{
     flex: 1,
-    justifyContent: 'space-between',
     flexDirection: 'row',
     padding: 8,
+    justifyContent: 'space-between',
   },
   Logo:{
     fontSize: 18,
     top: 9,
-    left: -110,
+    left: '10%',
+    marginRight: 'auto',
   },
   logo_image:{
     height: 30,
@@ -151,7 +159,15 @@ const styles = StyleSheet.create({
   aligments: {
     alignItems: 'center',
     textAlign: 'center'
-  }
+  },
+  bg_image:{
+    position: "absolute",
+    width: 165,
+    left: '70%',
+    top: '5%',
+    height: 713,
+    zIndex: -1,
+  },
 });
 
 

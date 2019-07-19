@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
-import {TextInput, Button, Snackbar, DataTable} from 'react-native-paper';
+import {TextInput, Button, Snackbar, DataTable, IconButton} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
@@ -64,6 +64,8 @@ export default class Chi extends React.Component{
     render(){
         return(
             <View>
+                {!this.state.showOutput &&
+                <View>
                 {/** Input Field */}
                 <TextInput
                         label='Average'
@@ -108,16 +110,17 @@ export default class Chi extends React.Component{
                         >
                         Incomplete Data. 
                 </Snackbar>
-
+                </View>
+                }
                 {/** Server Output */}
                 {this.state.showOutput &&
                         <View style={styles.outputFlexbox}>
- 
-                         <DataTable>
-                             
+                         <IconButton icon='arrow-back' onPress = {() => this.setState({showOutput: false})}/>
+                         <DataTable style = {styles.table}>
+
                             <DataTable.Header>
                             <DataTable.Title>P(X)</DataTable.Title>
-                            <DataTable.Title numeric>Probabiliy</DataTable.Title>
+                            <DataTable.Title numeric>Probability</DataTable.Title>
                             </DataTable.Header>
 
                             <DataTable.Row>
@@ -149,11 +152,8 @@ export default class Chi extends React.Component{
                             <DataTable.Cell numeric>{this.state.answer_gt_eq} 
                             </DataTable.Cell>
                             </DataTable.Row>
-
                         </DataTable>
-                        <Button  onPress={this.copytoclipboard} style={styles.button}>
-                            Copy to clipboard
-                        </Button>  
+
                         </View>
                 }
             </View>
@@ -174,11 +174,9 @@ const styles = StyleSheet.create({
         top: 150,
     },
     outputFlexbox:{
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-        top: 50,
     },
+    table:{
+        width: win.width/1.3,
+    }
 })
 

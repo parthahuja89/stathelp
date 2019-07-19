@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     card: {
         margin: 20,
-        height: win.height/1.05,
+        height: win.height/1,
         alignItems: 'center',
         textAlign: 'center',
     },

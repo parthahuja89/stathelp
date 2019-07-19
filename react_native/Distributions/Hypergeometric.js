@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
-import {TextInput, Button, Snackbar, DataTable} from 'react-native-paper';
+import {TextInput, Button, Snackbar, DataTable, IconButton} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
@@ -95,6 +95,8 @@ export default class Hyper extends React.Component{
     render(){
         return(
             <View>
+                {!this.state.showOutput &&
+                <View>
                 {/** Input Field */}
                 <TextInput
                         label= 'Population Size'
@@ -195,52 +197,50 @@ export default class Hyper extends React.Component{
                         >
                         Sample Success can't be greater than Population Success.
                 </Snackbar>
-
+                </View>
+            }
                 {/** Server Output */}
                 {this.state.showOutput &&
                         <View style={styles.outputFlexbox}>
- 
-                        <DataTable>
-                             
-                             <DataTable.Header>
-                             <DataTable.Title>P(X)</DataTable.Title>
-                             <DataTable.Title numeric>Probabiliy</DataTable.Title>
-                             </DataTable.Header>
- 
-                             <DataTable.Row>
-                             <DataTable.Cell> Answer</DataTable.Cell>
-                             <DataTable.Cell numeric>{this.state.answer} 
-                             </DataTable.Cell>
-                             </DataTable.Row>
- 
-                             <DataTable.Row>
-                             <DataTable.Cell> Answer_lt</DataTable.Cell>
-                             <DataTable.Cell numeric>{this.state.answer_lt} 
-                             </DataTable.Cell>
-                             </DataTable.Row>
- 
-                             <DataTable.Row>
-                             <DataTable.Cell> Answer_gt</DataTable.Cell>
-                             <DataTable.Cell numeric>{this.state.answer_gt} 
-                             </DataTable.Cell>
-                             </DataTable.Row>
-                             
-                             <DataTable.Row>
-                             <DataTable.Cell> Answer_lt_eq</DataTable.Cell>
-                             <DataTable.Cell numeric>{this.state.answer_lt_eq} 
-                             </DataTable.Cell>
-                             </DataTable.Row>
- 
-                             <DataTable.Row>
-                             <DataTable.Cell> Answer_gt_eq</DataTable.Cell>
-                             <DataTable.Cell numeric>{this.state.answer_gt_eq} 
-                             </DataTable.Cell>
-                             </DataTable.Row>
- 
+                         <IconButton icon='arrow-back' onPress = {() => this.setState({showOutput: false})}/>
+                         <DataTable style = {styles.table}>
+
+                            <DataTable.Header>
+                            <DataTable.Title>P(X)</DataTable.Title>
+                            <DataTable.Title numeric>Probability</DataTable.Title>
+                            </DataTable.Header>
+
+                            <DataTable.Row>
+                            <DataTable.Cell> Answer</DataTable.Cell>
+                            <DataTable.Cell numeric>{this.state.answer} 
+                            </DataTable.Cell>
+                            </DataTable.Row>
+
+                            <DataTable.Row>
+                            <DataTable.Cell> Answer_lt</DataTable.Cell>
+                            <DataTable.Cell numeric>{this.state.answer_lt} 
+                            </DataTable.Cell>
+                            </DataTable.Row>
+
+                            <DataTable.Row>
+                            <DataTable.Cell> Answer_gt</DataTable.Cell>
+                            <DataTable.Cell numeric>{this.state.answer_gt} 
+                            </DataTable.Cell>
+                            </DataTable.Row>
+                            
+                            <DataTable.Row>
+                            <DataTable.Cell> Answer_lt_eq</DataTable.Cell>
+                            <DataTable.Cell numeric>{this.state.answer_lt_eq} 
+                            </DataTable.Cell>
+                            </DataTable.Row>
+
+                            <DataTable.Row>
+                            <DataTable.Cell> Answer_gt_eq</DataTable.Cell>
+                            <DataTable.Cell numeric>{this.state.answer_gt_eq} 
+                            </DataTable.Cell>
+                            </DataTable.Row>
                         </DataTable>
-                        <Button  onPress={this.copytoclipboard} style={styles.button}>
-                            Copy to clipboard
-                        </Button>  
+
                         </View>
                 }
             </View>
@@ -254,18 +254,17 @@ const styles = StyleSheet.create({
         maxWidth: win.width/1.08
     },
     button:{
-        top: 50,
+        top: 15,
         maxWidth: win.width/1.08
     },
     Snackbar:{
         top: 150,
     },
     outputFlexbox:{
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-        top: 50,
+
     },
+    table:{
+        width: win.width/1.3,
+    }
 })
 

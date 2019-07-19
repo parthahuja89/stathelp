@@ -96,7 +96,9 @@ class Utils extends React.Component {
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
             <ScrollView>
                 <Card style={styles.card}>
-                <Card.Content style={styles.content} >
+                <Card.Content>
+                {!this.state.showOutput &&
+                    <View style={styles.content}>
                     <Title style={styles.title}>Utilities and Centeral Tendencies</Title>
 
                     <Caption style= {styles.instructions}> 
@@ -142,29 +144,31 @@ class Utils extends React.Component {
                      <Button  mode="contained" onPress={this.apiRequest} style={styles.button}>
                         Calculate
                     </Button>
-        
-                </Card.Content>
+                    </View>
+                    }
                 {/** Server Output */}
                 {this.state.showOutput &&
                         <View style={styles.outputFlexbox}>
- 
-                         <DataTable>
+                        <IconButton icon='arrow-back' onPress = {() => this.setState({showOutput: false})}/>
+                         <DataTable style = {styles.table}>
                             <DataTable.Header>
                             <DataTable.Title>Operation</DataTable.Title>
                             <DataTable.Title numeric>Answer</DataTable.Title>
                             </DataTable.Header>
 
                             <DataTable.Row>
-                            <DataTable.Cell> Answer</DataTable.Cell>
+                            <DataTable.Cell>{this.state.operation}</DataTable.Cell>
                             <DataTable.Cell numeric>{this.state.answer} 
                             </DataTable.Cell>
                             </DataTable.Row>
                       </DataTable>
-                        <Button  onPress={this.copytoclipboard} style={styles.button}>
+                        <Button  onPress={this.copytoclipboard} style={styles.copy}>
                             Copy to clipboard
                         </Button>  
                         </View>
                 }
+                </Card.Content>
+
 
                 </Card>
             </ScrollView>
@@ -238,9 +242,8 @@ const styles = StyleSheet.create({
     outputFlexbox:{
         flex: 1,
         flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-        top: 100,
+        alignItems: 'flex-start',
+        textAlign: 'center', 
     },
     output:{
         alignItems: 'center',
@@ -249,7 +252,11 @@ const styles = StyleSheet.create({
         top: 125, 
     },
     copy:{
-        top: 100,
+      top: 20,
+      alignSelf: 'center',
     },
+    table:{
+        width: win.width/1.3,
+    }
 })
 export default Utils;
