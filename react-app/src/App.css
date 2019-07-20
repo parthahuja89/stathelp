@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Overpass');
 
 body{
-  font-family: 'Overpass', sans-serif;
+  font-family: 'Overpass';
 }
 html,body{
   margin:0;
@@ -20,13 +20,13 @@ html,body{
 }
 #logo{
   margin-top: 0.3%;
-  font-family: 'Overpass', sans-serif;
+  font-family: 'Overpass';
   font-size: 2.5vh;
   color: black;
   margin-left: 3px; 
 }
 .get_started{
-  font-family: 'Overpass', sans-serif;
+  font-family: 'Overpass';
   font-size: 3.8vh;
   margin-left: 4%;
   margin-top: 5%;
@@ -56,7 +56,7 @@ img{
 #categories{
   margin-top: 7%;
   text-align: center;
-  font-family: 'Overpass', sans-serif;
+  font-family: 'Overpass';
   font-size: 2.3vh;
   color: black;
 

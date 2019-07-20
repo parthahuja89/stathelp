@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass');
+.Landing_Page{
+    background-image: url('../assets/landing/mobile_bg.svg');
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-position: 100% 100%;
+    margin: 0;
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.Title{
+    font-size: 5vh;
+    margin-top: 10%;
+    margin-left: 2%;
+    
+    font-weight: bold;
+    font-family: 'Overpass';
+}  
+.sub_text{
+    font-size: 2.4vh;
+    margin-left: 2%;
+    margin-top: 1%;
+    font-family: 'Overpass';
+    padding: 8;
+} 
+@media screen and (min-width: 1200px) {
+    .Title{
+        width: 55%;
+    }
+   .sub_text{
+        width: 55%;
+   }
+   .Landing_Page{
+        background-image: url('../assets/landing/desktop_bg.svg');  
+   }
+}
