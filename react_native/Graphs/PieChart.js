@@ -3,7 +3,7 @@ import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
 
-import { Title,Card,Button} from 'react-native-paper';
+import { Title,Card,Button, Caption} from 'react-native-paper';
 
 import {ScrollView } from 'react-native-gesture-handler';
 
@@ -62,10 +62,19 @@ class PieChart extends React.Component {
     render(){
         return(
             <Provider>
+            <ImageBackground resizeMode = 'cover' source={require('../assets/utils/bg.png')} style ={styles.bg_image}>
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content style={styles.content} >
                     <Title style={styles.title}>Pie Chart</Title>
+                    
+                    {/**Instructions */}
+                    <Caption style= {styles.instructions}> 
+                    Instructions {"\n"}
+                    1. Enter Labels example: Apples, Mangoes, Lemon. {"\n"}
+                    2. Enter Values corresponding to the labels example: 14,12,99.
+                    </Caption>
+
                     <TextInput
                         label='Labels'
                         value={this.state.x_axis}
@@ -120,7 +129,7 @@ class PieChart extends React.Component {
                     >
                     X and Y axis are not equal.
             </Snackbar>
-
+            </ImageBackground>
             </Provider>
            
         );
@@ -136,6 +145,7 @@ const styles = StyleSheet.create({
     instructions:{
         textAlign: 'center',
         top: 10,
+        width: win.width/1.30,
     },
     bg_image:{
         flex: 1,
@@ -156,12 +166,12 @@ const styles = StyleSheet.create({
         width: win.width/1.30
     },
     textField:{
-        top: 0,
+        top: 20,
         width: win.width/1.30,
         backgroundColor: 'white',
     },
     button:{
-        top: 10,
+        top: 30,
         maxWidth: win.width/1.30,
     },
 

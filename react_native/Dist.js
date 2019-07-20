@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ScrollView, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
+import {ScrollView, Text, StyleSheet, ImageBackground, Dimensions, Picker, StatusBar} from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {
     Title,
@@ -42,7 +42,13 @@ export default class Dist extends React.Component{
     }
     render(){
         return(
+            
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
+            {/** white notch area with dark contents */}
+            <StatusBar
+            backgroundColor="#42EAEA"
+            barStyle="dark-content"
+            />
             <ScrollView> 
             <Card style={styles.card}>
             <Card.Content style={styles.aligments} >
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
     },
     card: {
         margin: 20,
-        height: win.height/1,
+        height: win.height*0.93,
         alignItems: 'center',
         textAlign: 'center',
     },

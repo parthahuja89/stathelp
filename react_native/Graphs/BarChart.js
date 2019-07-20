@@ -3,7 +3,7 @@ import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
 
-import { Title,Card,Button} from 'react-native-paper';
+import { Title,Card,Button, Caption} from 'react-native-paper';
 
 import {ScrollView } from 'react-native-gesture-handler';
 
@@ -25,7 +25,7 @@ class BarChart extends React.Component {
         y_axis: '',
 
         graph_data: [],
-
+        showOutput: false,
         //warning
         empty_data_warning: false,
         unequal_axis: false,
@@ -55,17 +55,25 @@ class BarChart extends React.Component {
                 temp.push([x_arr[i], y_arr[i]])
             }
             console.log("Finished populating data: " + String(temp))
-            this.setState({graph_data: temp})
+            this.setState({graph_data: temp, showOutput: true})
             
         }
     }
     render(){
         return(
             <Provider>
+            <ImageBackground resizeMode = 'cover' source={require('../assets/utils/bg.png')} style ={styles.bg_image}>
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content style={styles.content} >
                     <Title style={styles.title}>BarChart</Title>
+                    
+                    {/**Instructions */}
+                    <Caption style= {styles.instructions}> 
+                    Instructions {"\n"}
+                    1. Enter X Axis values example: Apples, Mangoes, Lemon. {"\n"}
+                    2. Enter Y Axis values corresponding to X axis values example: 14,12,99.
+                    </Caption>
                     <TextInput
                         label='X Axis'
                         value={this.state.x_axis}
@@ -90,7 +98,7 @@ class BarChart extends React.Component {
                     <Button  mode="contained" style = {styles.button} onPress={this.plot}>
                         Plot
                     </Button>
-
+                    {this.state.showOutput &&
                     <VictoryChart
                     theme={VictoryTheme.material}
                     domainPadding={10}
@@ -102,7 +110,7 @@ class BarChart extends React.Component {
                         y={1}
                     />
                     </VictoryChart>
-
+                    }
                 </Card.Content>
                 </Card>
             </ScrollView>
@@ -123,7 +131,7 @@ class BarChart extends React.Component {
                     >
                     X and Y axis are not equal.
             </Snackbar>
-
+            </ImageBackground>
             </Provider>
            
         );
@@ -139,6 +147,7 @@ const styles = StyleSheet.create({
     instructions:{
         textAlign: 'center',
         top: 10,
+        width: win.width/1.30,
     },
     bg_image:{
         flex: 1,
@@ -159,12 +168,12 @@ const styles = StyleSheet.create({
         width: win.width/1.30
     },
     textField:{
-        top: 0,
+        top: 20,
         width: win.width/1.30,
         backgroundColor: 'white',
     },
     button:{
-        top: 10,
+        top: 30,
         maxWidth: win.width/1.30,
     },
 

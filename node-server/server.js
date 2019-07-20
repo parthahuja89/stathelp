@@ -22,6 +22,19 @@ app.get('/', (req, res) => res.json({"Welcome": "To the stathelp server!"}))
  * Input Json:  {values: comma_separated_values}
  * Response Json: {answer: range}
  */
+
+app.get('/sum', (req, res) =>  res.json(
+        {"Answer": String(utils.sum(req.query.values))}
+))
+
+app.get('/length', (req, res) =>  res.json(
+        {"Answer": String(utils.length(req.query.values))}
+))
+
+app.get('/sum_of_squared', (req, res) =>  res.json(
+        {"Answer": String(utils.sum_of_squared(req.query.values))}
+))
+
 app.get('/range', (req, res) =>  res.json(
         {"Answer": String(utils.range(req.query.values))}
 ))

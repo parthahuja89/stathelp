@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
+import {View,Text, StyleSheet, ImageBackground, Picker, StatusBar} from 'react-native';
 import { ScrollView, Dimensions,Image} from 'react-native';
 import BarChart from './Graphs/BarChart';
 import BoxPlot from './Graphs/BoxPlot';
@@ -23,6 +23,11 @@ class Graphing extends React.Component {
     render(){
         return(
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
+                {/** 42EAEA notch area with dark contents */}
+                <StatusBar
+                backgroundColor="#42EAEA"
+                barStyle="dark-content"
+                />
                 <ScrollView
                 style={styles.container}
                 contentContainerStyle={styles.content}

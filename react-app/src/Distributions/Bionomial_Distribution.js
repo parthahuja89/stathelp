@@ -240,7 +240,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
 
                     <TableRow>
-                        <TableCell>P(X ≥ x)</TableCell>
+                        <TableCell>P(X{">"}x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_gt}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_gt)}}>
@@ -250,7 +250,7 @@ class Bionomial_Distribution  extends React.Component{
                     </TableRow>
                     
                     <TableRow>
-                        <TableCell>P(X{">="}x)</TableCell>
+                        <TableCell>P(X≥x)</TableCell>
                         <TableCell align="right">
                             {this.state.answer_gt_eq}
                             <IconButton style = {{ marginTop: '-0.3%'}} aria-label="Add" onClick = {() => {this.copyToClipboard(this.state.answer_gt_eq)}}>

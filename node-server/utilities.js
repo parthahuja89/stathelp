@@ -32,6 +32,58 @@ module.exports = {
         return arr 
     },
     /**
+     * Calculates the sum of values 
+     */
+    sum: function(input_data){
+        console.log("Calculating sum of valuegit s")
+
+        console.log(input_data);
+        //converting and sorting 
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+        var n = values.length
+        var sum = values.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
+
+        return String(sum)
+
+    },
+    /**
+     * Calculates the squared sum of values 
+     */
+    sum_of_squared: function(input_data){
+        console.log("Calculating sum of valuegit s")
+
+        console.log(input_data);
+        //converting and sorting 
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+        var n = values.length
+        var sum = 0
+        for(i in values){
+            sum += values[i]*values[i]
+        }
+
+        return String(sum)
+
+    },
+
+
+    /**
+     * Calculates the number of values in the data
+     */
+    length: function(input_data){
+        console.log("Calculating sum of valuegit s")
+
+        console.log(input_data);
+        //converting and sorting 
+        var values = module.exports.csvToArray(input_data)
+        values = module.exports.cleanAndSort(values)
+        var n = values.length
+
+        return String(n)
+
+    },
+    /**
      * Calculates the arithmetic mean in input_data
      * Method: Mean = Sum/Number of values 
      */

@@ -3,7 +3,7 @@ import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
 
-import { Title,Card,Button} from 'react-native-paper';
+import { Title,Card,Button, Caption} from 'react-native-paper';
 
 import {ScrollView } from 'react-native-gesture-handler';
 
@@ -54,10 +54,17 @@ class BoxPlot extends React.Component {
     render(){
         return(
             <Provider>
+                <ImageBackground resizeMode = 'cover' source={require('../assets/utils/bg.png')} style ={styles.bg_image}>
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content style={styles.content} >
                     <Title style={styles.title}>Box Plot</Title>
+
+                    {/**Instructions */}
+                    <Caption style= {styles.instructions}> 
+                    Instructions {"\n"}
+                    1. Enter Comma Separated Data and plot.
+                    </Caption>
 
                     <TextInput
                         label='Data'
@@ -100,9 +107,7 @@ class BoxPlot extends React.Component {
                     >
                     Incomplete Data. 
             </Snackbar>
-
-            
-
+            </ImageBackground>
             </Provider>
            
         );
@@ -118,6 +123,7 @@ const styles = StyleSheet.create({
     instructions:{
         textAlign: 'center',
         top: 10,
+        width: win.width/1.30,
     },
     bg_image:{
         flex: 1,
@@ -138,12 +144,12 @@ const styles = StyleSheet.create({
         width: win.width/1.30
     },
     textField:{
-        top: 0,
+        top: 20,
         width: win.width/1.30,
         backgroundColor: 'white',
     },
     button:{
-        top: 10,
+        top: 30,
         maxWidth: win.width/1.30,
     },
 

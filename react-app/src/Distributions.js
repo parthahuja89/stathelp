@@ -95,8 +95,6 @@ class Probability extends React.Component{
                 <Tab style = {{ fontWeight: 'Bold' }}label="Chi Squared" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Geometric" />
                 <Tab style = {{ fontWeight: 'Bold' }}label="Exponential" />
-                <Tab style = {{ fontWeight: 'Bold' }}label="Logarithmic" />
-                <Tab style = {{ fontWeight: 'Bold' }}label="Hyperbolic" />
                 </Tabs>
                 {/**Conditional Rendering based on menu selection hooks for each distribution*/}
                 <div class= 'dist_content'>

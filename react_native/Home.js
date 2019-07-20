@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { Alert, ScrollView, StyleSheet , Image, Text, View, Dimensions, ImageBackground} from 'react-native';
+import { Alert, ScrollView, StyleSheet , Image, Text, View, Dimensions, ImageBackground, SafeAreaView, StatusBar} from 'react-native';
 import {
   Title,
   Caption,
@@ -12,7 +12,7 @@ import {
   Dialog, Portal,
 } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { IconButton, Colors } from 'react-native-paper';
+import { IconButton, Colors, Appbar} from 'react-native-paper';
 
 const win = Dimensions.get('window')
 
@@ -34,12 +34,15 @@ class Home extends React.Component {
     
     return (
       <PaperProvider>
+        {/** white notch area with dark contents */}
+        <StatusBar
+          backgroundColor="white"
+          barStyle="dark-content"
+        />
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.content}
       >
-
-
       {/** Navabar Row Flexbox  */}
       <View style= {styles.inputWrap}>
         <Image source={require('./assets/main_page_svgs/logo.png')} style ={styles.logo_image}/>
@@ -105,10 +108,8 @@ class Home extends React.Component {
           </Dialog>
         </Portal>
       </ScrollView>
-
       <ImageBackground source={require('./assets/main_page_svgs/background_curve.png')} style ={styles.bg_image} />
-      </PaperProvider>
-      
+      </PaperProvider>    
     );
   }
 }

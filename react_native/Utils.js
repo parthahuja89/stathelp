@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
+import {View,Text, StyleSheet, ImageBackground, Picker, StatusBar} from 'react-native';
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
 
@@ -31,7 +31,7 @@ class Utils extends React.Component {
         //textfield
         input_data: '',
         //operation selection
-        operation: 'Arithmetic_Mean',
+        operation: 'sum',
         //warning snackbar
         empty_data_warning: false,
 
@@ -92,8 +92,14 @@ class Utils extends React.Component {
     }
     render(){
         return(
-            <Provider>
+        <Provider>
+
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
+            {/** white notch area with dark contents */}
+            <StatusBar
+            backgroundColor="#42EAEA"
+            barStyle="dark-content"
+            />
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content>
@@ -126,6 +132,9 @@ class Utils extends React.Component {
                         onValueChange={(itemValue, itemIndex) =>
                             this.setState({operation: itemValue, showOutput: false})
                     }>
+                        <Picker.Item  label="Sum Σx" value="sum" />
+                        <Picker.Item  label="Number of Values (N)" value="length" />
+                        <Picker.Item  label="Sum of Squared Σ(x^2)" value="sum_of_squared" />
                         <Picker.Item  label="Arithmetic Mean" value="Arithmetic_Mean" />
                         <Picker.Item  label="Geometric Mean" value="Geometric_Mean" />
                         <Picker.Item  label="Harmonic Mean" value="Harmonic_Mean" />
@@ -191,7 +200,7 @@ class Utils extends React.Component {
                     Copied to clipboard!
             </Snackbar>
 
-            </Provider>
+        </Provider>
            
         );
     }
@@ -206,6 +215,7 @@ const styles = StyleSheet.create({
     instructions:{
         textAlign: 'center',
         top: 10,
+        width: win.width/1.30,
     },
     bg_image:{
         flex: 1,

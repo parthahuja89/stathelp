@@ -113,7 +113,7 @@ class Tendencies extends React.Component{
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
         }else{
 
-        axios.get('http://localhost:5000/' + String(this.state.operation), {
+        axios.get('http://stathelp.herokuapp.com/' + String(this.state.operation), {
             //GET Request payload 
             params: {
                 values: String(this.state.input_data)
@@ -187,6 +187,9 @@ class Tendencies extends React.Component{
                             id: 'ops-label',
                           }}
                         >
+                        <MenuItem value={'sum'}>Sum Σx</MenuItem>
+                        <MenuItem value={'length'}>Number of Values (N)</MenuItem>
+                        <MenuItem value={'sum_of_squared'}> Sum of Squared Σ(x^2)</MenuItem>
                         <MenuItem value={'Arithmetic_Mean'}>Arithmetic Mean</MenuItem>
                         <MenuItem value={'Geometric_Mean'}>Geometric Mean</MenuItem>
                         <MenuItem value={'Harmonic_Mean'}>Harmonic Mean</MenuItem>

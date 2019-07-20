@@ -164,36 +164,37 @@ export default class Bio extends React.Component{
                             </DataTable.Header>
 
                             <DataTable.Row>
-                            <DataTable.Cell> Answer</DataTable.Cell>
+                            <DataTable.Cell> P(X=x)</DataTable.Cell>
                             <DataTable.Cell numeric>{this.state.answer} 
                             </DataTable.Cell>
                             </DataTable.Row>
 
                             <DataTable.Row>
-                            <DataTable.Cell> Answer_lt</DataTable.Cell>
+                            <DataTable.Cell> P(X{"<"}x)</DataTable.Cell>
                             <DataTable.Cell numeric>{this.state.answer_lt} 
                             </DataTable.Cell>
                             </DataTable.Row>
 
                             <DataTable.Row>
-                            <DataTable.Cell> Answer_gt</DataTable.Cell>
-                            <DataTable.Cell numeric>{this.state.answer_gt} 
-                            </DataTable.Cell>
-                            </DataTable.Row>
-                            
-                            <DataTable.Row>
-                            <DataTable.Cell> Answer_lt_eq</DataTable.Cell>
+                            <DataTable.Cell> P(X ≤ x)</DataTable.Cell>
                             <DataTable.Cell numeric>{this.state.answer_lt_eq} 
                             </DataTable.Cell>
                             </DataTable.Row>
 
                             <DataTable.Row>
-                            <DataTable.Cell> Answer_gt_eq</DataTable.Cell>
+                            <DataTable.Cell>P(X{">"}x)</DataTable.Cell>
+                            <DataTable.Cell numeric>{this.state.answer_gt} 
+                            </DataTable.Cell>
+                            </DataTable.Row>
+                            
+
+                            <DataTable.Row>
+                            <DataTable.Cell>P(X≥x)</DataTable.Cell>
                             <DataTable.Cell numeric>{this.state.answer_gt_eq} 
                             </DataTable.Cell>
                             </DataTable.Row>
+                            
                         </DataTable>
-
                         </View>
                 }
             </View>
