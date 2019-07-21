@@ -10,30 +10,71 @@
     overflow-y: auto;
     overflow-x: auto;
 }
+.Landing_Page_2{
+    background-image: url('../assets/landing/desktop_bg_2.svg');
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-position: 100% 100%;
+    margin: 0;
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.Landing_Page_3{
+    background-image: url('../assets/landing/desktop_bg_3.svg');
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-position: 100% 100%;
+    margin: 0;
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+}
 
 .Title{
     font-size: 5vh;
     margin-top: 10%;
     margin-left: 2%;
-    
     font-weight: bold;
     font-family: 'Overpass';
 }  
 .sub_text{
-    font-size: 2.4vh;
+    font-size: 2.3vh;
     margin-left: 2%;
     margin-top: 1%;
     font-family: 'Overpass';
     padding: 8;
 } 
-@media screen and (min-width: 1200px) {
+/*Laptops and desktop */
+@media screen and (min-width: 1300px) {
     .Title{
-        width: 55%;
+        width: 60%;
     }
    .sub_text{
-        width: 55%;
+        width: 40%;
    }
    .Landing_Page{
         background-image: url('../assets/landing/desktop_bg.svg');  
    }
+}
+
+/*Landscape tablets*/
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    .Title{
+        width: 30%;
+    }
+   .sub_text{
+        width:30%;
+   }
+}
+
+#logo{
+    margin-top: 0.3%;
+    font-family: 'Overpass';
+    font-size: 2.5vh;
+    color: black;
+    margin-left: -1%; 
 }
