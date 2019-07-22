@@ -187,9 +187,6 @@ class App extends React.Component {
 
       </Grid>
       </Grid>
-      <div class='get_started'>
-        Get started by selecting a category. 
-      </div>
       {/*Card Grid
       Animations:
       1. Growing animation: occcurs at intervals of 500 --> Card1(0) --> Card2 (500) -> Card3(1000)
@@ -201,7 +198,7 @@ class App extends React.Component {
         direction="row"
         style={{
           margin: 0,
-          height: '50vh',
+          height: '75vh',
         }}
       > 
       <Grid align='center' item lg={4} sm={7} md={7} xs={11} > 

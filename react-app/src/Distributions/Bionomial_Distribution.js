@@ -98,7 +98,7 @@ class Bionomial_Distribution  extends React.Component{
             console.log("Trial Count: " + this.state.trial_count)
             console.log("X: " + this.state.x)
 
-            axios.get('http://localhost:5000/Bionomial', {
+            axios.get('https://localhost:5000/Bionomial', {
                 //GET Request payload 
                 params: {
                     success: String(this.state.success),

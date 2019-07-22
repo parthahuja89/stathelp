@@ -6,6 +6,10 @@ import Grid from '@material-ui/core/Grid';
 import Fade from 'react-reveal/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import Arrow from '@material-ui/icons/ArrowDownward';
+import Arrow1 from '@material-ui/icons/ArrowUpward';
+
+import { throws } from 'assert';
+
 //MUI Styles
 const styles = {
     button: {
@@ -35,12 +39,24 @@ const theme = createMuiTheme({
 
 
 class Landing extends React.Component{
+    constructor(props) {
+        super(props);
+        this.section1 = React.createRef();
+        this.section2 = React.createRef();
+        this.section3 = React.createRef();
+
+        this.scrollToSection = this.scrollToSection.bind(this)
+    }
+    scrollToSection(section){
+        section.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
     render(){
+
         const { classes } = this.props;
         return(
         <MuiThemeProvider theme={theme}>
-
-        <div class='Landing_Page'>
+        <div class ='main'>
+        <div class='Landing_Page' ref={this.section1}>
             {/** Logo and Text */}
             <div style = {{marginLeft: '2%', marginTop: '0.5%'}}>
             <svg width="61" height="41" viewBox="0 0 61 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,11 +124,23 @@ class Landing extends React.Component{
                 </Button> 
             </Grid>
             </Grid>
-
+            <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+                style= {{marginTop: '10%'}}
+            >
+            <Grid item md={3} sm={12}  xs={12} align='center'>
+                <IconButton className={classes.button} onClick={() => this.scrollToSection(this.section2)}>
+                    <Arrow/>
+                </IconButton>
+            </Grid>
+            </Grid>
         </div>
         
         {/** Section 2 */}
-        <div class=' Landing_Page_2'>
+        <div class=' Landing_Page_2' ref={this.section2}>
         <Grid
                 container
                 direction="row"
@@ -132,32 +160,62 @@ class Landing extends React.Component{
             </div>
             </Grid>
         </Grid>
-        </div>
 
-        {/** Section 3 */}
-        <div class=' Landing_Page_3'>
         <Grid
                 container
                 direction="row"
                 justify="flex-start"
                 alignItems="center"
+                style= {{marginTop: '10%'}}
             >
+            <Grid item md={3} sm={12}  xs={12} align='center'>
+                <IconButton className={classes.button} onClick={() => this.scrollToSection(this.section3)}>
+                    <Arrow/>
+                </IconButton>
+        </Grid>
+        </Grid>
+
+        </div>
+
+        {/** Section 3 */}
+        <div class=' Landing_Page_3' ref={this.section3}>
+        <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+        >
             <Grid items m = {2} l = {2} >
             <div class='Title'>
             <Fade>
-                Plot your data.
+                Easily plot and visualize your data.
             </Fade>
             </div>        
             <div class='sub_text' style ={{width: '60%'}}>
             <Fade>
-            Easily plot graphs like box plots, bar graph, and pie chart. 
+                Plot graphs like box plots, bar graph, and pie chart. 
             
             </Fade>
             </div>
             </Grid>
         </Grid>
-        </div>
 
+        <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+                style= {{marginTop: '10%'}}
+            >
+            <Grid item md={3} sm={12}  xs={12} align='center'>
+                <IconButton className={classes.button} onClick={() => this.scrollToSection(this.section1)}>
+                    <Arrow1/>
+                </IconButton>
+        </Grid>
+        </Grid>
+
+        </div>
+        </div>
         </MuiThemeProvider>
         );
     }
