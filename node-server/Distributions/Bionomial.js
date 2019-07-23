@@ -4,7 +4,6 @@
  * Methods: Cumulative and Equal probability methods {(PX=x), P(X<x), P(X>x), etc..}
  */
 const mathjs = require('mathjs')
-
 module.exports = {
     /**
      * Calculates X=x Bionomial Probability
@@ -18,8 +17,7 @@ module.exports = {
      * TODO: Implement bionomial dist with the direct combination formula for accuracy 
      */
     bionomial: function(success, trial_count, x){
-        
-        
+
 
         console.log("Calculating p(X=x)!")
 
