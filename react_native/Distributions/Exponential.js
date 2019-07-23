@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 
-import {TextInput, Button, Snackbar, DataTable, IconButton} from 'react-native-paper';
+import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
@@ -24,7 +24,9 @@ export default class Exponential extends React.Component{
         //true once server output is recieved
         showOutput:false, 
     }
+    _showDialog = () => this.setState({ visible: true });
 
+    _hideDialog = () => this.setState({ visible: false });
     /**
      * Sends GET request to server 
      * Request: /Exponential
@@ -64,6 +66,7 @@ export default class Exponential extends React.Component{
     render(){
         return(
             <View>
+            <Button onPress={() => this._showDialog()}> Instructions </Button>
             {!this.state.showOutput &&
             <View>
                 {/** Input Field */}
@@ -139,6 +142,25 @@ export default class Exponential extends React.Component{
                         </DataTable>
                     </View>
                 }
+                {/** Instructions Dialog*/}
+                <Portal>
+                <Dialog
+                    visible={this.state.visible}
+                    onDismiss={this._hideDialog}>
+                    <Dialog.Title style= {{textAlign:'center'}}>Instructions</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph style= {{textAlign:'center'}}>
+                        • Enter β. Note: λ=1/β.  {"\n"}
+                        • Enter Random Variable(X). 
+
+                        </Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                    <Button onPress={this._hideDialog}>Done</Button>
+                    </Dialog.Actions>
+                </Dialog>
+                </Portal>
+
             </View>
         );
     }

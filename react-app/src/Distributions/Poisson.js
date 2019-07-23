@@ -95,7 +95,11 @@ class Poisson extends React.Component{
         const { classes } = this.props;
         return(
             <div>
-                
+            {/** Instructions */}
+            <div class = 'instructions' style={{marginTop: '0%'}}>
+                Instructions <br/>
+                • Enter Average rate of success and Poisson random variable. <br/>
+            </div>
             {/** Input Fields */}
             <div className= {this.state.showOutput ? 'disappear':'' }>
                 <Grid
@@ -173,7 +177,7 @@ class Poisson extends React.Component{
                         <Arrow/> 
                 </IconButton>
 
-                <Table className={classes.table} style={{tableLayout: 'fixed'}}>
+                <Table className={classes.table} style={{tableLayout: 'fixed',backgroundColor: 'white'}}>
                 <TableHead>
                 <TableRow>
                     <TableCell>P(X)</TableCell>

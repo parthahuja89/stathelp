@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 
-import {TextInput, Button, Snackbar, DataTable, IconButton} from 'react-native-paper';
+import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
@@ -29,7 +29,9 @@ export default class Geometric extends React.Component{
         //true once server output is recieved
         showOutput:false, 
     }
+    _showDialog = () => this.setState({ visible: true });
 
+    _hideDialog = () => this.setState({ visible: false });
     /**
      * Sends GET request to server 
      * Request: /Chi
@@ -80,6 +82,7 @@ export default class Geometric extends React.Component{
     render(){
         return(
             <View>
+            <Button onPress={() => this._showDialog()}> Instructions </Button>
             {!this.state.showOutput &&
             <View>
                 {/** Input Field */}
@@ -185,6 +188,25 @@ export default class Geometric extends React.Component{
 
                         </View>
                 }
+
+                {/** Instructions Dialog*/}
+                <Portal>
+                <Dialog
+                    visible={this.state.visible}
+                    onDismiss={this._hideDialog}>
+                    <Dialog.Title style= {{textAlign:'center'}}>Instructions</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph style= {{textAlign:'center'}}>
+                        • Probability must be between 0-1. {"\n"}
+                        • Enter Number of trials, which includes the last trial with success.
+
+                        </Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                    <Button onPress={this._hideDialog}>Done</Button>
+                    </Dialog.Actions>
+                </Dialog>
+                </Portal>
             </View>
         );
     }

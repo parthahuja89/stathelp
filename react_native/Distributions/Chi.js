@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
-import {TextInput, Button, Snackbar, DataTable, IconButton} from 'react-native-paper';
+import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
@@ -19,7 +19,9 @@ export default class Chi extends React.Component{
         empty_data_warning: '',
 
     }
+    _showDialog = () => this.setState({ visible: true });
 
+    _hideDialog = () => this.setState({ visible: false });
     /*
     * Sends GET request to server 
     * Request: /Chi
@@ -62,6 +64,7 @@ export default class Chi extends React.Component{
             <View>
                 {!this.state.showOutput &&
                 <View>
+                <Button onPress={() => this._showDialog()}> Instructions </Button>
                 {/** Input Field */}
                 <TextInput
                         label='Degrees of freedom'
@@ -135,6 +138,24 @@ export default class Chi extends React.Component{
                         </DataTable>
                         </View>
                 }
+                {/** Instructions Dialog*/}
+                <Portal>
+                <Dialog
+                    visible={this.state.visible}
+                    onDismiss={this._hideDialog}>
+                    <Dialog.Title style= {{textAlign:'center'}}>Instructions</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph style= {{textAlign:'center'}}>
+                        • Enter Degress of freedom  {"\n"}
+                        • Enter Random Variable X (Chi-Squared Critical Value)
+
+                        </Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                    <Button onPress={this._hideDialog}>Done</Button>
+                    </Dialog.Actions>
+                </Dialog>
+                </Portal>
             </View>
         );
     }

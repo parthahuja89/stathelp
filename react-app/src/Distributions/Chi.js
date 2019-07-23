@@ -82,6 +82,12 @@ class Chi extends React.Component{
         const { classes } = this.props;
         return(
             <div>
+            {/** Instructions */}
+            <div class = 'instructions' style={{marginTop: '0%'}}>
+                Instructions <br/>
+                • Enter Degress of freedom <br/>
+                • Enter Random Variable X (Chi-Squared Critical Value)<br/>
+            </div>
             {/** Input Fields */}
             <div className= {this.state.showOutput ? 'disappear':'' } >
                 <Grid
@@ -158,7 +164,7 @@ class Chi extends React.Component{
                             <Arrow/> 
                     </IconButton>
 
-                    <Table className={classes.table} style={{tableLayout: 'fixed'}}>
+                    <Table className={classes.table} style={{tableLayout: 'fixed',backgroundColor: 'white'}}>
                         <TableHead>
                             <TableRow>
                                 <TableCell>P(Z)</TableCell>

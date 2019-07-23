@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ScrollView, Text, StyleSheet, ImageBackground, Dimensions, Picker, StatusBar} from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {Provider} from 'react-native-paper';
 import {
     Title,
     Caption,
@@ -42,7 +42,7 @@ export default class Dist extends React.Component{
     }
     render(){
         return(
-            
+            <Provider>
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
             {/** white notch area with dark contents */}
             <StatusBar
@@ -56,7 +56,7 @@ export default class Dist extends React.Component{
             {/** Picker selection decides what distribution component is rendered */}
             <Picker
                 selectedValue={this.state.dist_component}
-                style={{height: 100, width: 250}}
+                style={{height: 100, width: 250, marginTop: '-10%'}}
                 onValueChange={(itemValue, itemIndex) =>
                     this.setState({dist_component: itemValue})
             }>
@@ -76,6 +76,7 @@ export default class Dist extends React.Component{
             </Card>
             </ScrollView> 
             </ImageBackground>
+            </Provider>
         );
     }
 }

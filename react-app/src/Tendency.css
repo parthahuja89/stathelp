@@ -78,7 +78,6 @@ transition: opacity 300ms ease-in;
 }
 
 .instructions{
-    transform: translateY(10%);
     margin:0 auto;
     border-radius: 10px;
     background: #FCEFF4;

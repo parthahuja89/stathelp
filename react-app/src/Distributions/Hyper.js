@@ -136,34 +136,21 @@ class Hyper extends React.Component{
             <div>
                 <div className= {this.state.showOutput ? 'disappear':'' }>
                 {/** Instructions */}
-                <div class = 'instructions'>
-                    <ExpansionPanel>
-                            <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                            >
-                            <Typography className={classes.heading}>Instructions</Typography>
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails>
-                            <Typography>
-                                • Sample Size must be smaller than Population Size. <br/>
-                                • Number of Successes must be smaller than parent. <br/>
-                                • The number of successes in the sample must be less than or equal to the number of successes in the population. <br/>
-                                • Rounding Decimal must be between 0-100. <br/>
-                            </Typography>
-                            </ExpansionPanelDetails>
-                    </ExpansionPanel>
-                
+                <div class = 'instructions' style={{marginTop: '0%'}}>
+                    Instructions <br/>
+                    • Sample Size must be smaller than Population Size. <br/>
+                    • Number of Successes must be smaller than parent. <br/>
+                    • The number of successes in the Sample must be less than or equal to the number of successes in the Population. <br/>
                 </div>
+
                 {/** Input fields */}
                 <Grid
                     container
                     direction="row"
                     justify="center"
                     alignItems="center"
-                    spacing= {24}
-                    style = {{transform: 'translateY(10%)'}}
+                    spacing= {0}
+                    style = {{transform: 'translateY(5%)'}}
                 > 
                 <Grid align ='center' item xs= {12}> 
                     <TextField
@@ -297,7 +284,7 @@ class Hyper extends React.Component{
                          <Arrow/> 
                     </IconButton>
 
-                    <Table className={classes.table} style={{tableLayout: 'fixed'}}>
+                    <Table className={classes.table} style={{tableLayout: 'fixed',backgroundColor: 'white'}}>
                     <TableHead>
                     <TableRow>
                         <TableCell>P(X)</TableCell>

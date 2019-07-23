@@ -95,6 +95,11 @@ class Geo extends React.Component{
         const { classes } = this.props;
         return(
             <div>
+            <div class = 'instructions' style={{marginTop: '0%'}}>
+                Instructions <br/>
+                • Enter Probability of Success between 0-1<br/>
+                • Enter Number of trials, which includes the last trial with success.<br/>
+            </div>
             {/** Input Fields */}
             <div className= {this.state.showOutput ? 'disappear':'' }>
                 <Grid
@@ -180,7 +185,7 @@ class Geo extends React.Component{
                          <Arrow/> 
                     </IconButton>
 
-                    <Table className={classes.table} style={{tableLayout: 'fixed'}}>
+                    <Table className={classes.table} style={{tableLayout: 'fixed',backgroundColor: 'white'}}>
                     <TableHead>
                     <TableRow>
                         <TableCell>P(X)</TableCell>

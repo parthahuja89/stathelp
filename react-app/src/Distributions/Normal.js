@@ -100,9 +100,7 @@ class Normal extends React.Component{
                 {/** Instructions */}
                 <div class = 'instructions'>
                     Instructions <br/>
-                    • The field to be calculated should be left empty.<br/>
-                    • There can not be more than one empty field.<br/>
-
+                    • Enter Random Variable (x/z), Mean, and Standard Deviation.<br/>
                 </div>
 
                 {/** Input fields */}
@@ -172,7 +170,7 @@ class Normal extends React.Component{
                          <Arrow/> 
                 </IconButton>
 
-                <Table className={classes.table} style={{tableLayout: 'fixed'}}>
+                <Table className={classes.table} style={{tableLayout: 'fixed',backgroundColor: 'white'}}>
                     <TableHead>
                         <TableRow>
                             <TableCell>P(Z)</TableCell>

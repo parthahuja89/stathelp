@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Overpass');
-.main{
-    scroll-snap-type: y mandatory;
-    
-}
 
-body{
-    scroll-snap-type: y mandatory;
-    
-}
 .Landing_Page{
     background-image: url('../assets/landing/mobile_bg.svg');
     background-repeat: no-repeat;
@@ -19,11 +11,10 @@ body{
     overflow-y: auto;
     overflow-x: auto;
 
-    scroll-snap-align: start;
 }
 html {
     scroll-behavior: smooth;
-  }
+}
 .Landing_Page_2{
     background-image: url('../assets/landing/desktop_bg_2.svg');
     background-repeat: no-repeat;
@@ -45,8 +36,7 @@ html {
     overflow: scroll;
     overflow-y: auto;
     overflow-x: auto;
-    
-    scroll-snap-align: start;
+
 }
 
 .Title{
@@ -89,10 +79,3 @@ and (orientation : landscape) {
    }
 }
 
-#logo{
-    margin-top: 0.3%;
-    font-family: 'Overpass';
-    font-size: 2.5vh;
-    color: black;
-    margin-left: -1%; 
-}

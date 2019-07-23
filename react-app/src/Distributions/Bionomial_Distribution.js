@@ -98,7 +98,7 @@ class Bionomial_Distribution  extends React.Component{
             console.log("Trial Count: " + this.state.trial_count)
             console.log("X: " + this.state.x)
 
-            axios.get('https://localhost:5000/Bionomial', {
+            axios.get('https://stathelp.herokuapp.com/Bionomial', {
                 //GET Request payload 
                 params: {
                     success: String(this.state.success),
@@ -201,7 +201,7 @@ class Bionomial_Distribution  extends React.Component{
                          <Arrow/> 
                     </IconButton>
 
-                    <Table className={classes.table} style={{tableLayout: 'fixed'}}>
+                    <Table className={classes.table} style={{tableLayout: 'fixed', backgroundColor: 'white'}}>
                     <TableHead>
                     <TableRow>
                         <TableCell>P(X)</TableCell>

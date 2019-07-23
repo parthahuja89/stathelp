@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
-import {TextInput, Button, Snackbar, DataTable, IconButton} from 'react-native-paper';
+import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
@@ -25,7 +25,9 @@ export default class Hyper extends React.Component{
         warning_4: false,
 
     }
+    _showDialog = () => this.setState({ visible: true });
 
+    _hideDialog = () => this.setState({ visible: false });
     /**
      * Sends GET request to server 
      * Request: /Hyper
@@ -95,8 +97,10 @@ export default class Hyper extends React.Component{
     render(){
         return(
             <View>
+                
                 {!this.state.showOutput &&
                 <View>
+                <Button onPress={() => this._showDialog()} style={{marginTop: '-17%'}}> Instructions </Button>
                 {/** Input Field */}
                 <TextInput
                         label= 'Population Size'
@@ -245,6 +249,27 @@ export default class Hyper extends React.Component{
 
                         </View>
                 }
+
+                {/** Instructions Dialog*/}
+                <Portal>
+                <Dialog
+                    visible={this.state.visible}
+                    onDismiss={this._hideDialog}>
+                    <Dialog.Title style= {{textAlign:'center'}}>Instructions</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph style= {{textAlign:'center'}}>
+                        • Sample Size must be smaller than Population Size.  {"\n"}
+                        • Number of Successes must be smaller than parent.   {"\n"}
+                        • The number of successes in the Sample must be less than or equal to the number of successes in the Population. 
+
+                        </Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                    <Button onPress={this._hideDialog}>Done</Button>
+                    </Dialog.Actions>
+                </Dialog>
+                </Portal>
+
             </View>
         );
     }

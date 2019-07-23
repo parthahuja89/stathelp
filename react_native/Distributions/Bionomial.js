@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 
-import {TextInput, Button, Snackbar, DataTable, IconButton} from 'react-native-paper';
+import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
@@ -30,6 +30,10 @@ export default class Bio extends React.Component{
         //true once server output is recieved
         showOutput: false, 
     }
+    _showDialog = () => this.setState({ visible: true });
+
+    _hideDialog = () => this.setState({ visible: false });
+
     /**
      * Routes to the FullTableOutput once server response is recieved 
      */
@@ -94,6 +98,7 @@ export default class Bio extends React.Component{
             <View>
                 {!this.state.showOutput &&
                 <View>
+                <Button onPress={() => this._showDialog()}> Instructions </Button>
                 {/** Input Field */}
                 <TextInput
                         label='Trial Count'
@@ -197,7 +202,26 @@ export default class Bio extends React.Component{
                         </DataTable>
                         </View>
                 }
+                {/** Instructions Dialog*/}
+                <Portal>
+                <Dialog
+                    visible={this.state.visible}
+                    onDismiss={this._hideDialog}>
+                    <Dialog.Title style= {{textAlign:'center'}}>Instructions</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph style= {{textAlign:'center'}}>
+                        • Probability must be between 0-1. {"\n"}
+                        • Number of Successes (X) should be less than or equal to trial count.
+
+                        </Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                    <Button onPress={this._hideDialog}>Done</Button>
+                    </Dialog.Actions>
+                </Dialog>
+                </Portal>
             </View>
+            
         );
     }
 }
