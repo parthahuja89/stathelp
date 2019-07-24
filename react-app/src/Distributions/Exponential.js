@@ -106,6 +106,7 @@ class Exponential extends React.Component{
                     Instructions <br/>
                     • Enter β. Note: λ=1/β. <br/>
                     • Enter Random Variable(X). <br/>
+                    • Convert fractions to demical before calculating. <br/>
                 </div>
                 
                 {/** Input fields */}

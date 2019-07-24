@@ -18,9 +18,6 @@ module.exports = {
      */
     bionomial: function(success, trial_count, x){
 
-
-        console.log("Calculating p(X=x)!")
-
         success = mathjs.bignumber(success)
         trial_count = mathjs.bignumber(trial_count)
         x = mathjs.bignumber(x)

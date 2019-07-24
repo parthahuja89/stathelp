@@ -151,7 +151,8 @@ export default class Exponential extends React.Component{
                     <Dialog.Content>
                         <Paragraph style= {{textAlign:'center'}}>
                         • Enter β. Note: λ=1/β.  {"\n"}
-                        • Enter Random Variable(X). 
+                        • Enter Random Variable(X). {"\n"}
+                        • Convert fractions to demical before calculating.
 
                         </Paragraph>
                     </Dialog.Content>

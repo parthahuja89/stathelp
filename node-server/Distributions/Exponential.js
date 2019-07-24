@@ -14,6 +14,8 @@ module.exports = {
      * Method: P(X<=x): 1-e^(-x/beta)
      */
     Exponential: function(x, beta){
+        x = mathjs.bignumber(x)
+        beta = mathjs.bignumber(beta)
         return parseFloat(1 - mathjs.exp(-x/beta))
     },
 };
