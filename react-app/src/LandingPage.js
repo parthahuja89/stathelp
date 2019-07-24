@@ -85,8 +85,9 @@ class Landing extends React.Component{
             </div>        
             <div class='sub_text'>
             <Fade bottom>
-                A utility tool that includes tendency calculations, probability distribution, 
-                data visual analysis with graphs, and data testing. 
+                A utility tool that includes centeral tendency calculations, 
+                probability distributions, and visual analysis of data with graphs.
+
             
             </Fade>
             </div>
