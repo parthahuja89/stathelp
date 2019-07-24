@@ -52,10 +52,10 @@ class PieChart extends React.Component {
         else{
             temp = []
             for(var i = 0; i < x_arr.length; i++){
-                temp.push([x_arr[i], y_arr[i]])
+                temp.push([x_arr[i], parseInt(y_arr[i])])
             }
             console.log("Finished populating data: " + String(temp))
-            this.setState({graph_data: temp})
+            this.setState({graph_data: temp, showOutput: true})
             
         }
     }
@@ -63,6 +63,7 @@ class PieChart extends React.Component {
         return(
             <Provider>
             <ImageBackground resizeMode = 'cover' source={require('../assets/utils/bg.png')} style ={styles.bg_image}>
+            {!this.state.showOutput &&
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content style={styles.content} >
@@ -99,6 +100,14 @@ class PieChart extends React.Component {
                     <Button  mode="contained" style = {styles.button} onPress={this.plot}>
                         Plot
                     </Button>
+                </Card.Content>
+                </Card>
+            </ScrollView>
+            }
+
+            {this.state.showOutput &&
+            <Card style={styles.card}>
+            <Card.Content style={styles.content} >
                     <VictoryPie
                         data={this.state.graph_data}
                         x={0}
@@ -108,10 +117,13 @@ class PieChart extends React.Component {
                         height={400}
                         colorScale={["tomato", "orange", "pink", "cyan", "navy" ]}
                     />
-
+                    <Button  mode="contained" style = {styles.button} onPress={() => this.setState({showOutput: false})}>
+                        Back
+                </Button>
                 </Card.Content>
                 </Card>
-            </ScrollView>
+            }
+
             {/** Incomplete data warning  */}
             <Snackbar
                     visible={this.state.empty_data_warning}
@@ -171,7 +183,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     button:{
-        top: 30,
+        top: 50,
         maxWidth: win.width/1.30,
     },
 

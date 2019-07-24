@@ -5,70 +5,89 @@ import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-
 
 import { Title,Card,Button, Caption} from 'react-native-paper';
 
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView } from 'react-native-gesture-handler';
 
+import axios from 'axios';
 //Victory charts
 
-import { VictoryBoxPlot, VictoryChart, VictoryTheme, VictoryAxis} from "victory-native";
+import { VictoryScatter, VictoryChart, VictoryTheme,} from "victory-native";
 
 
 const win = Dimensions.get('window')
 
-class BoxPlot extends React.Component {
+class Scatter extends React.Component {
     constructor(){
         super();
         this.plot = this.plot.bind(this);
     }
     state = {
+        x_axis:'',
         y_axis: '',
 
-        graph_data: [0],
-
+        graph_data: [],
+        showOutput: false,
         //warning
         empty_data_warning: false,
         unequal_axis: false,
-
-        showOutput: false, 
     };
 
     /**
      * Populates the data array with cordinates
      */
     plot(){
-        if(this.state.y_axis == ''){
+        if(this.state.x_axis == '' || this.state.y_axis == ''){
             this.setState({ empty_data_warning: true})
             return
         }
         //converting x and y inputs into array 
+        x_arr = this.state.x_axis.split(",")
         y_arr = this.state.y_axis.split(",")
 
-        temp = []
-        for(i in y_arr){
-            temp.push(parseInt(y_arr[i]))
+        if(x_arr.length != y_arr.length){
+            //unequal axis value warning
+            this.setState({ unequal_axis: true})
+            return
         }
 
-        console.log(temp)
-        this.setState({graph_data: temp, showOutput: true})
-  
+        else{
+            temp = []
+            for(var i = 0; i < x_arr.length; i++){
+                temp.push([parseInt(x_arr[i]), parseInt(y_arr[i])])
+            }
+            console.log("Finished populating data: " + String(temp))
+            this.setState({graph_data: temp, showOutput: true})
+            
+        }
     }
     render(){
         return(
             <Provider>
-                <ImageBackground resizeMode = 'cover' source={require('../assets/utils/bg.png')} style ={styles.bg_image}>
+            <ImageBackground resizeMode = 'cover' source={require('../assets/utils/bg.png')} style ={styles.bg_image}>
             {!this.state.showOutput &&
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content style={styles.content} >
-                    <Title style={styles.title}>Box Plot</Title>
-
+                    <Title style={styles.title}>Scatter Chart</Title>
+                    
                     {/**Instructions */}
                     <Caption style= {styles.instructions}> 
                     Instructions {"\n"}
-                    1. Enter Comma Separated Data and plot.
+                    1. Cordinate (1,2), (3,4), (7,9) should be input as: {"\n"}
+                    2. X Axis: 1,3,7 {"\n"}
+                    3. Y Axis: 2,4,9
                     </Caption>
+                    <TextInput
+                        label='X Axis'
+                        value={this.state.x_axis}
+                        onChangeText= {text  => this.setState({x_axis: text})}
+                        style= {styles.textField}
+                        multiline= {true}
+                        mode= 'outlined'
+                        keyboardType='numeric'
+                    />
 
                     <TextInput
-                        label='Data'
+                        label='Y Axis'
                         value={this.state.y_axis}
                         onChangeText= {text  => this.setState({y_axis: text})}
                         style= {styles.textField}
@@ -76,6 +95,7 @@ class BoxPlot extends React.Component {
                         mode= 'outlined'
                         keyboardType='numeric'
                     />
+
                     
                     <Button  mode="contained" style = {styles.button} onPress={this.plot}>
                         Plot
@@ -84,31 +104,30 @@ class BoxPlot extends React.Component {
                 </Card>
             </ScrollView>
             }
+
             {this.state.showOutput &&
-                <Card style={styles.card}>
-                <Card.Content style={styles.content} >
-                    <VictoryChart domainPadding={10}
-                    style ={{top: 200}}
+                    <Card style={styles.card}>
+                    <Card.Content style={styles.content} >
+
+                    <VictoryChart
+                    theme={VictoryTheme.material}
+                    minDomain={0}
                     >
-                    <VictoryAxis tickFormat={(datum) => datum.y} />
-                    <VictoryBoxPlot
-                        minLabels
-                        maxLabels
-                        data={[
-                            { x: 1, y: this.state.graph_data },
-                        ]}
-                        style={{
-                            min: { stroke: "tomato" },}}
+                    <VictoryScatter
+                        size={7}
+                        style={{ data: { fill: "#EA4081" } }}
+                        data={this.state.graph_data}
+                        x={0}
+                        y={1}
                     />
                     </VictoryChart>
-
-                <Button  mode="contained" style = {styles.button} onPress={() => this.setState({showOutput: false})}>
+                    <Button  mode="contained" style = {styles.button} onPress={() => this.setState({showOutput: false})}>
                         Back
-                </Button>
-                </Card.Content>
-                </Card>
-
+                    </Button>
+                    </Card.Content>
+                    </Card>
             }
+
             {/** Incomplete data warning  */}
             <Snackbar
                     visible={this.state.empty_data_warning}
@@ -116,6 +135,15 @@ class BoxPlot extends React.Component {
                     duration = {600}
                     >
                     Incomplete Data. 
+            </Snackbar>
+
+            {/** Unequal Axis Warning  */}
+            <Snackbar
+                    visible={this.state.unequal_axis}
+                    onDismiss={() => this.setState({ unequal_axis: false })}
+                    duration = {2000}
+                    >
+                    X and Y axis are not equal.
             </Snackbar>
             </ImageBackground>
             </Provider>
@@ -164,4 +192,4 @@ const styles = StyleSheet.create({
     },
 
 })
-export default BoxPlot;
+export default Scatter;

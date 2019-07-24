@@ -6,6 +6,7 @@ import Graphing from './Graphing';
 import BoxPlot from './Graphs/BoxPlot';
 import BarChart from './Graphs//BarChart';
 import PieChart from './Graphs/PieChart';
+import Scatter from './Graphs/Scatter';
 
 const AppNavigator = createStackNavigator({
     Home: { screen: Home },
@@ -16,10 +17,11 @@ const AppNavigator = createStackNavigator({
     BoxPlot: {screen: BoxPlot},
     PieChart: {screen: PieChart},
     BarChart: {screen: BarChart},
+    Scatter: {screen: Scatter},
     },
 
     {
-        initialRouteName: 'Home',
+        initialRouteName: 'Graphing',
         headerMode: 'none'
     }
 );

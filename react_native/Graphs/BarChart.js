@@ -52,7 +52,7 @@ class BarChart extends React.Component {
         else{
             temp = []
             for(var i = 0; i < x_arr.length; i++){
-                temp.push([x_arr[i], y_arr[i]])
+                temp.push([x_arr[i], parseInt(y_arr[i])])
             }
             console.log("Finished populating data: " + String(temp))
             this.setState({graph_data: temp, showOutput: true})
@@ -63,6 +63,7 @@ class BarChart extends React.Component {
         return(
             <Provider>
             <ImageBackground resizeMode = 'cover' source={require('../assets/utils/bg.png')} style ={styles.bg_image}>
+            {!this.state.showOutput &&
             <ScrollView>
                 <Card style={styles.card}>
                 <Card.Content style={styles.content} >
@@ -98,10 +99,16 @@ class BarChart extends React.Component {
                     <Button  mode="contained" style = {styles.button} onPress={this.plot}>
                         Plot
                     </Button>
-                    {this.state.showOutput &&
+                </Card.Content>
+                </Card>
+            </ScrollView>
+            }
+            {this.state.showOutput &&
+                     <Card style={styles.card}>
+                     <Card.Content style={styles.content} >
                     <VictoryChart
                     theme={VictoryTheme.material}
-                    domainPadding={10}
+                    domainPadding={150}
                     >
                     <VictoryBar
                         style={{ data: { fill: "#EA4081" } }}
@@ -110,10 +117,13 @@ class BarChart extends React.Component {
                         y={1}
                     />
                     </VictoryChart>
-                    }
-                </Card.Content>
-                </Card>
-            </ScrollView>
+                    <Button  mode="contained" style = {styles.button} onPress={() => this.setState({showOutput: false})}>
+                        Back
+                    </Button>
+                    </Card.Content>
+                    </Card>
+            }
+                    
             {/** Incomplete data warning  */}
             <Snackbar
                     visible={this.state.empty_data_warning}

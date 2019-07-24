@@ -55,6 +55,17 @@ class Graphing extends React.Component {
                         </Card.Actions>
                     </Card.Content>
                 </Card>
+
+                <Card style={styles.card}>
+                    <Card.Content style={styles.aligments} >
+                        <Title style={styles.aligments}> Scatter Plot </Title>
+                        <Image source={require('./assets/Graphs/scatter_chart.png')} style = {styles.dist}/>
+                        <Card.Actions style={styles.aligments} >
+                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
+                            <Button onPress={() => this.props.navigation.navigate('Scatter')}> Open </Button>
+                        </Card.Actions>
+                    </Card.Content>
+                </Card>
                 
                 <Card style={styles.card}>
                     <Card.Content style={styles.aligments} >
@@ -66,6 +77,8 @@ class Graphing extends React.Component {
                         </Card.Actions>
                     </Card.Content>
                 </Card>
+
+
             </ScrollView>
             </ImageBackground>
            
