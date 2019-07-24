@@ -40,6 +40,24 @@ test('Bionomial P(X<x): for data 0.5, 300,150 ~= 0.476...  🍞', () => {
     expect(bio.bionomial_lt(0.5,300,150)).toBeCloseTo(0.476);
 });
 
+//P(X<x) tests 🍞
+test('Bionomial P(X<=x): for data 0.8,4,1 ~= 0.0016...  🍞', () => {
+    expect(bio.bionomial_lt_eq(0.8,4,1)).toBeCloseTo(0.02720);
+});
+
+
+test('Bionomial P(X<x): for data 0.8, 200,150 ~= 0.049...  🍞', () => {
+    expect(bio.bionomial_lt_eq(0.8,200,150)).toBeCloseTo(0.049);
+});
+
+test('Bionomial P(X<x): for data 0.5, 200,150 > 0.99...  🍞', () => {
+    expect(bio.bionomial_lt_eq(0.5,200,150)).toBeGreaterThan(0.999999);
+});
+
+test('Bionomial P(X<x): for data 0.5, 300,150 ~= 0.476...  🍞', () => {
+    expect(bio.bionomial_lt_eq(0.5,300,150)).toBeCloseTo(0.523);
+});
+ 
 
 
 
