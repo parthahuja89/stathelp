@@ -10,11 +10,11 @@
 StatHelp is a utility tool that includes centeral tendency calculations, probability distributions and data visual analysis with graphs.
 
 ## Project Struture  <a name="structure"></a>
-# Web
+##### Web
 StatHelp is using React for the web. The app is connected to the node-js server using axios. 
-# Android
+##### Android
 Mobile version is made in react-native. I will be deploying the app on android playstore. There are no plans to deploy the app on iOS.
-# Server
+##### Server
 App and web are using a shared NodeJS server. The server contains algorithms for probability distributions and other calculations.
 
 ## Testing <a name="testing"></a>
