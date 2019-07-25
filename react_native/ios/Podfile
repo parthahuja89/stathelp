@@ -30,10 +30,12 @@ target 'react_native' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
 
   target 'react_nativeTests' do
     inherit! :search_paths

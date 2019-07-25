@@ -51,6 +51,7 @@ class Bionomial_Distribution  extends React.Component{
         //snackbar hooks
         empty_data_warning: false,
         probability_warning: false,
+        warning_2: false, 
         copy_text: false,
 
         //server response
@@ -92,6 +93,9 @@ class Bionomial_Distribution  extends React.Component{
         else if(this.state.success <0 || this.state.success > 1){
             console.log("Probability not in range")
             this.setState({probability_warning: true})
+        }
+        else if(parseInt(this.state.trial_count) < parseInt(this.state.x)){
+            this.setState({warning_2: true})
         }
         else{
             console.log("Sucess: " + this.state.success)
@@ -277,7 +281,13 @@ class Bionomial_Distribution  extends React.Component{
                     onClose={() => this.setState({probability_warning: false})}
                     message={<span id="message-id">Probability must be between 0-1.</span>}
                 />
-
+                {/** Number of Successes (X) should be less than or equal to trial count. */}
+                <Snackbar
+                    autoHideDuration={2500}
+                    open={this.state.warning_2}
+                    onClose={() => this.setState({warning_2: false})}
+                    message={<span id="message-id"> Number of Successes (X) should be less than or equal to trial count.</span>}
+                />
                 {/** Awares user that text is copied */}
                 <Snackbar
                     autoHideDuration={2000}

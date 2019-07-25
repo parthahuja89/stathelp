@@ -19,6 +19,7 @@ export default class Bio extends React.Component{
 
         empty_data_warning: false,
         probability_warning: false,
+        warning_2: false,
 
         //server res
         answer: '',
@@ -58,6 +59,9 @@ export default class Bio extends React.Component{
         else if(this.state.success <0 || this.state.success > 1){
             console.log("Probability not in range")
             this.setState({probability_warning: true})
+        }
+        else if(parseInt(this.state.trial_count) < parseInt(this.state.x)){
+            this.setState({warning_2: true})
         }
         //passed safety checks
         else{
@@ -154,6 +158,17 @@ export default class Bio extends React.Component{
                         >
                         Probability must be between 0-1. 
                 </Snackbar>
+
+                {/**   Number of Successes (X) should be less than or equal to trial count */}
+                <Snackbar
+                        visible={this.state.warning_2}
+                        onDismiss={() => this.setState({ warning_2: false })}
+                        duration = {600}
+                        style = {styles.Snackbar}
+                        >
+                         Number of Successes (X) should be less than or equal to trial count
+                </Snackbar>
+
                 </View>
                 }
                 

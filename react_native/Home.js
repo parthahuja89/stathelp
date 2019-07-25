@@ -12,12 +12,13 @@ import {
   Dialog, Portal,
 } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { IconButton, Colors, Appbar} from 'react-native-paper';
+import { IconButton, Colors, Appbar, Menu} from 'react-native-paper';
 
 const win = Dimensions.get('window')
 
 class Home extends React.Component {
   static title = 'Card';
+
   state = {
     dialog: false,
     dialog_text: '',
@@ -29,6 +30,10 @@ class Home extends React.Component {
    });
 
   _hideDialog = () => this.setState({ dialog: false });
+
+  _openMenu = () => this.setState({ visible: true });
+
+  _closeMenu = () => this.setState({ visible: false });
 
   render() {
     
@@ -50,14 +55,27 @@ class Home extends React.Component {
         <Text style ={styles.Logo}>
         StatHelp
         </Text>
-
-        <IconButton
-          icon="menu"
-          color={Colors.black}
-          size={30}
-          
-          onPress={() => console.log('Pressed')}
-        />
+        
+        {/** Menu Bar */}
+        <Menu
+            visible={this.state.visible}
+            onDismiss={this._closeMenu}
+            anchor={
+              <IconButton
+                icon="menu"
+                color={Colors.black}
+                size={30}
+                
+                onPress={this._openMenu}
+              />
+            }
+          >
+            <Menu.Item onPress={() => {}} title="Web" />
+            <Menu.Item onPress={() => {}} title="Remove Ads" />
+            <Menu.Item onPress={() => {}} title="Feedback" />
+            <Menu.Item onPress={() => {}} title="App Info" />
+            <Menu.Item onPress={() => {}} title="Donate" />
+        </Menu>
       </View>
 
         <Card style={styles.card}>

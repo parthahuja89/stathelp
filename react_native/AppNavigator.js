@@ -21,7 +21,7 @@ const AppNavigator = createStackNavigator({
     },
 
     {
-        initialRouteName: 'Graphing',
+        initialRouteName: 'Home',
         headerMode: 'none'
     }
 );

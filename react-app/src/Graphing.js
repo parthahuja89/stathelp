@@ -7,9 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import BoxPlot from './Graphs/BoxPlot';
-import Histogram from './Graphs/Histogram';
 import BarChart from './Graphs/BarChart';
 import PieChart from './Graphs/PieChart';
+import Scatter from './Graphs/Scatter';
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import './Graphing.css';
@@ -50,9 +51,9 @@ const theme = createMuiTheme({
 
 const graphs = [
     <BoxPlot/>,
-    <Histogram/>,
     <BarChart/>,
-    <PieChart/>
+    <Scatter/>,
+    <PieChart/>,
 ]
 class Graphing extends React.Component{
     state = {
@@ -94,8 +95,8 @@ class Graphing extends React.Component{
                 centered
                 >
                     <Tab style = {{ fontWeight: 'Bold' }} label="BoxPlot" />
-                    <Tab style = {{ fontWeight: 'Bold' }} label="Histogram" />
                     <Tab style = {{ fontWeight: 'Bold' }} label="BarChart" />
+                    <Tab style = {{ fontWeight: 'Bold' }} label="Scatter" />
                     <Tab style = {{ fontWeight: 'Bold' }} label="PieChart" />
                 
                 </Tabs>

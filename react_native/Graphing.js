@@ -39,7 +39,6 @@ class Graphing extends React.Component {
                         <Image source={require('./assets/Graphs/bar_chart.png')} style = {styles.dist}/>
 
                         <Card.Actions style={styles.aligments} >
-                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
                             <Button onPress={() => this.props.navigation.navigate('BarChart')}> Open </Button>
                         </Card.Actions>
                     </Card.Content>
@@ -50,7 +49,6 @@ class Graphing extends React.Component {
                         <Title style={styles.aligments}> Box Plot </Title>
                         <Image source={require('./assets/Graphs/box_plot.png')} style = {styles.dist}/>
                         <Card.Actions style={styles.aligments} >
-                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
                             <Button onPress={() => this.props.navigation.navigate('BoxPlot')}> Open </Button>
                         </Card.Actions>
                     </Card.Content>
@@ -61,7 +59,6 @@ class Graphing extends React.Component {
                         <Title style={styles.aligments}> Scatter Plot </Title>
                         <Image source={require('./assets/Graphs/scatter_chart.png')} style = {styles.dist}/>
                         <Card.Actions style={styles.aligments} >
-                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
                             <Button onPress={() => this.props.navigation.navigate('Scatter')}> Open </Button>
                         </Card.Actions>
                     </Card.Content>
@@ -72,7 +69,6 @@ class Graphing extends React.Component {
                         <Title style={styles.aligments}> Pie Chart </Title>
                         <Image source={require('./assets/Graphs/pie_chart.png')} style = {styles.dist}/>
                         <Card.Actions style={styles.aligments} >
-                            <Button onPress={() => this._showDialog('Includes Mean, Median, Mode, Variance, Standard Deviation, and Standard Error.')}> More Info </Button>
                             <Button onPress={() => this.props.navigation.navigate('PieChart')}> Open </Button>
                         </Card.Actions>
                     </Card.Content>
@@ -110,7 +106,6 @@ const styles = StyleSheet.create({
         height: 192,
         width: 310,
     },
-    
     aligments: {
         alignItems: 'center',
         textAlign: 'center'
