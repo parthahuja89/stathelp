@@ -5,6 +5,10 @@ import axios from 'axios';
 import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
 
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/1065922127');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Hyper extends React.Component{
     constructor(){
@@ -68,7 +72,7 @@ export default class Hyper extends React.Component{
 
         //Requesting 
         else{
-
+            Interstitial.show()
             axios.get('http://stathelp.herokuapp.com/Hyper', {
                 //GET Request payload 
                 params: {

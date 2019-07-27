@@ -2,12 +2,15 @@ import * as React from 'react';
 import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
-
+import firebase from 'react-native-firebase';
 import { Title,Card,Button, Caption} from 'react-native-paper';
 
 import {ScrollView } from 'react-native-gesture-handler';
 
-import axios from 'axios';
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/3007411950');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 //Victory charts
 
 import { VictoryScatter, VictoryChart, VictoryTheme,} from "victory-native";
@@ -19,6 +22,7 @@ class Scatter extends React.Component {
     constructor(){
         super();
         this.plot = this.plot.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state = {
         x_axis:'',
@@ -50,6 +54,7 @@ class Scatter extends React.Component {
         }
 
         else{
+            Interstitial.show(); 
             temp = []
             for(var i = 0; i < x_arr.length; i++){
                 temp.push([parseInt(x_arr[i]), parseInt(y_arr[i])])

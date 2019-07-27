@@ -6,6 +6,10 @@ import axios from 'axios';
 
 const win = Dimensions.get('window')
 
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/6318248804');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Geometric extends React.Component{
     constructor(){
@@ -51,6 +55,7 @@ export default class Geometric extends React.Component{
         }
 
         else{
+            Interstitial.show()
             console.log("Probability of success: " + this.state.probability)
             console.log("Number of failures: " + this.state.failure)
 

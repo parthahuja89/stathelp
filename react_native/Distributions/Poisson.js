@@ -5,6 +5,10 @@ import axios from 'axios';
 import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
 
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/1722250447');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Chi extends React.Component{
     constructor(){
@@ -36,6 +40,7 @@ export default class Chi extends React.Component{
             this.setState({ empty_data_warning: true })
         }
         else{
+            Interstitial.show()
             console.log("Average: " + this.state.average)
             console.log("X: " + this.state.x)
 
