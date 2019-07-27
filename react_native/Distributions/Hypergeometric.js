@@ -2,13 +2,15 @@ import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
-
+import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
+
 
 export default class Hyper extends React.Component{
     constructor(){
         super();
         this.calculateHyper = this.calculateHyper.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state = {
         population_size: '',

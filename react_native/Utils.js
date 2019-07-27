@@ -2,6 +2,7 @@ import * as React from 'react';
 import {View,Text, StyleSheet, ImageBackground, Picker, StatusBar} from 'react-native';
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
+import firebase from 'react-native-firebase';
 
 import {
     Title,
@@ -21,11 +22,20 @@ import axios from 'axios';
 
 const win = Dimensions.get('window')
 
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/7618888033');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
+
 class Utils extends React.Component {
+    
     constructor(){
         super();
         this.apiRequest = this.apiRequest.bind(this);
         this.copytoclipboard = this.copytoclipboard.bind(this);
+
+        //load interstial 
+        Interstitial.loadAd(request.build());
     }
     state = {
         //textfield
@@ -52,6 +62,7 @@ class Utils extends React.Component {
      * Json payload: {input_data: 'csv_values'}
      */
     apiRequest(){
+        
         console.log("Server request issued.")
 
         //empty data safety check
@@ -61,6 +72,7 @@ class Utils extends React.Component {
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
         }else{
 
+        Interstitial.show();
         axios.get('http://stathelp.herokuapp.com/' + String(this.state.operation), {
             //GET Request payload 
             params: {
@@ -77,6 +89,9 @@ class Utils extends React.Component {
                 answer: res_json['Answer'],
                 showOutput: true
             })
+
+            //reset adverts 
+            Interstitial.loadAd(request.build());
         })
         
     }
@@ -91,9 +106,9 @@ class Utils extends React.Component {
         this.setState({copied: true})
     }
     render(){
+
         return(
         <Provider>
-
             <ImageBackground resizeMode = 'cover' source={require('./assets/utils/bg.png')} style ={styles.bg_image}>
             {/** white notch area with dark contents */}
             <StatusBar
@@ -177,9 +192,9 @@ class Utils extends React.Component {
                         </View>
                 }
                 </Card.Content>
-
-
+                
                 </Card>
+
             </ScrollView>
             </ImageBackground>
             {/** Incomplete data warning  */}
@@ -199,7 +214,6 @@ class Utils extends React.Component {
                     >
                     Copied to clipboard!
             </Snackbar>
-
         </Provider>
            
         );

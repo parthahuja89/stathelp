@@ -1,15 +1,17 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
-
+import firebase from 'react-native-firebase';
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
 
+
 export default class Geometric extends React.Component{
     constructor(){
         super();
         this.calculateGeo = this.calculateGeo.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state ={
         probability: '',

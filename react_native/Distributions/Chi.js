@@ -2,13 +2,15 @@ import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
-
+import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
+
 
 export default class Chi extends React.Component{
     constructor(){
         super();
         this.calculateChi = this.calculateChi.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state = {
         freedom: '',

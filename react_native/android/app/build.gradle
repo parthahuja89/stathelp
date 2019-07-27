@@ -119,6 +119,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -162,14 +163,20 @@ android {
         }
     }
 }
-
 dependencies {
+    implementation project(':react-native-firebase')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-svg')
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    //firebase
+    implementation "com.google.android.gms:play-services-base:16.1.0"
+    implementation "com.google.firebase:firebase-core:16.0.9"
+    //firebase admob
+    implementation "com.google.firebase:firebase-ads:17.2.1"
 
+    implementation 'com.android.support:multidex:1.0.3'
     // JSC from node_modules
     if (useIntlJsc) {
         implementation 'org.webkit:android-jsc-intl:+'
@@ -186,3 +193,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply plugin: 'com.google.gms.google-services'
