@@ -7,7 +7,7 @@ import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
 
 //ads
-const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/6148580612');
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/8113001611');
 const AdRequest = firebase.admob.AdRequest;
 const request = new AdRequest();
 

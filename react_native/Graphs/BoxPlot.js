@@ -9,7 +9,7 @@ import { Title,Card,Button, Caption} from 'react-native-paper';
 import {ScrollView} from 'react-native-gesture-handler';
 
 //ads
-const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/5190722167');
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/3926344593');
 const AdRequest = firebase.admob.AdRequest;
 const request = new AdRequest();
 

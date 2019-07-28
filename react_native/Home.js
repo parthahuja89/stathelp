@@ -1,7 +1,7 @@
 /* @flow */
 
 import * as React from 'react';
-import { Alert, ScrollView, StyleSheet , Image, Text, View, Dimensions, ImageBackground, SafeAreaView, StatusBar} from 'react-native';
+import { Alert, ScrollView, StyleSheet , Image, Text, View, Dimensions, ImageBackground, Linking, StatusBar} from 'react-native';
 import {
   Title,
   Caption,
@@ -70,11 +70,8 @@ class Home extends React.Component {
               />
             }
           >
-            <Menu.Item onPress={() => {}} title="Web" />
-            <Menu.Item onPress={() => {}} title="Remove Ads" />
-            <Menu.Item onPress={() => {}} title="Feedback" />
-            <Menu.Item onPress={() => {}} title="App Info" />
-            <Menu.Item onPress={() => {}} title="Donate" />
+            <Menu.Item onPress={() => {Linking.openURL('https://stathelp.site')}} title="Web" />
+            <Menu.Item onPress={() => {Linking.openURL('https://ko-fi.com/theoldclassified')}}title="Donate" />
         </Menu>
       </View>
 

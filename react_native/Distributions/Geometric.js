@@ -7,7 +7,7 @@ import axios from 'axios';
 const win = Dimensions.get('window')
 
 //ads
-const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/6318248804');
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/6799919946');
 const AdRequest = firebase.admob.AdRequest;
 const request = new AdRequest();
 
