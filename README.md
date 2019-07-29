@@ -1,5 +1,5 @@
 # Stathelp
-Web: https://stathelp.net
+Web: https://stathelp.site
 # Table of Contents
 1. [About Project](#introduction)
 2. [Project Structure](#structure) 
