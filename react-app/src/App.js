@@ -181,8 +181,7 @@ class App extends React.Component {
             TransitionComponent={Fade}
           >
             <MenuItem onClick={this.hideNav}>Play Store</MenuItem>
-            <MenuItem onClick={this.hideNav}>Donate</MenuItem>
-            <MenuItem onClick={this.hideNav}>Report Bug</MenuItem>
+            <MenuItem onClick={() => {window.location = 'https://ko-fi.com/theoldclassified'}}>Donate</MenuItem>
         </Menu>
 
       </Grid>

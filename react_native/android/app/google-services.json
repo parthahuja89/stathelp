@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "679151691810",
+    "firebase_url": "https://stathelp1-7f24b.firebaseio.com",
+    "project_id": "stathelp1-7f24b",
+    "storage_bucket": "stathelp1-7f24b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679151691810:android:401bc9d8dca433ff",
+        "android_client_info": {
+          "package_name": "com.stathelp_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679151691810-0vcrl24cjcuqu6e3i9sun3vonu3kai8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD87HNGCbU33Zpke-D8k6NScJrVyGBCwe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679151691810-0vcrl24cjcuqu6e3i9sun3vonu3kai8m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,12 +5,21 @@ import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, D
 import axios from 'axios';
 
 const win = Dimensions.get('window')
+import firebase from 'react-native-firebase';
+
+//ads
+const Bio_Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/6552507938');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Bio extends React.Component{
     constructor(){
         super();
         this.calculateBio = this.calculateBio.bind(this);
         this.routeToTableView = this.routeToTableView.bind(this);
+        //load interstial 
+        Bio_Interstitial.loadAd(request.build());
+
     }
     state ={
         trial_count: '',
@@ -65,6 +74,7 @@ export default class Bio extends React.Component{
         }
         //passed safety checks
         else{
+            Bio_Interstitial.show(); //ads
             console.log("Sucess: " + this.state.success)
             console.log("Trial Count: " + this.state.trial_count)
             console.log("X: " + this.state.x)

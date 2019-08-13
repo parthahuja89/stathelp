@@ -2,13 +2,19 @@ import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
-
+import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
+
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/2160114588');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Hyper extends React.Component{
     constructor(){
         super();
         this.calculateHyper = this.calculateHyper.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state = {
         population_size: '',
@@ -66,7 +72,7 @@ export default class Hyper extends React.Component{
 
         //Requesting 
         else{
-
+            Interstitial.show()
             axios.get('http://stathelp.herokuapp.com/Hyper', {
                 //GET Request payload 
                 params: {

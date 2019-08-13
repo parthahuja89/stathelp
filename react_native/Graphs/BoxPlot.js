@@ -2,10 +2,16 @@ import * as React from 'react';
 import {View,Text, StyleSheet, ImageBackground, Picker} from 'react-native';
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
+import firebase from 'react-native-firebase';
 
 import { Title,Card,Button, Caption} from 'react-native-paper';
 
 import {ScrollView} from 'react-native-gesture-handler';
+
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/3926344593');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 //Victory charts
 
@@ -18,6 +24,7 @@ class BoxPlot extends React.Component {
     constructor(){
         super();
         this.plot = this.plot.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state = {
         y_axis: '',
@@ -39,6 +46,7 @@ class BoxPlot extends React.Component {
             this.setState({ empty_data_warning: true})
             return
         }
+        Interstitial.show(); 
         //converting x and y inputs into array 
         y_arr = this.state.y_axis.split(",")
 

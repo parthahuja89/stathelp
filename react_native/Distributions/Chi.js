@@ -2,13 +2,19 @@ import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
-
+import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
+
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/1739164955');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Chi extends React.Component{
     constructor(){
         super();
         this.calculateChi = this.calculateChi.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state = {
         freedom: '',
@@ -34,6 +40,7 @@ export default class Chi extends React.Component{
             this.setState({ empty_data_warning: true })
         }
         else{
+            Interstitial.show()
             console.log("freedom: " + this.state.freedom)
             console.log("X: " + this.state.x)
 

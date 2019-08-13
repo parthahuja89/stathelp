@@ -3,13 +3,19 @@ import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react
 
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
-
+import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
+
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/8113001611');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Exponential extends React.Component{
     constructor(){
         super();
         this.calculateExponential = this.calculateExponential.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state ={
         beta: '',
@@ -42,7 +48,7 @@ export default class Exponential extends React.Component{
 
         //Requesting 
         else{
-
+            Interstitial.show()
             axios.get('http://stathelp.herokuapp.com/Expo', {
                 //GET Request payload 
                 params: {

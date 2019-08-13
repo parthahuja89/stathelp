@@ -2,13 +2,19 @@ import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
-
+import firebase from 'react-native-firebase';
 const win = Dimensions.get('window')
+
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/2613262920');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
 
 export default class Normal extends React.Component{
     constructor(){
         super();
         this.calculateNormal = this.calculateNormal.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state = {
         z_score: '',
@@ -35,6 +41,7 @@ export default class Normal extends React.Component{
             this.setState({ empty_data_warning: true })
         }
         else{
+            Interstitial.show()
             console.log("Mean: " + this.state.mean)
             console.log("Standard dev: " + this.state.standard_dev)
             console.log("Z Score: " + this.state.z_score)

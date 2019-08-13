@@ -1,5 +1,5 @@
 {
-  "name": "react_native",
+  "name": "stathelp_mobile",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,6 +12,8 @@
     "jetifier": "^1.6.3",
     "react": "16.8.6",
     "react-native": "0.60.0",
+    "react-native-billing": "^2.10.0",
+    "react-native-firebase": "^5.5.5",
     "react-native-gesture-handler": "^1.3.0",
     "react-native-paper": "^2.16.0",
     "react-native-svg": "9.5.3",

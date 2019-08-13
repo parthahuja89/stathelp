@@ -1,15 +1,21 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, ImageBackground, Dimensions, Picker} from 'react-native';
-
+import firebase from 'react-native-firebase';
 import {TextInput, Button, Snackbar, DataTable, IconButton, Paragraph, Portal, Dialog} from 'react-native-paper';
 import axios from 'axios';
 
 const win = Dimensions.get('window')
 
+//ads
+const Interstitial = firebase.admob().interstitial('ca-app-pub-8336331709242638/6799919946');
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
+
 export default class Geometric extends React.Component{
     constructor(){
         super();
         this.calculateGeo = this.calculateGeo.bind(this);
+        Interstitial.loadAd(request.build());
     }
     state ={
         probability: '',
@@ -49,6 +55,7 @@ export default class Geometric extends React.Component{
         }
 
         else{
+            Interstitial.show()
             console.log("Probability of success: " + this.state.probability)
             console.log("Number of failures: " + this.state.failure)
 
