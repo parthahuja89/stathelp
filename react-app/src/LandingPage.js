@@ -132,7 +132,7 @@ class Landing extends React.Component{
                 direction="row"
                 justify="flex-start"
                 alignItems="center"
-                style= {{marginTop: '10%'}}
+                style= {{marginTop: '2%'}}
             >
             <Grid item md={3} sm={12}  xs={12} align='center'>
                 <IconButton className={classes.button} onClick={() => this.scrollToSection(this.section2)}>
