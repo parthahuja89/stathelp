@@ -3,6 +3,7 @@ import {View,Text, StyleSheet, ImageBackground, Picker, StatusBar} from 'react-n
 import { Dimensions, Clipboard} from 'react-native';
 import { TextInput, List, Menu, Divider, Provider, Snackbar} from 'react-native-paper';
 import firebase from 'react-native-firebase';
+import InAppBilling from 'react-native-billing';
 
 import {
     Title,
@@ -33,6 +34,7 @@ class Utils extends React.Component {
         super();
         this.apiRequest = this.apiRequest.bind(this);
         this.copytoclipboard = this.copytoclipboard.bind(this);
+        this.checkSubscription();
 
         //load interstial 
         Interstitial.loadAd(request.build());
@@ -51,12 +53,37 @@ class Utils extends React.Component {
 
         //ouput copy to clipboard snackbar
         copied: false,
+
+        ads: true,
     };
     
     _openMenu = () => this.setState({ visible: true });
 
     _closeMenu = () => this.setState({ visible: false });
-  
+    
+    /**
+     * Checks if remove ads IAP Product ID was bought: 
+     * 
+     */
+
+    async checkSubscription() {
+        try {
+        await InAppBilling.open();
+        // If subscriptions/products are updated server-side you
+        // will have to update cache with loadOwnedPurchasesFromGoogle()
+        await InAppBilling.loadOwnedPurchasesFromGoogle();
+        const isSubscribed = await InAppBilling.isPurchased("stathelp_remove_ads")
+        console.log("Customer subscribed: ", isSubscribed);
+        if(isSubscribed){
+            this.setState({ads: false})
+        }
+      } catch (err) {
+        console.log(err);
+      } finally {
+        await InAppBilling.close();
+      }
+    }
+
     /**
      * Makes GET Request to Stathelp server 
      * Json payload: {input_data: 'csv_values'}
@@ -71,8 +98,11 @@ class Utils extends React.Component {
             this.setState({ empty_data_warning: true}) 
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
         }else{
-
-        Interstitial.show();
+        
+        //ads will not show if IAP was loaded 
+        if(this.state.ads){
+            Interstitial.show();
+        }
         axios.get('http://stathelp.herokuapp.com/' + String(this.state.operation), {
             //GET Request payload 
             params: {
