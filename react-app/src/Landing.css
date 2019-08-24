@@ -52,15 +52,11 @@ html {
     margin-top: 1%;
     font-family: 'Overpass';
     padding: 8;
+
 } 
 /*Laptops and desktop */
 @media screen and (min-width: 1300px) {
-    .Title{
-        width: 60%;
-    }
-   .sub_text{
-        width: 40%;
-   }
+
    .Landing_Page{
         background-image: url('../assets/landing/desktop_bg.svg');  
    }

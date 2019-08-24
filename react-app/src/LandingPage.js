@@ -77,7 +77,7 @@ class Landing extends React.Component{
                 justify="flex-start"
                 alignItems="center"
             >
-            <Grid items m = {2} l = {2} >
+            <Grid items md={12} lg = {5} s= {12} style={{marginTop: '3%'}}>
             <div class='Title'>
             <Fade bottom>
                 A Minimalistic Statistics Calculator and Analyzer.
