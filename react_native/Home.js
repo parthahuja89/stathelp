@@ -13,7 +13,6 @@ import {
 } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { IconButton, Colors, Appbar, Menu} from 'react-native-paper';
-import InAppBilling from "react-native-billing";
 
 
 const win = Dimensions.get('window')
@@ -37,18 +36,6 @@ class Home extends React.Component {
 
   _closeMenu = () => this.setState({ visible: false });
   
-  //remove ads IAP 
-  async purchase() {
-    try {
-      await InAppBilling.open();
-      const details = await InAppBilling.purchase("stathelp_remove_ads");
-      console.log("You purchased: ", details);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      await InAppBilling.close();
-    }
-  } 
 
   render() {
     
@@ -86,7 +73,7 @@ class Home extends React.Component {
             }
           >
             <Menu.Item onPress={() => {Linking.openURL('https://stathelp.site')}} title="Web" />
-            <Menu.Item onPress={() => {this.purchase()}} title="Remove Ads" />
+            
         </Menu>
       </View>
 

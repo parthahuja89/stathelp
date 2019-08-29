@@ -34,7 +34,7 @@ class Utils extends React.Component {
         super();
         this.apiRequest = this.apiRequest.bind(this);
         this.copytoclipboard = this.copytoclipboard.bind(this);
-        this.checkSubscription();
+
 
         //load interstial 
         Interstitial.loadAd(request.build());
@@ -60,29 +60,7 @@ class Utils extends React.Component {
     _openMenu = () => this.setState({ visible: true });
 
     _closeMenu = () => this.setState({ visible: false });
-    
-    /**
-     * Checks if remove ads IAP Product ID was bought: 
-     * 
-     */
 
-    async checkSubscription() {
-        try {
-        await InAppBilling.open();
-        // If subscriptions/products are updated server-side you
-        // will have to update cache with loadOwnedPurchasesFromGoogle()
-        await InAppBilling.loadOwnedPurchasesFromGoogle();
-        const isSubscribed = await InAppBilling.isPurchased("stathelp_remove_ads")
-        console.log("Customer subscribed: ", isSubscribed);
-        if(isSubscribed){
-            this.setState({ads: false})
-        }
-      } catch (err) {
-        console.log(err);
-      } finally {
-        await InAppBilling.close();
-      }
-    }
 
     /**
      * Makes GET Request to Stathelp server 
@@ -99,11 +77,10 @@ class Utils extends React.Component {
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
         }else{
         
-        //ads will not show if IAP was loaded 
-        if(this.state.ads){
-            Interstitial.show();
-        }
-        axios.get('http://stathelp.herokuapp.com/' + String(this.state.operation), {
+        
+        Interstitial.show();
+        
+        axios.get('https://stathelp.herokuapp.com/' + String(this.state.operation), {
             //GET Request payload 
             params: {
                 values: String(this.state.input_data)

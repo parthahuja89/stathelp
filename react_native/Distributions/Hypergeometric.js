@@ -73,7 +73,7 @@ export default class Hyper extends React.Component{
         //Requesting 
         else{
             Interstitial.show()
-            axios.get('http://stathelp.herokuapp.com/Hyper', {
+            axios.get('https://stathelp.herokuapp.com/Hyper', {
                 //GET Request payload 
                 params: {
                     population_size: String(this.state.population_size),

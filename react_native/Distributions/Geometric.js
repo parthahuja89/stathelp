@@ -59,7 +59,7 @@ export default class Geometric extends React.Component{
             console.log("Probability of success: " + this.state.probability)
             console.log("Number of failures: " + this.state.failure)
 
-            axios.get('http://stathelp.herokuapp.com/Geo', {
+            axios.get('https://stathelp.herokuapp.com/Geo', {
                 //GET Request payload 
                 params: {
                     probability: String(this.state.probability),

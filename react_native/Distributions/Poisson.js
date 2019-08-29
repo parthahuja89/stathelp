@@ -44,7 +44,7 @@ export default class Chi extends React.Component{
             console.log("Average: " + this.state.average)
             console.log("X: " + this.state.x)
 
-            axios.get('http://stathelp.herokuapp.com/Poisson', {
+            axios.get('https://stathelp.herokuapp.com/Poisson', {
                 //GET Request payload 
                 params: {
                     average: String(this.state.average),
