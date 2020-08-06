@@ -1,5 +1,5 @@
 # Stathelp
-Web: https://stathelp.site
+Web: https://stathelpweb.netlify.app/
 # Table of Contents
 1. [About Project](#introduction)
 2. [Project Structure](#structure) 
