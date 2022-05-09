@@ -19,9 +19,5 @@ Mobile version is made in react-native. I will be deploying the app on android p
 App and web are using a shared NodeJS server. The server contains algorithms for probability distributions and other calculations.
 
 ## Testing <a name="testing"></a>
-I have a few tests for the node server using jest. I plan on doing more testing for the algorithms in the future. 
-
-## License and usage  <a name="license"></a>
-Copyrighted © 2019 Parth Ahuja. All Rights Reserved. 
-The code may not be used without author's permission.
+Testing for node.js done using Jest.
 
