@@ -4,6 +4,6 @@
   },
   "dependencies": {
     "jest": "^24.8.0",
-    "mathjs": "^6.0.3"
+    "mathjs": "^7.5.1"
   }
 }
