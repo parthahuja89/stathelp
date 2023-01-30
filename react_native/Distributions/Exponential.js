@@ -49,7 +49,7 @@ export default class Exponential extends React.Component{
         //Requesting 
         else{
             Interstitial.show()
-            axios.get('https://stathelp.herokuapp.com/Expo', {
+            axios.get('https://stathelp.vercel.app/Expo', {
                 //GET Request payload 
                 params: {
                     x: String(this.state.x),

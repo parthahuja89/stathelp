@@ -56,7 +56,7 @@ class Chi extends React.Component{
             console.log("freedom: " + this.state.freedom)
             console.log("X: " + this.state.x)
 
-            axios.get('https://stathelp.herokuapp.com/Chi', {
+            axios.get('https://stathelp.vercel.app/Chi', {
                 //GET Request payload 
                 params: {
                     freedom: String(this.state.freedom),

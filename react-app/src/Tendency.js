@@ -114,7 +114,7 @@ class Tendencies extends React.Component{
             console.log("%cCan't perform requests on empty data, sending warning.", "color: red; font-size: 20px")
         }else{
 
-        axios.get('https://stathelp.herokuapp.com/' + String(this.state.operation), {
+        axios.get('https://stathelp.vercel.app/' + String(this.state.operation), {
             //GET Request payload 
             params: {
                 values: String(this.state.input_data)

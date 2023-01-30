@@ -80,7 +80,7 @@ class Utils extends React.Component {
         
         Interstitial.show();
         
-        axios.get('https://stathelp.herokuapp.com/' + String(this.state.operation), {
+        axios.get('https://stathelp.vercel.app/' + String(this.state.operation), {
             //GET Request payload 
             params: {
                 values: String(this.state.input_data)

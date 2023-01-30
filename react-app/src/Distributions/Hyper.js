@@ -104,7 +104,7 @@ class Hyper extends React.Component{
         //Requesting 
         else{
 
-            axios.get('https://stathelp.herokuapp.com/Hyper', {
+            axios.get('https://stathelp.vercel.app/Hyper', {
                 //GET Request payload 
                 params: {
                     population_size: String(this.state.population_size),
